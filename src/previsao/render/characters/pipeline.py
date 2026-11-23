@@ -29,20 +29,20 @@ def beat(text, kind='nenhum', **data):
 def demo_beats(character):
     if character in {'bira', 'bia'}:
         name = 'Bira do Tempo' if character == 'bira' else 'Bia da Orla'
-        return [beat(f'Eu sou {name}, do Previsão Rio. Vamos olhar o tempo com calma?'),
-                beat('Entre a orla e a Baixada, a previsão pode mudar bastante.', acao='apontar'),
+        return [beat(f'Eu sou {name}, do {_estado.marca_falada()}. Confira nosso estúdio de previsão do tempo.'),
+                beat('Entre a Serra Gaúcha, o Litoral e a Campanha, as condições podem variar.', acao='apontar'),
                 beat('Com os dados de cada região, fica mais fácil decidir o seu dia.'),
-                beat('Este é um teste de imagem e voz. A Nuvem Rio veio conferir também!')]
+                beat('Este é apenas um teste de imagem e voz; não é um boletim meteorológico.')]
 
     if character == 'maria':
         return [
-            beat('Olha só! A Dona Maria chegou ao Previsão Rio.'),
+            beat(f'Olha só! A Dona Maria chegou ao {_estado.marca_falada()}.'),
             beat('Eu já trouxe os óculos e o meu avental de flores.', acao='apontar'),
             beat('Até o velho veio junto. Só espero que ele reclame menos!'),
             beat('Agora me conta: você reconheceu o meu jeitinho e a minha voz?'),
         ]
     return [
-        beat('Ora, vejam só! O Ranzinza chegou ao Previsão Rio.'),
+        beat(f'Olha só! O Ranzinza chegou ao {_estado.marca_falada()}.'),
         beat('Trouxe a minha bengala, os meus óculos e a minha paciência.'),
         beat('Paciência pouca, viu? Mas a previsão eu conto direitinho!'),
         beat('A Dona Maria também está por aqui. Já chegou querendo mandar em tudo!'),
@@ -60,7 +60,7 @@ def snapshot_beats(snapshot):
         rows.append(beat(f"Em {city['nome']}, mínima de {city['min']} e máxima de {city['max']} graus.",
                          'cidade', cidade=city))
     return [beat('Antes de sair, confira como a temperatura muda pela região.')] + rows + [
-        beat('Veja a previsão atualizada no Previsão Rio e compartilhe com quem sai com você.')]
+        beat(f'Veja a previsão atualizada no {_estado.marca_falada()} e compartilhe com quem sai com você.')]
 
 
 def estilo_vox() -> bool:
