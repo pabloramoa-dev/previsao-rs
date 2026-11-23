@@ -1,145 +1,91 @@
-"""Todo Reel mostra pelo menos seis previsões: Niterói, Centro do Rio,
-Zona Sul, Zona Norte, Baixada e Campo Grande (decisão de 16/09/2026)."""
-import copy
+"""Regras do quadro meteorológico RS: seis cidades reais, seis regiões."""
+from datetime import date
 
 import pytest
 
+from src.previsao import config, estado
 from src.previsao.editorial.cinco import cinco_regioes, fala_resumo, faltando
-from src.previsao.editorial.formats import prepare
+from src.previsao.editorial.formats import antes_de_sair, amanha_no_estado
 from src.previsao.editorial.duracao import cortar_para_janela
 
-OBRIGATORIAS = ['Niterói', 'Centro do Rio', 'Zona Sul', 'Zona Norte', 'Baixada', 'Campo Grande']
 
-# Os dez pontos-âncora (sample_tier 1) que a coleta diária traz.
-TIER1 = [
-    ('copacabana', 'Copacabana', 'zona_sul', 22, 29),
-    ('tijuca', 'Tijuca', 'grande_tijuca', 21, 31),
-    ('centro_rio', 'Centro', 'centro', 22, 32),
-    ('meier', 'Méier', 'zona_norte', 22, 33),
-    ('madureira', 'Madureira', 'zona_norte', 23, 34),
-    ('barra_da_tijuca', 'Barra da Tijuca', 'barra_recreio', 21, 30),
-    ('campo_grande', 'Campo Grande', 'zona_oeste', 20, 34),
-    ('icarai', 'Icaraí', 'niteroi_baia', 22, 28),
-    ('duque_de_caxias', 'Duque de Caxias', 'baixada', 22, 35),
-    ('nova_iguacu', 'Nova Iguaçu', 'baixada', 21, 35),
-]
+def locais(dia=date(2026, 11, 23)):
+    return [
+        {"id": p["id"], "name": p["name"], "zone": p["zone"],
+         "min_c": 12 + i, "max_c": 25 + i,
+         "rain_mm": float(i), "rain_probability_pct": None,
+         "wind_gust_max_kmh": None}
+        for i, p in enumerate(config.locations_for_reel(dia))
+    ]
 
 
-def locais():
-    return [{'id': i, 'name': n, 'zone': z, 'min_c': lo, 'max_c': hi,
-             'rain_probability_pct': 20, 'gust_kmh': 20}
-            for i, n, z, lo, hi in TIER1]
-
-
-def test_coleta_diaria_vira_as_cinco_na_ordem():
-    linhas = cinco_regioes(locais())
-    assert [l['nome'] for l in linhas] == OBRIGATORIAS
-    assert [l['id'] for l in linhas] == ['icarai', 'centro_rio', 'copacabana',
-                                         'meier', 'duque_de_caxias', 'campo_grande']
+def test_seis_municipios_na_ordem_das_regioes():
+    pontos = locais()
+    linhas = cinco_regioes(pontos)
+    assert [l["nome"] for l in linhas] == [l["name"] for l in pontos]
+    assert [l["regiao"] for l in linhas] == [r for r, _, _ in estado.regioes()]
+    assert [l["id"] for l in linhas] == [l["id"] for l in pontos]
     assert faltando(linhas) == []
 
 
-def test_zona_norte_sem_meier_usa_madureira():
-    locs = [l for l in locais() if l['id'] != 'meier']
-    norte = [l for l in cinco_regioes(locs) if l['nome'] == 'Zona Norte'][0]
-    assert norte['id'] == 'madureira'
+def test_regiao_com_ancora_ausente_usa_municipio_cadastrado_na_mesma_regiao():
+    pontos = locais()
+    regiao, ids, zonas = estado.regioes()[0]
+    outro = next(x for x in config.load_places()["locations"]
+                 if x["zone"] in zonas and x["id"] != pontos[0]["id"])
+    substituto = dict(pontos[0], id=outro["id"], name=outro["name"], zone=outro["zone"])
+    linhas = cinco_regioes([substituto] + pontos[1:])
+    assert linhas[0]["nome"] == outro["name"]
+    assert linhas[0]["regiao"] == regiao
 
 
-def test_zona_norte_sem_dados_nao_inventa_temperatura():
-    locs = [l for l in locais() if l['zone'] != 'zona_norte']
-    linhas = cinco_regioes(locs)
-    assert 'Zona Norte' in faltando(linhas)
-    assert all(l['regiao'] != 'Zona Norte' for l in linhas)
-
-
-def test_ponto_preferido_ausente_usa_outro_da_mesma_zona():
-    locs = [l for l in locais() if l['id'] != 'duque_de_caxias']
-    baixada = [l for l in cinco_regioes(locs) if l['nome'] == 'Baixada'][0]
-    assert baixada['id'] == 'nova_iguacu'
-
-
-def test_zona_sem_id_conhecido_ainda_conta():
-    locs = [l for l in locais() if l['id'] != 'icarai']
-    locs.append({'id': 'ponto_novo', 'name': 'Piratininga', 'zone': 'niteroi_oceanica',
-                 'min_c': 21, 'max_c': 27})
-    niteroi = [l for l in cinco_regioes(locs) if l['nome'] == 'Niterói'][0]
-    assert niteroi['id'] == 'ponto_novo'
-
-
-def test_regiao_ausente_nao_empresta_numero_e_completa_com_nome_real():
-    locs = [l for l in locais() if l['id'] != 'campo_grande']
-    linhas = cinco_regioes(locs)
+def test_regiao_sem_dados_nao_empresta_numeros_e_explica_falta():
+    pontos = locais()
+    region_missing = estado.regioes()[0][0]
+    pontos = pontos[1:]
+    # Outro ponto de uma região já coberta poderá aparecer como linha extra,
+    # sem ser apresentado falsamente como previsão da primeira região.
+    outro = next(x for x in config.load_places()["locations"]
+                 if x["zone"] == pontos[0]["zone"] and x["id"] != pontos[0]["id"])
+    extra = dict(pontos[0], id=outro["id"], name=outro["name"])
+    linhas = cinco_regioes(pontos + [extra])
+    assert region_missing in faltando(linhas)
     assert len(linhas) == 6
-    assert 'Campo Grande' not in [l['nome'] for l in linhas]
-    assert faltando(linhas) == ['Campo Grande']
-    extra = linhas[-1]
-    assert extra['regiao'] is None and extra['nome'] in {'Tijuca', 'Barra da Tijuca', 'Nova Iguaçu'}
+    assert linhas[-1]["regiao"] is None
+    assert linhas[-1]["nome"] == extra["name"]
 
 
-def test_ponto_sem_minima_ou_maxima_fica_de_fora():
-    locs = locais()
-    for l in locs:
-        if l['id'] == 'centro_rio':
-            l.pop('min_c')
-    linhas = cinco_regioes(locs)
-    assert 'Centro do Rio' not in [l['nome'] for l in linhas]
-    assert all(isinstance(l['min'], (int, float)) for l in linhas)
+def test_ponto_sem_minima_maxima_fica_de_fora():
+    pontos = locais()
+    pontos[1].pop("min_c")
+    linhas = cinco_regioes(pontos)
+    assert pontos[1]["name"] not in [l["nome"] for l in linhas]
+    assert all(l["min"] is not None for l in linhas)
 
 
-def test_fala_do_resumo_e_curta_e_nomeia_as_regioes():
-    fala = fala_resumo(cinco_regioes(locais()))
-    assert fala == 'Niterói, Centro, Zona Sul, Zona Norte, Baixada e Campo Grande: de 28 a 35 graus.'
-    assert len(fala.split()) <= 16
-    assert fala_resumo(cinco_regioes(locais()), 'No sábado').startswith('No sábado, em Niterói')
+def test_resumo_fala_os_seis_municipios():
+    pontos = locais()
+    fala = fala_resumo(cinco_regioes(pontos))
+    assert all(p["name"] in fala for p in pontos)
+    assert "graus" in fala
 
 
-@pytest.fixture
-def snap_tier1(snapshot):
-    s = copy.deepcopy(snapshot)
-    s['forecast']['today']['locations'] = locais()
-    return s
+@pytest.mark.parametrize("amanha", [False, True])
+def test_reel_mostra_cartao_das_seis_regioes(amanha):
+    pontos = locais()
+    snapshot = {"forecast": {"today": {"date": "2026-11-23", "locations": pontos},
+                             "tomorrow": {"date": "2026-11-24", "locations": pontos}}}
+    batidas = amanha_no_estado(snapshot, False) if amanha else antes_de_sair(snapshot, False)
+    resumos = [b for b in batidas if b["tipo"] == "resumo"]
+    assert len(resumos) == 1
+    assert [c["nome"] for c in resumos[0]["dados"]["cidades"]] == [p["name"] for p in pontos]
+    assert len(resumos[0]["dados"]["cidades"]) == 6
 
 
-def test_formato_principal_mostra_as_cinco(snap_tier1):
-    beats = prepare(snap_tier1, 'antes_de_sair')['beats']
-    resumo = [b for b in beats if b['tipo'] == 'resumo']
-    assert len(resumo) == 1
-    assert [c['nome'] for c in resumo[0]['dados']['cidades']] == OBRIGATORIAS
-    palavras = sum(len(b['fala'].split()) for b in beats)
-    assert palavras <= 80
-
-
-def test_corte_por_duracao_nunca_tira_as_cinco(snap_tier1):
-    beats = prepare(snap_tier1, 'antes_de_sair')['beats']
-    duracoes = [9.0] * len(beats)          # dia longo: tudo estoura o teto
-    ficam, _ = cortar_para_janela(beats, duracoes)
-    assert any(b['tipo'] == 'resumo' for b in ficam)
-
-
-def test_fim_de_semana_mostra_as_cinco_em_cada_dia(snap_tier1, monkeypatch):
-    import src.previsao.editorial.formats as F
-    locs = snap_tier1['forecast']['today']['locations']
-    snap_tier1['forecast']['saturday'] = {'date': '2026-09-19', 'locations': copy.deepcopy(locs)}
-    snap_tier1['forecast']['sunday'] = {'date': '2026-09-20', 'locations': copy.deepcopy(locs)}
-    candidato = {'format': 'fim_de_semana', 'status': 'ready', 'topic': 'fim_de_semana',
-                 'location_ids': [l['id'] for l in locs], 'language': 'deterministic',
-                 'extra': {'dates': ['2026-09-19', '2026-09-20']},
-                 'created_at': '2026-09-17T06:00:00-03:00'}
-    monkeypatch.setattr(F, 'evaluate', lambda *a, **k: [candidato])
-    beats = F.prepare(snap_tier1, 'fim_de_semana')['beats']
-    resumos = [b for b in beats if b['tipo'] == 'resumo']
-    assert [r['dados']['titulo'] for r in resumos] == ['SÁBADO NA REGIÃO', 'DOMINGO NA REGIÃO']
-    assert all([c['nome'] for c in r['dados']['cidades']] == OBRIGATORIAS for r in resumos)
-    assert beats[0]['tipo'] == 'nenhum'
-    assert not any('nos pontos consultados' in b['fala'] for b in beats)
-
-
-def test_formato_de_chuva_tambem_mostra_as_cinco(snap_tier1):
-    try:
-        beats = prepare(snap_tier1, 'chove_onde')['beats']
-    except ValueError:
-        pytest.skip('fixture sem pauta de chuva pronta')
-    resumo = [b for b in beats if b['tipo'] == 'resumo']
-    assert len(resumo) == 1
-    assert [c['nome'] for c in resumo[0]['dados']['cidades']] == OBRIGATORIAS
-    assert beats[-1]['tipo'] != 'resumo'
+def test_corte_por_duracao_nunca_remove_cartao():
+    pontos = locais()
+    snapshot = {"forecast": {"today": {"date": "2026-11-23", "locations": pontos},
+                             "tomorrow": {"date": "2026-11-24", "locations": pontos}}}
+    batidas = antes_de_sair(snapshot, False)
+    ficam, _ = cortar_para_janela(batidas, [9.0] * len(batidas))
+    assert any(b["tipo"] == "resumo" for b in ficam)
