@@ -5,6 +5,7 @@ e marca vivem em YAML validado e sao lidos por aqui.
 """
 from __future__ import annotations
 
+from datetime import date, datetime
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -134,6 +135,36 @@ def locations_by_tier(max_tier: int = 1) -> list[dict[str, Any]]:
     picked = [l for l in places["locations"] if int(l["sample_tier"]) <= max_tier]
     return sorted(picked, key=lambda l: (l["sample_tier"], l["id"]))
 
+
+
+def locations_for_reel(day: date | None = None) -> list[dict[str, Any]]:
+    """Rodízio diário: uma cidade REAL por região, sem aumentar o número de coletas.
+
+    A escolha usa os municípios catalogados para cada região (tier 1 ou 2),
+    muda a cada dia local do RS e preserva a cobertura das seis regiões.
+    Mesmo dia = mesmas cidades para Bira e Bia, sem depender da ordem da API.
+    """
+    if day is None:
+        day = datetime.now(estado.fuso()).date()
+    pool = {p["id"]: p for p in load_places()["locations"]}
+    selected: list[dict[str, Any]] = []
+    used: set[str] = set()
+    for i, (region, ids, zones) in enumerate(estado.regioes()):
+        options = [pool[k] for k in ids
+                   if k in pool and k not in used
+                   and int(pool[k]["sample_tier"]) <= 2]
+        if not options:
+            options = [p for p in pool.values()
+                       if p["zone"] in zones and p["id"] not in used
+                       and int(p["sample_tier"]) <= 2]
+        if not options:
+            raise ValueError(f"Sem cidade cadastrada para a região {region}")
+        city = options[(day.toordinal() + i) % len(options)]
+        selected.append(city)
+        used.add(city["id"])
+    if len(selected) != 6:
+        raise ValueError(f"O quadro do RS exige seis regiões; vieram {len(selected)}")
+    return selected
 
 def location_by_id(loc_id: str) -> dict[str, Any] | None:
     for loc in load_places()["locations"]:

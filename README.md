@@ -43,3 +43,20 @@ Fontes: [MET Norway](https://api.met.no) para previsão (crédito e licença CC 
 5. Se usar cron-job.org como gatilho principal, despachar `reel_manha` às 05h35 e `reel_noite` às 17h35 no fuso local. O GitHub possui gatilhos de reserva.
 
 Nunca reutilizar credenciais Meta de outro canal.
+
+
+## Identificação das cidades no quadro e rodízio
+
+Em cada Reel aparecem **seis cidades reais**, uma de cada região do RS. O
+quadro principal mostra o **nome da cidade em letras grandes**, a **região logo
+abaixo**, as temperaturas e os milímetros de chuva previstos exatamente para
+aquele município. A locução fala os nomes das cidades, nunca apenas a região.
+
+A coleta dos Reels da manhã, da noite e do piloto usa
+`python -m scripts.collect_live output/snapshot.json --rodizio`.
+A cada dia, o rodízio escolhe outra cidade cadastrada em cada região;
+Bira e Bia do mesmo dia cobrem as mesmas cidades. Não são introduzidos
+números fictícios: se faltar previsão, a coleta falha e não publica.
+
+O convite final incentiva os moradores a seguirem **@previsaors** para
+verem sua cidade em edições futuras.

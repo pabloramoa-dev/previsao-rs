@@ -69,7 +69,7 @@ jobs:
           python -m pytest -q tests/test_paridade_rj_rs.py
 
       - name: Coletar previsão atual para as seis regiões do RS
-        run: python -m scripts.collect_live output/snapshot.json --tier 1
+        run: python -m scripts.collect_live output/snapshot.json --rodizio
 
       - name: Renderizar Reel pelo MESMO motor diário do Previsão RJ
         run: |

@@ -1,15 +1,8 @@
-"""As seis previsões que todo Reel mostra (decisão do proprietário, 16/09/2026).
+"""Seis cidades reais do RS no quadro regional e na fala de cada Reel.
 
-Todo Reel, de qualquer apresentador e de qualquer formato, mostra pelo menos
-seis previsões na tela, sempre cobrindo:
-
-    Niterói · Centro do Rio · Zona Sul · Zona Norte · Baixada · Campo Grande
-
-Cada região é representada pelo ponto-âncora dela na coleta (sample_tier 1 em
-config/locais.yaml). Se o ponto preferido faltar, vale outro da mesma zona.
-Se a região inteira faltar na coleta, a vaga é preenchida por outro ponto
-coletado, com o nome REAL dele: número de uma região nunca é inventado nem
-emprestado de outra.
+O quadro sempre mostra o nome da cidade com o rótulo da região embaixo.
+As temperaturas e a chuva vêm exatamente do ponto geográfico dessa cidade.
+Não usar números de outra localidade para completar regiões ausentes.
 """
 from __future__ import annotations
 
@@ -34,7 +27,9 @@ def _valido(loc: dict[str, Any]) -> bool:
 
 
 def _linha(nome: str, loc: dict[str, Any], regiao: str | None) -> dict[str, Any]:
-    row = {'nome': nome, 'min': loc['min_c'], 'max': loc['max_c'],
+    # A cidade verdadeira é o título; o rótulo regional vai na segunda linha.
+    # Não trocar os números do município pelos de outra região.
+    row = {'nome': loc.get('name') or nome, 'min': loc['min_c'], 'max': loc['max_c'],
            'id': loc.get('id'), 'regiao': regiao}
     for source, target in (('rain_probability_pct', 'prob_chuva'),
                            ('rain_mm', 'chuva_mm'),

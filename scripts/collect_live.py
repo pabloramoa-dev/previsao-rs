@@ -23,9 +23,12 @@ def main() -> None:
     parser.add_argument("--tier", type=int, default=1,
                         help="1 = ancoras do Reel-base; 2 inclui as zonas de apoio")
     parser.add_argument("--previous", help="snapshot anterior, para consistencia temporal")
+    parser.add_argument("--rodizio", action="store_true",
+                        help="Reel RS: escolher uma cidade diferente por região a cada dia")
     args = parser.parse_args()
 
-    locations = config.locations_by_tier(args.tier)
+    locations = (config.locations_for_reel()
+                 if args.rodizio else config.locations_by_tier(args.tier))
     if not locations:
         raise SystemExit(f"nenhum local no tier {args.tier}")
 

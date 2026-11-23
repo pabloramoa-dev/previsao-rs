@@ -357,7 +357,10 @@ def cena_quadro(p, cena, bat):
         linhas.append(f'''
   <div class="qd-linha">
    <div class="qd-barra"></div>
-   <div class="qd-main"><div class="qd-cidade">{esc(c["nome"].upper())}</div>
+   <div class="qd-main"><div class="qd-local">
+    <div class="qd-cidade">{esc(c["nome"].upper())}</div>
+    <div class="qd-regiao">{esc((c.get("regiao") or "RIO GRANDE DO SUL").upper())}</div>
+   </div>
    <div class="qd-cels"><span class="qd-min">{metric(c, "min", "°")}</span><span class="qd-max">{metric(c, "max", "°")}</span></div></div>
    <div class="qd-metrics">{metricas(c)}</div>
   </div>''')
@@ -528,15 +531,17 @@ html, body {{ width: 1080px; height: 1920px; overflow: hidden; background: {NAVY
 .qd-head {{ display: flex; justify-content: space-between; align-items: center; font-family: "BarlowCB", sans-serif; font-size: 36px; color: {YEL}; letter-spacing: 3px; margin-bottom: 8px; }}
 .qd-cols {{ display: flex; gap: 62px; padding-right: 22px; }}
 .qd-cols b {{ font-weight: 700; }}
-.qd-linha {{ position: relative; height: 104px; padding: 8px 0 8px 22px; border-top: 3px solid #22364a; }}
-.qd-barra {{ position:absolute;left:0;top:14px;width:8px;height:76px;background:{YEL};border-radius:5px; }}
-.qd-main {{ display:flex;align-items:center;justify-content:space-between;height:48px; }}
-.qd-cidade {{ font-family:"BarlowC",sans-serif;font-size:42px;color:white;white-space:nowrap; }}
-.qd-cels {{ display:flex;gap:30px;font-family:"BarlowC",sans-serif;font-size:44px; }}
+.qd-linha {{ position: relative; height: 116px; padding: 7px 0 7px 22px; border-top: 3px solid #22364a; }}
+.qd-barra {{ position:absolute;left:0;top:16px;width:8px;height:82px;background:{YEL};border-radius:5px; }}
+.qd-main {{ display:flex;align-items:center;justify-content:space-between;height:63px;gap:12px; }}
+.qd-local {{ display:flex;flex-direction:column;justify-content:center;min-width:0;max-width:68%;overflow:hidden; }}
+.qd-cidade {{ font-family:"BarlowC",sans-serif;font-size:37px;line-height:40px;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }}
+.qd-regiao {{ font-family:"BarlowCB",sans-serif;font-size:19px;line-height:21px;letter-spacing:1px;color:#91bfd0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }}
+.qd-cels {{ display:flex;gap:30px;font-family:"BarlowC",sans-serif;font-size:44px;flex-shrink:0; }}
 .qd-cels span {{ width:82px;text-align:center; }}
 .qd-min {{ color:#9fd8ff; }}
 .qd-max {{ color:{YEL}; }}
-.qd-metrics {{ display:flex;justify-content:space-between;gap:10px;font-family:"BarlowCB",sans-serif;font-size:30px;color:#b9ccdd;line-height:30px; }}
+.qd-metrics {{ display:flex;justify-content:space-between;gap:10px;font-family:"BarlowCB",sans-serif;font-size:28px;color:#b9ccdd;line-height:30px; }}
 .qd-metrics b {{ color:white;font-weight:700; }}
 .qd-dicas {{ font-family:"BarlowCB",sans-serif;font-size:26px;color:{YEL};margin-top:12px;text-align:center;line-height:1.25; }}
 /* ---------- alerta ---------- */
