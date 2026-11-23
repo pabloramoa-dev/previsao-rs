@@ -1,5 +1,7 @@
 """Regressões: apresentação estadual deve seguir o mesmo Reel diário do Previsão RJ."""
 from pathlib import Path
+import subprocess
+import sys
 import json
 import yaml
 
@@ -65,3 +67,12 @@ def test_piloto_usa_motor_normal_nao_comunicado():
     assert "instagram_business_content_publish" not in texto
     assert "--snapshot output/snapshot.json" in texto
     assert "--format" in texto
+
+
+def test_cli_reel_aceita_os_dois_formatos_estaduais():
+    """O CLI nao pode receber uma classe dict vazia como choices."""
+    cmd = [sys.executable, "hyperframes/gerar_hf.py", "--help"]
+    r = subprocess.run(cmd, cwd=BASE, capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr
+    assert "amanha_no_estado" in r.stdout
+    assert "antes_de_sair" in r.stdout
