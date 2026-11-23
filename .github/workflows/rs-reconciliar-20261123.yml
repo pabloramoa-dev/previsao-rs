@@ -1,0 +1,163 @@
+name: "RS — conciliar e recuperar Reel de 23-11-2026"
+# Operação única: só considera repostagem se o media_id original não existir
+# mais na conta E a legenda não constar na listagem da Meta.
+on:
+  push:
+    paths:
+      - ".github/workflows/rs-reconciliar-20261123.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: canal-publicacao
+  cancel-in-progress: false
+jobs:
+  conciliar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install requests pyyaml
+      - name: Recuperar MP4 e legenda originais (não renderizar outro Reel)
+        uses: actions/download-artifact@v4
+        with:
+          name: reel-45113875777
+          run-id: 45113875777
+          github-token: ${{ github.token }}
+          path: output
+      - name: Consultar Meta; republicar somente com ausência confirmada
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          EXPECTED_IG_USERNAME: "previsaors"
+          META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION || 'v26.0' }}
+        run: |
+          python - <<'PY'
+          import json, os, time
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          import requests
+          from src.previsao.publish.instagram import (
+              verify_destination, base_url, already_published_caption,
+              create_reel, wait_ready, publish
+          )
+
+          ORIGINAL_ID = "18009474182795061"
+          DATE = "2026-11-23"
+          report_path = Path("data/rs_reconciliacao_2026-11-23.json")
+          video = "https://github.com/pabloramoa-dev/previsao-rs/releases/download/reel-45113875777/REEL.mp4"
+          cover = "https://github.com/pabloramoa-dev/previsao-rs/releases/download/reel-45113875777/CAPA.jpg"
+          caption = Path("output/LEGENDA.txt").read_text(encoding="utf-8").strip()
+          if "@previsaors" not in caption.casefold():
+              raise SystemExit("Legenda do arquivo original não identifica @previsaors")
+          token = os.environ["IG_ACCESS_TOKEN"]
+          ver = os.environ.get("META_GRAPH_VERSION") or "v26.0"
+          base = base_url(ver)
+          account = verify_destination()
+          params = {"access_token": token, "fields": "id,media_type,caption,timestamp,permalink", "limit": 100}
+          items = []
+          next_url = f"{base}/{account['id']}/media"
+          for page in range(6):
+              response = requests.get(next_url, params=params if page == 0 else None, timeout=35)
+              response.raise_for_status()
+              payload = response.json()
+              if not isinstance(payload.get("data"), list):
+                  raise RuntimeError("Listagem Meta inválida: não decidir republicação")
+              items += payload["data"]
+              next_url = payload.get("paging", {}).get("next")
+              if not next_url:
+                  break
+          else:
+              raise RuntimeError("Mais de 600 mídias; revisão manual obrigatória")
+
+          def norm(s):
+              return " ".join((s or "").split()).casefold()
+          match = next((m for m in items if str(m.get("id")) == ORIGINAL_ID
+                         or (norm(m.get("caption")) and norm(m.get("caption")) == norm(caption))), None)
+          direct = requests.get(f"{base}/{ORIGINAL_ID}",
+                params={"fields": "id,permalink,timestamp", "access_token": token}, timeout=35)
+          if direct.status_code >= 500:
+              raise RuntimeError("Graph indisponível; não republicar no escuro")
+          if direct.status_code == 200:
+              match = match or direct.json()
+          elif direct.status_code not in (400, 404):
+              direct.raise_for_status()
+
+          result = {
+              "date": DATE, "account": account.get("username"),
+              "original_media_id": ORIGINAL_ID, "checked_at": datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat(),
+              "inspected_media_count": len(items),
+          }
+          if match:
+              result.update(status="already_published", media_id=match.get("id"),
+                            permalink=match.get("permalink", ""))
+              print("Já publicado na Meta; não criar duplicata", result["media_id"], result["permalink"])
+          else:
+              # Meta respondeu à listagem e o ID original não é consultável.
+              # A segunda verificação reduz risco de uma postagem concorrente.
+              if already_published_caption(caption, limit=100):
+                  raise RuntimeError("Legenda já publicada; bloqueada nova tentativa")
+              media_response = requests.get(video, stream=True, timeout=45)
+              try:
+                  media_response.raise_for_status()
+                  if "text/html" in media_response.headers.get("content-type", ""):
+                      raise RuntimeError("A URL do vídeo retornou HTML e não MP4")
+              finally:
+                  media_response.close()
+              try:
+                  cover_response = requests.get(cover, stream=True, timeout=30)
+                  if cover_response.status_code == 200 and "text/html" not in cover_response.headers.get("content-type", ""):
+                      os.environ["PREVISAO_CAPA_URL"] = cover
+                  else:
+                      os.environ["PREVISAO_CAPA_MS"] = "2000"
+                  cover_response.close()
+              except requests.RequestException:
+                  os.environ["PREVISAO_CAPA_MS"] = "2000"
+              print("ID original ausente da conta; recuperando o mesmo MP4")
+              container = create_reel(video, caption)
+              wait_ready(container)
+              if already_published_caption(caption, limit=100):
+                  raise RuntimeError("Outra execução publicou a legenda durante o processamento; não duplicar")
+              new_id = publish(container)
+              verified = None
+              for _ in range(6):
+                  check = requests.get(f"{base}/{new_id}", params={
+                      "fields": "id,permalink,timestamp", "access_token": token}, timeout=30)
+                  if check.status_code == 200:
+                      verified = check.json()
+                      break
+                  time.sleep(5)
+              result.update(status="recovered" if verified else "published_unverified",
+                            media_id=new_id, permalink=(verified or {}).get("permalink", ""))
+              print("Resultado da recuperação:", result["status"], new_id, result["permalink"])
+              if verified:
+                  qpath = Path("data/editorial_queue.json")
+                  queue = json.loads(qpath.read_text(encoding="utf-8"))
+                  for item in queue:
+                      if str(item.get("media_id")) == ORIGINAL_ID and item.get("turno") == "manha":
+                          item["previous_media_id"] = ORIGINAL_ID
+                          item["media_id"] = new_id
+                          item["published_at"] = datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat()
+                  qpath.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          report_path.parent.mkdir(parents=True, exist_ok=True)
+          report_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
+              out.write("## RS — 23/11/2026\n\n" + json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+          PY
+      - name: Persistir resultado auditável
+        if: always()
+        run: |
+          if [ ! -f data/rs_reconciliacao_2026-11-23.json ]; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rs_reconciliacao_2026-11-23.json data/editorial_queue.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "RS: reconciliar Reel 23-11 via recibo confirmado da Meta [skip ci]"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
