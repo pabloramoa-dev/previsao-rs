@@ -127,7 +127,7 @@ def batida_chuva(locs, amanha=False):
 
 
 def abertura_com_dado(locations, dia, quando):
-    """Primeira fala JÁ com previsão: cidade-âncora, mínima, máxima e chuva.
+    """Abertura direta inspirada no Previsão RJ: primeira frase traz dados úteis.
 
     Sem "olá", nomes dos apresentadores ou "veja a previsão". A cidade roda
     entre as âncoras das regiões (rodízio diário), para não abrir sempre igual.
@@ -159,7 +159,7 @@ def abertura_com_dado(locations, dia, quando):
         chuva = ', sem chuva significativa'
     else:
         chuva = ''
-    return batida(f"{quando.capitalize()}, {loc['name']} terá mínima de {mi} e máxima de {ma} graus{chuva}.")
+    return batida(f"{quando.capitalize()}, {loc['name']}: mínima de {mi} e máxima de {ma} graus{chuva}.")
 
 
 def antes_de_sair(snapshot, incerto):
@@ -180,8 +180,6 @@ def antes_de_sair(snapshot, incerto):
     # batidas em que ele aparece.
     abertura = abertura_com_dado(locs, snapshot['forecast']['today'].get('date'), 'hoje')
     batidas = [abertura or batida(f'Previsão {estado.de()} para hoje.')]
-    if incerto:
-        batidas.append(batida('O cenário ainda tem incerteza. Há possibilidade de mudança.'))
     destaque = gancho_destaque(snapshot, locs, 'hoje')
     if destaque is not None:
         batidas.append(destaque)
@@ -226,8 +224,6 @@ def amanha_no_estado(snapshot, incerto):
     contraste = regional_contrast(locs)
     abertura = abertura_com_dado(locs, bloco.get('date'), 'amanhã')
     batidas = [abertura or batida(f'Previsão {estado.de()} para amanhã.')]
-    if incerto:
-        batidas.append(batida('O cenário para amanhã ainda tem incerteza. Pode mudar até de manhã.'))
     destaque = gancho_destaque(snapshot, locs, 'amanha')
     if destaque is not None:
         batidas.append(destaque)
