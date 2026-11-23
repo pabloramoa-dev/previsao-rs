@@ -1,73 +1,109 @@
-name: Piloto RS - Bia e Bira - real - sem publicar
+name: Piloto RS - mesmo padrão do Previsão RJ (sem publicar)
+
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - '.github/workflows/piloto_previsaors_dupla.yml'
-      - 'scripts/roteiro_piloto_dupla_rs.py'
-  workflow_dispatch:
+
 permissions:
   contents: read
+
 concurrency:
-  group: piloto-rs-dupla
+  group: piloto-rs-padrao-rj-${{ github.ref }}
   cancel-in-progress: true
+
 jobs:
-  video:
+  reel:
+    name: "${{ matrix.turno }} · ${{ matrix.personagem }}"
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - turno: manha
+            personagem: bira
+            formato: antes_de_sair
+          - turno: noite
+            personagem: bia
+            formato: amanha_no_estado
     env:
       HYPERFRAMES_NO_TELEMETRY: '1'
       DO_NOT_TRACK: '1'
       OMP_NUM_THREADS: '2'
+      PREVISAO_MOTOR: hyperframes
+      PREVISAO_ESTILO: vox
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+        with: {python-version: "3.12"}
       - uses: actions/cache@v4
         with:
           path: ~/.cache/previsao_kokoro
           key: kokoro-v1.0
-      - name: Dependencies
+
+      - name: Instalar as mesmas dependências do Previsão RJ
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q ffmpeg espeak-ng
-          pip install -r requirements/test.txt -r requirements/comunicado.txt
-      - name: Preparar estúdio original
+          sudo apt-get install -y -q ffmpeg espeak-ng libpango1.0-dev libcairo2-dev pkg-config
+          mkdir -p ~/.local/share/fonts/poppins
+          for f in Poppins-Bold.ttf Poppins-Regular.ttf; do
+            curl -fsSL --retry 3 -o ~/.local/share/fonts/poppins/$f https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/$f
+          done
+          fc-cache -f
+          pip install -r requirements/test.txt -r requirements/characters.txt
+
+      - name: Preparar HyperFrames
         uses: ./.github/actions/setup-hyperframes
-      - name: Coletar previsão RS atual
+
+      - name: Validar paridade de apresentação e isolamento
+        run: |
+          python -m scripts.validar_estado
+          python scripts/isolation_guard.py
+          python -m pytest -q tests/test_paridade_rj_rs.py
+
+      - name: Coletar previsão atual para as seis regiões do RS
         run: python -m scripts.collect_live output/snapshot.json --tier 1
-      - name: Produzir roteiro apenas com dados coletados
+
+      - name: Renderizar Reel pelo MESMO motor diário do Previsão RJ
         run: |
-          python scripts/roteiro_piloto_dupla_rs.py --snapshot output/snapshot.json --out output/piloto_rs.yaml
-          python hyperframes/comunicado_dupla.py output/piloto_rs.yaml --so-validar
-      - name: Renderizar Bia e Bira com HyperFrames e Kokoro
-        run: python hyperframes/comunicado_dupla.py output/piloto_rs.yaml --out output/PREVISAO_RS_BIA_BIRA.mp4 --qualidade standard
-      - name: QA do piloto em dupla (duracao ate 180s)
+          python hyperframes/gerar_hf.py \
+            --snapshot output/snapshot.json \
+            --personagem "${{ matrix.personagem }}" \
+            --format "${{ matrix.formato }}" \
+            --out output/REEL.mp4
+
+      - name: Validar o MP4 no mesmo gate de qualidade do RJ
+        run: python scripts/qa_video.py output/REEL.mp4
+
+      - name: Evidências de roteiro e fontes
         run: |
-          python - <<'PY'
-          import json, subprocess
-          p='output/PREVISAO_RS_BIA_BIRA.mp4'
-          data=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',p]))
-          v=next(s for s in data['streams'] if s.get('codec_type')=='video')
-          aud=next(s for s in data['streams'] if s.get('codec_type')=='audio')
-          dur=float(data['format']['duration'])
-          assert v['codec_name']=='h264' and int(v['width'])==1080 and int(v['height'])==1920
-          assert 12<=dur<=180 and aud['codec_name'] in ('aac','mp3')
-          print('Piloto Bia/Bira validado:',round(dur,1),'segundos')
-          PY
-      - name: Entregar artefatos (nunca publicar)
+          {
+            echo "## Piloto RS no formato do Previsão RJ"
+            echo "Turno: ${{ matrix.turno }} · Apresentador: ${{ matrix.personagem }}"
+            echo "Formato: ${{ matrix.formato }}"
+            echo "### Roteiro falado"
+            echo '~~~'
+            cat output/work_*/roteiro.txt
+            echo '~~~'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Entregar MP4 e capa (NUNCA PUBLICAR)
         uses: actions/upload-artifact@v4
         with:
-          name: piloto-previsaors-bia-bira
+          name: previsaors-padrao-rj-${{ matrix.turno }}
           path: |
-            output/PREVISAO_RS_BIA_BIRA.mp4
+            output/REEL.mp4
             output/CAPA.jpg
-            output/LEGENDA.txt
-            output/piloto_rs.yaml
-            output/piloto_rs.txt
+            output/capa_ms.txt
+            output/REEL_preview_720p.mp4
+            output/REEL.json
+            output/REEL.quality.json
+            output/REEL.layout.json
             output/snapshot.json
-            output/work_comunicado/roteiro.txt
+            output/work_*/roteiro.txt
+            hyperframes/build/pacote.json
           retention-days: 7
           if-no-files-found: error
