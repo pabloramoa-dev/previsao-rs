@@ -13,11 +13,15 @@ Motor meteorológico baseado no repositório `pabloramoa-dev/previsao-modelo`. N
 | Centro e Fronteira | Santa Maria | Santa Cruz do Sul, Cachoeira do Sul, Venâncio Aires, Uruguaiana, Alegrete, São Borja |
 | Norte e Noroeste | Passo Fundo | Erechim, Ijuí, Santo Ângelo, Santa Rosa, Cruz Alta |
 
-## Abertura curta e dupla de apresentadores
+## Apresentação no padrão do Previsão RJ
 
-O roteiro `scripts/roteiro_piloto_dupla_rs.py` começa **na primeira frase com a previsão de Porto Alegre**: mínima, máxima e volume previsto de chuva. Não há saudação, apresentação dos nomes ou explicação das fontes no áudio. Bia e Bira alternam as seis regiões; a fonte aparece no card e na legenda. O destaque de chuva só entra quando o valor justifica. `comunicado_dupla.py` usa vozes Kokoro, lip sync, cenários, animações e efeitos HyperFrames, sem publicar.
+Os Reels diários seguem o motor `hyperframes/gerar_hf.py`, o mesmo formato de telejornal do `previsao-rj`. O Bira apresenta **hoje às 06h** e a Bia apresenta **amanhã às 18h**. Ambos utilizam exatamente os mesmos presets Kokoro e direção de animação, layout de telão, HUD, lower thirds, cartões com números, quadro de seis regiões, chuva em milímetros, legenda karaokê, SFX, CTA e capa.
 
-Renderização: Actions → **Piloto RS - Bia e Bira - real - sem publicar** → Run workflow. O MP4 sai como artifact. As verificações de dados recusam números faltantes e previsões antigas.
+**A primeira frase já apresenta uma previsão real** (cidade, mínima, máxima e chuva). Não existe apresentação pessoal nem frase genérica sobre incerteza. Os boletins são mantidos na janela de 25 a 38 segundos, com gate de QA de 40 segundos.
+
+O motor avulso `hyperframes/comunicado_dupla.py` continua disponível somente para comunicados especiais com Bira e Bia conversando. **Não deve ser usado como formato do Reel diário**, porque sua apresentação é diferente da usada no RJ.
+
+Para comparar dois pilotos reais sem publicar, execute **Actions → Piloto RS - mesmo padrão do Previsão RJ (sem publicar)**. A matriz gera MP4 e capa separados de Bira/manhã e Bia/noite, usando o mesmo motor diário, o mesmo gate de qualidade e as seis regiões próprias do RS.
 
 ## Peculiaridades do estado
 - Serra e Campos de Cima: frio, geada, nevoeiro e possibilidade de neve **somente com evidência**.
