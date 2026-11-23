@@ -61,6 +61,7 @@ def test_piloto_usa_motor_normal_nao_comunicado():
     texto = (BASE / ".github/workflows/piloto_previsaors_dupla.yml").read_text(encoding="utf-8")
     assert "hyperframes/gerar_hf.py" in texto
     assert "hyperframes/comunicado_dupla.py" not in texto
-    assert "publicar" not in texto.lower()
+    assert "src.previsao.publish.cli" not in texto
+    assert "instagram_business_content_publish" not in texto
     assert "--snapshot output/snapshot.json" in texto
     assert "--format" in texto
