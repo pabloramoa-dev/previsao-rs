@@ -6,7 +6,11 @@ from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 TZ=ZoneInfo("America/Sao_Paulo")
 URL="https://apiprevmet3.inmet.gov.br/avisos/ativos"
-PALAVRAS=("tempestade","chuvas intensas","acumulado de chuva","ventos costeiros","vendaval","granizo","geada","onda de frio","ciclone")
+# Tudo o que o INMET emite e afeta o RS: temporal, granizo, chuva volumosa,
+# alagamento/inundação, vento (incl. tornado e ciclone), frio, calor e mar.
+PALAVRAS=("tempestade","temporal","chuva","acumulado","granizo","inunda","alaga","enchente","deslizamento",
+          "vendaval","ventos costeiros","tornado","ciclone","ressaca","geada","onda de frio","declínio de temperatura",
+          "declinio de temperatura","onda de calor","baixa umidade","neve")
 def lista(v):
     if isinstance(v,list):return [str(s).strip() for s in v]
     return [s.strip() for s in str(v or "").split(",") if s.strip()]
@@ -33,8 +37,10 @@ def normalizar(payload,agora=None):
         if not ini or not fim or not ini<=agora<=fim:continue
         tipo=str(a.get("descricao") or "")
         if not any(s in tipo.lower() for s in PALAVRAS):continue
-        out.append({"id_aviso":id_,"tipo":tipo,"severidade":a.get("severidade"),"inicio":ini.isoformat(),"fim":fim.isoformat(),
-                    "municipios_rs":len(ibges),"geocodes_rs":ibges,"fonte":URL})
+        out.append({"id_aviso":id_,"id_sequencia":int(a.get("id_sequencia") or 0),"tipo":tipo,"severidade":a.get("severidade"),
+                    "inicio":ini.isoformat(),"fim":fim.isoformat(),
+                    "municipios_rs":len(ibges),"geocodes_rs":ibges,"municipios_texto":str(a.get("municipios") or ""),
+                    "riscos":a.get("riscos"),"instrucoes":a.get("instrucoes"),"fonte":URL})
     return out
 def main():
     req=Request(URL,headers={"User-Agent":"previsaors/1.0 (github.com/pabloramoa-dev/previsao-rs)"})
@@ -42,8 +48,8 @@ def main():
     now=datetime.now(TZ)
     avisos=normalizar(payload,now)
     out=Path("output/alertas_rs.json");out.parent.mkdir(parents=True,exist_ok=True)
-    out.write_text(json.dumps({"consultado_em":now.isoformat(),"avisos":avisos,"autopublicacao":False,"verificacao_hidrologica":False},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    lines=[f"## Monitoramento de alertas RS — {now:%d/%m/%Y %H:%M}","",f"- Fonte: [INMET]({URL})",f"- Avisos oficiais vigentes e identificados no RS: **{len(avisos)}**","- Defesa Civil RS, ClimaRS e rios: exigem verificação editorial separada","- Publicação automática: desativada",""]
+    out.write_text(json.dumps({"consultado_em":now.isoformat(),"avisos":avisos,"autopublicacao":"ver alerta_auto_rs","verificacao_hidrologica":False},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    lines=[f"## Monitoramento de alertas RS — {now:%d/%m/%Y %H:%M}","",f"- Fonte: [INMET]({URL})",f"- Avisos oficiais vigentes e identificados no RS: **{len(avisos)}**","- Defesa Civil RS, ClimaRS e rios: exigem verificação editorial separada","- Publicação: decidida por scripts/alerta_auto_rs.py (só aviso oficial inédito)",""]
     lines += [f"- {a['tipo']} — {a['severidade']} — {a['municipios_rs']} municípios — até {a['fim']}" for a in avisos]
     if not avisos:lines.append("Nenhum aviso elegível na consulta INMET; não é garantia de ausência de perigo.")
     txt="\n".join(lines)+"\n"
