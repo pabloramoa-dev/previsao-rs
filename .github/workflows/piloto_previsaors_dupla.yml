@@ -1,5 +1,8 @@
 name: Piloto RS - mesmo padrão do Previsão RJ (sem publicar)
 
+# Versão validada: Reel diário do RJ, não o compositor avulso em dupla.
+# Renderiza Bira/manhã e Bia/noite; nenhum job publica na Meta.
+
 on:
   workflow_dispatch:
   push:
