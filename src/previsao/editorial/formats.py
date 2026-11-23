@@ -203,7 +203,7 @@ def antes_de_sair(snapshot, incerto):
             f"Atenção ao vento: rajadas de até {alta['value']:g} quilômetros por hora "
             f"{em_local(alta['name'])}.",
             'alerta', titulo='VENTO', detalhe=f"até {alta['value']:g} km/h {em_local(alta['name'])}"))
-    batidas.append(batida(f'Sua cidade pode aparecer amanhã. Siga o {estado.marca_falada()}!', 'cta'))
+    batidas.append(batida(f'Quer ver sua cidade? Siga o {estado.marca_falada()}!', 'cta'))
     return batidas
 
 
@@ -251,7 +251,7 @@ def amanha_no_estado(snapshot, incerto):
             f"{em_local(alta['name'])}.",
             'alerta', titulo='VENTO AMANHÃ',
             detalhe=f"até {alta['value']:g} km/h {em_local(alta['name'])}"))
-    batidas.append(batida(f'Sua cidade pode ser a próxima. Siga o {estado.marca_falada()}!', 'cta'))
+    batidas.append(batida(f'Quer ver sua cidade? Siga o {estado.marca_falada()}!', 'cta'))
     return batidas
 
 
