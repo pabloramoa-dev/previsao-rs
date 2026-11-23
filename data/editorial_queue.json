@@ -142,7 +142,7 @@
     "created_at": "2026-11-23T01:48:37.494665-03:00",
     "expires_at": "2026-11-23T03:48:37-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 85.0,
     "language": "forecast"
   },
@@ -208,7 +208,7 @@
     "created_at": "2026-11-23T01:48:37.494665-03:00",
     "expires_at": "2026-11-23T03:48:37-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 85.0,
     "language": "forecast"
   },
@@ -333,8 +333,346 @@
     "created_at": "2026-11-23T01:48:37.494665-03:00",
     "expires_at": "2026-11-23T03:48:37-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 85.0,
+    "language": "forecast"
+  },
+  {
+    "format": "amanha_no_estado",
+    "topic": "amanha",
+    "location_ids": [
+      "montenegro",
+      "caxias_do_sul",
+      "tramandai",
+      "bage",
+      "alegrete",
+      "santa_rosa"
+    ],
+    "facts": {
+      "montenegro": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "caxias_do_sul": {
+        "max_c": 21,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tramandai": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "bage": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "alegrete": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "santa_rosa": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 4,
+      "novelty": 5
+    },
+    "extra": {
+      "date": "2026-11-24"
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "noite",
+    "character": "bia",
+    "hook_key": "f2a14bddc8bff0d05fc2",
+    "dedupe_key": "4072d99062357454290a33158bf36179abe20bbfcd96ce96d71114b3b5ce192d",
+    "created_at": "2026-11-23T17:40:03.439669-03:00",
+    "expires_at": "2026-11-23T19:40:03-03:00",
+    "vetoes": [],
+    "status": "published",
+    "confidence": 78.4,
+    "language": "forecast",
+    "claimed_at": "2026-11-23T18:00:08-03:00",
+    "published_at": "2026-11-23T18:01:03-03:00",
+    "media_id": "18105022628354118"
+  },
+  {
+    "format": "fim_de_semana",
+    "topic": "fim_de_semana",
+    "location_ids": [
+      "montenegro",
+      "caxias_do_sul",
+      "tramandai",
+      "bage",
+      "alegrete",
+      "santa_rosa"
+    ],
+    "facts": {
+      "montenegro": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "caxias_do_sul": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tramandai": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "bage": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "alegrete": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "santa_rosa": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 5,
+      "novelty": 5
+    },
+    "extra": {
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "forecast": {
+        "2026-11-28": [
+          {
+            "id": "montenegro",
+            "max_c": 26,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "caxias_do_sul",
+            "max_c": 20,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "tramandai",
+            "max_c": 22,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "bage",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "alegrete",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "santa_rosa",
+            "max_c": 25,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ],
+        "2026-11-29": [
+          {
+            "id": "montenegro",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "caxias_do_sul",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "tramandai",
+            "max_c": 23,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "bage",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "alegrete",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "santa_rosa",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ]
+      }
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "2ab084798123356f144f",
+    "dedupe_key": "73d7b3abb2a5cd1deb67076458eb7e1e03d2ab3399552d712f93c54d0a117108",
+    "created_at": "2026-11-23T17:40:03.439669-03:00",
+    "expires_at": "2026-11-23T19:40:03-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 78.4,
+    "language": "forecast"
+  },
+  {
+    "format": "antes_de_sair",
+    "topic": "resumo",
+    "location_ids": [
+      "montenegro",
+      "caxias_do_sul",
+      "tramandai",
+      "bage",
+      "alegrete",
+      "santa_rosa"
+    ],
+    "facts": {
+      "montenegro": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "caxias_do_sul": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tramandai": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "bage": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "alegrete": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "santa_rosa": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 3,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 5
+    },
+    "extra": {},
+    "total": 17,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "e0d0f400c15f8c9b1cba",
+    "dedupe_key": "e093c1b26615d71a4823bbc242c0f94aaabdb79b5b175e392bcf0b107a3467f2",
+    "created_at": "2026-11-23T17:40:03.439669-03:00",
+    "expires_at": "2026-11-23T19:40:03-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 78.4,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "temperatura",
+    "location_ids": [
+      "montenegro",
+      "tramandai"
+    ],
+    "facts": {
+      "montenegro": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tramandai": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 2,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {
+      "contrast": {
+        "spread": 7.0,
+        "threshold": 4,
+        "relevant": true,
+        "crosses_gust_threshold": false,
+        "low": {
+          "id": "tramandai",
+          "name": "Tramandaí",
+          "value": 23.0
+        },
+        "high": {
+          "id": "montenegro",
+          "name": "Montenegro",
+          "value": 30.0
+        },
+        "available_locations": 6
+      }
+    },
+    "total": 16,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "9296954af55f19563529",
+    "dedupe_key": "b8a3bec9816e4ac37d74add9e41332b20154472a751f5bb4e0590a138576ccfa",
+    "created_at": "2026-11-23T17:40:03.439669-03:00",
+    "expires_at": "2026-11-23T19:40:03-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 78.4,
     "language": "forecast"
   }
 ]
