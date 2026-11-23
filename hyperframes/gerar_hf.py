@@ -205,6 +205,11 @@ def demo_batidas(personagem):
     print(f'[demo] dados de {fonte.name} (sem publicação)')
     formato = 'amanha_no_estado' if personagem == 'bia' else 'antes_de_sair'
     fn = amanha_no_estado if formato == 'amanha_no_estado' else antes_de_sair
+    if formato == 'amanha_no_estado' and not (snap['forecast'].get('tomorrow') or {}).get('locations'):
+        # Só na DEMONSTRAÇÃO (nunca publica): a fixture técnica não tem bloco de
+        # amanhã; espelhar o de hoje para testar o estúdio da Bia.
+        snap['forecast']['tomorrow'] = dict(snap['forecast']['today'])
+        print('[demo] fixture sem "amanhã": usando o bloco de hoje só para o teste do estúdio')
     return snap, formato, fn(snap, False)
 
 

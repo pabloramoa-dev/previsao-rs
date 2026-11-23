@@ -7,6 +7,11 @@ from zoneinfo import ZoneInfo
 import yaml
 
 FUSO = ZoneInfo("America/Sao_Paulo")
+
+def br(x):
+    """1.2 -> 1,2: a voz Kokoro lê o ponto como 'ponto'."""
+    return f"{x:g}".replace(".", ",")
+
 REGIOES = [
     ("Metropolitana e Vales", "porto_alegre"),
     ("Serra e Campos de Cima", "caxias_do_sul"),
@@ -46,7 +51,7 @@ def montar(snapshot, saida):
     falas=[]
     for i,c in enumerate(cidades):
         mm=c["mm"]
-        chuva = (f"{mm:g} milímetros de chuva" if mm>=0.5
+        chuva = (f"{br(mm)} milímetros de chuva" if mm>=0.5
                  else "sem chuva significativa")
         falas.append({
             "cena":"abertura" if i == 0 else "numero",
@@ -54,16 +59,16 @@ def montar(snapshot, saida):
             "icone":"chuva" if mm>=0.5 else "sol",
             "numero":f'{c["ma"]}°C',
             "sub":c["nome"].upper(),
-            "local":f'MÍN {c["mi"]}°C · CHUVA {mm:g} mm',
+            "local":f'MÍN {c["mi"]}°C · CHUVA {br(mm)} mm',
             "fala":(f'{c["nome"]} terá mínima de {c["mi"]} e máxima de {c["ma"]} graus, '
-                    + (f'com previsão de {mm:g} milímetros de chuva.' if mm>=0.5 else 'sem chuva significativa.'))
+                    + (f'com previsão de {br(mm)} milímetros de chuva.' if mm>=0.5 else 'sem chuva significativa.'))
                    if i == 0 else f'{c["nome"]}: de {c["mi"]} a {c["ma"]} graus, {chuva}.'
         })
     destaque=max(cidades,key=lambda c:c["mm"])
     if destaque["mm"]>=1:
         falas.append({
             "cena":"frase","quem":"bia",
-            "fala":f'Maior chuva entre esses pontos: {destaque["nome"]}, {destaque["mm"]:g} milímetros previstos.'
+            "fala":f'Maior chuva entre esses pontos: {destaque["nome"]}, {br(destaque["mm"])} milímetros previstos.'
         })
     falas.append({"cena":"cta","quem":"bira","chamada":"PREVISÃO RS",
                   "sub":"@previsaors · Rio Grande do Sul",
@@ -71,14 +76,14 @@ def montar(snapshot, saida):
     titulo="PREVISÃO DO RS"
     report=f"Previsão para {data.isoformat()} • atualização {agora:%d/%m/%Y %H:%M}\n"
     report+="Fonte: MET Norway, previsão por ponto; não é aviso oficial de tempo severo\n"
-    report+="\n".join(f'{c["regiao"]}: {c["nome"]} {c["mi"]}° a {c["ma"]}° · {c["mm"]:g} mm' for c in cidades)
+    report+="\n".join(f'{c["regiao"]}: {c["nome"]} {c["mi"]}° a {c["ma"]}° · {br(c["mm"])} mm' for c in cidades)
     saida.parent.mkdir(parents=True,exist_ok=True)
     doc={
       "tipo":"aviso","apresenta":"bia","validade":(agora+dt.timedelta(hours=4)).isoformat(),
       "titulo":titulo,"etiquetas":[f"AMANHÃ · {data.day:02d}/{data.month:02d}","DADOS REAIS · MET NORWAY"],
       "selo":"PREVISÃO RS","ceu":"nublado","trilha":True,
       "fonte":"MET Norway — previsão consultada no dia da renderização (CC BY 4.0)",
-      "ticker":[f'{c["nome"].upper()}: {c["mi"]}° A {c["ma"]}° · {c["mm"]:g} MM' for c in cidades[:3]],
+      "ticker":[f'{c["nome"].upper()}: {c["mi"]}° A {c["ma"]}° · {br(c["mm"])} MM' for c in cidades[:3]],
       "falas":falas,
       "legenda":f"🌦️ Previsão para {nome_dia}, {data:%d/%m/%Y} no Rio Grande do Sul.\n"+report+"\n\n@previsaors #PrevisaoRS #TempoRS"
     }

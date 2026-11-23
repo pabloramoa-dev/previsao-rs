@@ -43,3 +43,13 @@ def test_sem_dados_nao_inventa_tempo(tmp_path):
     dados["forecast"]["tomorrow"]["locations"][0]["rain_mm"] = None
     with pytest.raises(ValueError, match="Dados insuficientes"):
         montar(dados, tmp_path / "recusar.yaml")
+
+
+def test_decimal_com_virgula_para_a_voz(tmp_path):
+    dados = _snapshot()
+    dados["forecast"]["tomorrow"]["locations"][0]["rain_mm"] = 1.2
+    path = tmp_path / "virgula.yaml"
+    montar(dados, path)
+    falas = yaml.safe_load(path.read_text(encoding="utf-8"))["falas"]
+    assert "1,2 milímetros" in falas[0]["fala"]
+    assert not any("." in f["fala"].rstrip(".!?").replace("..", "") for f in falas)
