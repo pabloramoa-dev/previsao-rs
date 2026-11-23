@@ -104,9 +104,10 @@ def test_incerteza_vem_antes_de_qualquer_numero(snapshot):
 
 
 def test_roteiro_cabe_no_portao_de_qa(snapshot):
-    """QA corta fora de 12-40s. A ~2,5 palavras/s, 80 palavras ja e o teto."""
+    """QA corta fora de 12-40s. Roteiro bruto ate ~90 palavras; acima de 38 s o
+    `duracao.cortar_para_janela` derruba o gancho secundario antes do render."""
     palavras = sum(len(b['fala'].split()) for b in batidas(snapshot))
-    assert 20 <= palavras <= 80, f'{palavras} palavras'
+    assert 20 <= palavras <= 90, f'{palavras} palavras'
 
 
 def test_temperatura_uniforme_nao_vira_gancho_de_contraste(snapshot):

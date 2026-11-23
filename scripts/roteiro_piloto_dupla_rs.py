@@ -8,12 +8,12 @@ import yaml
 
 FUSO = ZoneInfo("America/Sao_Paulo")
 REGIOES = [
-    ("Grande Porto Alegre", "porto_alegre"),
-    ("Serra Gaúcha", "caxias_do_sul"),
+    ("Metropolitana e Vales", "porto_alegre"),
+    ("Serra e Campos de Cima", "caxias_do_sul"),
     ("Litoral Norte", "tramandai"),
     ("Sul e Campanha", "pelotas"),
-    ("Centro", "santa_maria"),
-    ("Norte", "passo_fundo"),
+    ("Centro e Fronteira", "santa_maria"),
+    ("Norte e Noroeste", "passo_fundo"),
 ]
 
 def montar(snapshot, saida):
@@ -55,7 +55,9 @@ def montar(snapshot, saida):
             "numero":f'{c["ma"]}°C',
             "sub":c["nome"].upper(),
             "local":f'MÍN {c["mi"]}°C · CHUVA {mm:g} mm',
-            "fala":f'{c["nome"]}: de {c["mi"]} a {c["ma"]} graus, {chuva}.'
+            "fala":(f'{c["nome"]} terá mínima de {c["mi"]} e máxima de {c["ma"]} graus, '
+                    + (f'com previsão de {mm:g} milímetros de chuva.' if mm>=0.5 else 'sem chuva significativa.'))
+                   if i == 0 else f'{c["nome"]}: de {c["mi"]} a {c["ma"]} graus, {chuva}.'
         })
     destaque=max(cidades,key=lambda c:c["mm"])
     if destaque["mm"]>=1:

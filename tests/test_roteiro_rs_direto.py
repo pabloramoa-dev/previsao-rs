@@ -30,7 +30,7 @@ def test_começa_pela_previsao_e_dupla_alterna(tmp_path):
     doc = yaml.safe_load(path.read_text(encoding="utf-8"))
     falas = doc["falas"]
     assert falas[0]["cena"] == "abertura"
-    assert falas[0]["fala"].startswith("Porto Alegre:")
+    assert falas[0]["fala"].startswith("Porto Alegre terá mínima de")
     assert falas[0]["quem"] == "bia" and falas[1]["quem"] == "bira"
     assert sum(f["cena"] in ("numero", "abertura") for f in falas) == 6
     assert not any("eu sou" in f["fala"].lower() or "olá" in f["fala"].lower()
