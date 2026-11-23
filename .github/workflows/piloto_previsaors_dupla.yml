@@ -1,0 +1,73 @@
+name: Piloto RS - Bia e Bira - real - sem publicar
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/piloto_previsaors_dupla.yml'
+      - 'scripts/roteiro_piloto_dupla_rs.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: piloto-rs-dupla
+  cancel-in-progress: true
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      HYPERFRAMES_NO_TELEMETRY: '1'
+      DO_NOT_TRACK: '1'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/previsao_kokoro
+          key: kokoro-v1.0
+      - name: Dependencies
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg espeak-ng
+          pip install -r requirements/test.txt -r requirements/comunicado.txt
+      - name: Preparar estúdio original
+        uses: ./.github/actions/setup-hyperframes
+      - name: Coletar previsão RS atual
+        run: python -m scripts.collect_live output/snapshot.json --tier 1
+      - name: Produzir roteiro apenas com dados coletados
+        run: |
+          python scripts/roteiro_piloto_dupla_rs.py --snapshot output/snapshot.json --out output/piloto_rs.yaml
+          python hyperframes/comunicado_dupla.py output/piloto_rs.yaml --so-validar
+      - name: Renderizar Bia e Bira com HyperFrames e Kokoro
+        run: python hyperframes/comunicado_dupla.py output/piloto_rs.yaml --out output/PREVISAO_RS_BIA_BIRA.mp4 --qualidade standard
+      - name: QA do piloto em dupla (duracao ate 180s)
+        run: |
+          python - <<'PY'
+          import json, subprocess
+          p='output/PREVISAO_RS_BIA_BIRA.mp4'
+          data=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',p]))
+          v=next(s for s in data['streams'] if s.get('codec_type')=='video')
+          aud=next(s for s in data['streams'] if s.get('codec_type')=='audio')
+          dur=float(data['format']['duration'])
+          assert v['codec_name']=='h264' and int(v['width'])==1080 and int(v['height'])==1920
+          assert 12<=dur<=180 and aud['codec_name'] in ('aac','mp3')
+          print('Piloto Bia/Bira validado:',round(dur,1),'segundos')
+          PY
+      - name: Entregar artefatos (nunca publicar)
+        uses: actions/upload-artifact@v4
+        with:
+          name: piloto-previsaors-bia-bira
+          path: |
+            output/PREVISAO_RS_BIA_BIRA.mp4
+            output/CAPA.jpg
+            output/LEGENDA.txt
+            output/piloto_rs.yaml
+            output/piloto_rs.txt
+            output/snapshot.json
+            output/work_comunicado/roteiro.txt
+          retention-days: 7
+          if-no-files-found: error

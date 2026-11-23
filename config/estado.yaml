@@ -1,0 +1,215 @@
+# Identidade estadual @previsaors
+{
+  "versao": 1,
+  "uf": "RS",
+  "nome": "Rio Grande do Sul",
+  "curto": "Rio Grande do Sul",
+  "artigo": "o",
+  "regiao_id": "estado_rs",
+  "marca": "PREVISÃO RS",
+  "marca_falada": "Previsão RS",
+  "handle": "previsaors",
+  "slogan": "O tempo do Rio Grande do Sul para decidir seu dia.",
+  "repo": "pabloramoa-dev/previsao-rs",
+  "fuso_utc": -3,
+  "timezone": "America/Sao_Paulo",
+  "recorte": {
+    "lat_min": -33.986599999999996,
+    "lat_max": -26.860699999999998,
+    "lon_min": -57.8497,
+    "lon_max": -49.4333
+  },
+  "litoral": true,
+  "cenario": "rio_grande_do_sul",
+  "ticker": "RS",
+  "titulos": {
+    "antes_de_sair": "RS ANTES DE SAIR",
+    "amanha_no_estado": "AMANHÃ NO RIO GRANDE DO SUL"
+  },
+  "apresentadores": {
+    "bira": {
+      "cargo": "TEMPO NO RS"
+    },
+    "bia": {
+      "cargo": "O TEMPO DE AMANHÃ · RS"
+    }
+  },
+  "hashtags": {
+    "padrao": "#PrevisaoRS #RioGrandeDoSul #TempoRS",
+    "antes_de_sair": "#PrevisaoRS #RioGrandeDoSul #TempoRS",
+    "chove_onde": "#PrevisaoRS #ChuvaRS #TempoRS",
+    "fim_de_semana": "#PrevisaoRS #FimDeSemana #RioGrandeDoSul",
+    "vai_dar_praia": "#PrevisaoRS #LitoralGaucho #TempoRS",
+    "vai_ao_jogo": "#PrevisaoRS #RioGrandeDoSul #TempoRS",
+    "amanha_no_estado": "#PrevisaoRS #TempoAmanha #RioGrandeDoSul"
+  },
+  "legenda": {
+    "abrangencia": "no Rio Grande do Sul",
+    "unidade": "cidade"
+  },
+  "formatos_desligados": [
+    "vai_ao_jogo"
+  ],
+  "regioes": [
+    {
+      "rotulo": "Metropolitana e Vales",
+      "ids": [
+        "porto_alegre",
+        "canoas",
+        "novo_hamburgo",
+        "sao_leopoldo",
+        "guaiba",
+        "lajeado",
+        "estrela",
+        "encantado",
+        "montenegro"
+      ],
+      "zonas": [
+        "z_metropolitana_e_vales"
+      ]
+    },
+    {
+      "rotulo": "Serra e Campos de Cima",
+      "ids": [
+        "caxias_do_sul",
+        "gramado",
+        "bento_goncalves",
+        "vacaria",
+        "sao_jose_dos_ausentes",
+        "farroupilha"
+      ],
+      "zonas": [
+        "z_serra_e_campos_de_cima"
+      ]
+    },
+    {
+      "rotulo": "Litoral Norte",
+      "ids": [
+        "tramandai",
+        "torres",
+        "capao_da_canoa",
+        "osorio",
+        "imbe"
+      ],
+      "zonas": [
+        "z_litoral_norte"
+      ]
+    },
+    {
+      "rotulo": "Sul e Campanha",
+      "ids": [
+        "pelotas",
+        "rio_grande",
+        "bage",
+        "sant_ana_do_livramento",
+        "santa_vitoria_do_palmar",
+        "cangucu"
+      ],
+      "zonas": [
+        "z_sul_e_campanha"
+      ]
+    },
+    {
+      "rotulo": "Centro e Fronteira",
+      "ids": [
+        "santa_maria",
+        "santa_cruz_do_sul",
+        "cachoeira_do_sul",
+        "venancio_aires",
+        "uruguaiana",
+        "alegrete",
+        "sao_borja"
+      ],
+      "zonas": [
+        "z_centro_e_fronteira"
+      ]
+    },
+    {
+      "rotulo": "Norte e Noroeste",
+      "ids": [
+        "passo_fundo",
+        "erechim",
+        "ijui",
+        "santo_angelo",
+        "santa_rosa",
+        "cruz_alta"
+      ],
+      "zonas": [
+        "z_norte_e_noroeste"
+      ]
+    }
+  ],
+  "falado": {
+    "Metropolitana e Vales": "Grande Porto Alegre",
+    "Serra e Campos de Cima": "Serra",
+    "Centro e Fronteira": "Centro e Oeste",
+    "Norte e Noroeste": "Norte"
+  },
+  "preposicoes": {
+    "na": [
+      "Serra",
+      "Campanha"
+    ],
+    "no": [
+      "Rio Grande do Sul",
+      "Litoral Norte",
+      "Vale do Taquari",
+      "Vale dos Sinos"
+    ],
+    "nas": [],
+    "nos": [
+      "Campos de Cima da Serra"
+    ]
+  },
+  "destaques_semana": [
+    {
+      "dias": [
+        0
+      ],
+      "id": "porto_alegre",
+      "onde": "em Porto Alegre",
+      "selo": "PORTO ALEGRE"
+    },
+    {
+      "dias": [
+        1
+      ],
+      "id": "caxias_do_sul",
+      "onde": "em Caxias do Sul",
+      "selo": "SERRA"
+    },
+    {
+      "dias": [
+        2
+      ],
+      "id": "tramandai",
+      "onde": "em Tramandaí",
+      "selo": "LITORAL"
+    },
+    {
+      "dias": [
+        3
+      ],
+      "id": "pelotas",
+      "onde": "em Pelotas",
+      "selo": "SUL"
+    },
+    {
+      "dias": [
+        4
+      ],
+      "id": "santa_maria",
+      "onde": "em Santa Maria",
+      "selo": "CENTRO"
+    },
+    {
+      "dias": [
+        5,
+        6
+      ],
+      "id": "passo_fundo",
+      "onde": "em Passo Fundo",
+      "selo": "NORTE"
+    }
+  ]
+}

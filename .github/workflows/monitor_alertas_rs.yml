@@ -1,0 +1,22 @@
+name: Monitorar alertas RS às 14h (sem publicação)
+on:
+  schedule:
+    - cron: "0 17 * * *" # 14h no RS (UTC-3)
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Consultar INMET
+        run: python -m scripts.monitor_alertas_rs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alertas-rs-${{ github.run_id }}
+          path: output/alertas_rs.json
+          retention-days: 7
