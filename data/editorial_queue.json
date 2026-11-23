@@ -1,1 +1,340 @@
-[]
+[
+  {
+    "format": "fim_de_semana",
+    "topic": "fim_de_semana",
+    "location_ids": [
+      "caxias_do_sul",
+      "passo_fundo",
+      "pelotas",
+      "porto_alegre",
+      "santa_maria",
+      "tramandai"
+    ],
+    "facts": {
+      "caxias_do_sul": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "passo_fundo": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "pelotas": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "porto_alegre": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "santa_maria": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tramandai": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 5,
+      "novelty": 5
+    },
+    "extra": {
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "forecast": {
+        "2026-11-28": [
+          {
+            "id": "caxias_do_sul",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "passo_fundo",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "pelotas",
+            "max_c": 26,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "porto_alegre",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "santa_maria",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "tramandai",
+            "max_c": 22,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ],
+        "2026-11-29": [
+          {
+            "id": "caxias_do_sul",
+            "max_c": 25,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "passo_fundo",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "pelotas",
+            "max_c": 25,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "porto_alegre",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "santa_maria",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "tramandai",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ]
+      }
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "e4d600a676215f1815c8",
+    "dedupe_key": "88d6708438c7711703407c81b8453b453e4b6288d106d93f6b80fb97abc91c98",
+    "created_at": "2026-11-23T01:48:37.494665-03:00",
+    "expires_at": "2026-11-23T03:48:37-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 85.0,
+    "language": "forecast"
+  },
+  {
+    "format": "amanha_no_estado",
+    "topic": "amanha",
+    "location_ids": [
+      "caxias_do_sul",
+      "passo_fundo",
+      "pelotas",
+      "porto_alegre",
+      "santa_maria",
+      "tramandai"
+    ],
+    "facts": {
+      "caxias_do_sul": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "passo_fundo": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "pelotas": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "porto_alegre": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "santa_maria": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tramandai": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 4,
+      "novelty": 5
+    },
+    "extra": {
+      "date": "2026-11-24"
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "noite",
+    "character": "bia",
+    "hook_key": "386c210841bdc1f736b1",
+    "dedupe_key": "ea2dcf3ec110e5e31182e5d9dbe1c638c4549b4973757d7de3bc9676f4513e01",
+    "created_at": "2026-11-23T01:48:37.494665-03:00",
+    "expires_at": "2026-11-23T03:48:37-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 85.0,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "temperatura",
+    "location_ids": [
+      "passo_fundo",
+      "tramandai"
+    ],
+    "facts": {
+      "passo_fundo": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tramandai": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 2,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 5
+    },
+    "extra": {
+      "contrast": {
+        "spread": 4.0,
+        "threshold": 4,
+        "relevant": true,
+        "crosses_gust_threshold": false,
+        "low": {
+          "id": "tramandai",
+          "name": "Tramandaí",
+          "value": 25.0
+        },
+        "high": {
+          "id": "passo_fundo",
+          "name": "Passo Fundo",
+          "value": 29.0
+        },
+        "available_locations": 6
+      }
+    },
+    "total": 18,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "29c006f1c0c976c96a08",
+    "dedupe_key": "bbfcfa229bafa7b02fd282af339d16ecd0e987884e1ffb6047b19865b1002fb8",
+    "created_at": "2026-11-23T01:48:37.494665-03:00",
+    "expires_at": "2026-11-23T03:48:37-03:00",
+    "vetoes": [],
+    "status": "published",
+    "confidence": 85.0,
+    "language": "forecast",
+    "claimed_at": "2026-11-23T01:50:36-03:00",
+    "published_at": "2026-11-23T01:51:21-03:00",
+    "media_id": "18009474182795061"
+  },
+  {
+    "format": "antes_de_sair",
+    "topic": "resumo",
+    "location_ids": [
+      "caxias_do_sul",
+      "passo_fundo",
+      "pelotas",
+      "porto_alegre",
+      "santa_maria",
+      "tramandai"
+    ],
+    "facts": {
+      "caxias_do_sul": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "passo_fundo": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "pelotas": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "porto_alegre": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "santa_maria": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tramandai": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 3,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 5
+    },
+    "extra": {},
+    "total": 17,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "71fd0cfb2ec06b690f8c",
+    "dedupe_key": "7fb2dfcb19023f9a8209ab0f7c2c641136329167990b98f731f3b034c5ca5585",
+    "created_at": "2026-11-23T01:48:37.494665-03:00",
+    "expires_at": "2026-11-23T03:48:37-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 85.0,
+    "language": "forecast"
+  }
+]
