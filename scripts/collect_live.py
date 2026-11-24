@@ -25,9 +25,10 @@ def main() -> None:
     parser.add_argument("--previous", help="snapshot anterior, para consistencia temporal")
     parser.add_argument("--rodizio", action="store_true",
                         help="Reel RS: escolher uma cidade diferente por região a cada dia")
+    parser.add_argument('--turno', choices=['manha', 'noite'], default='manha')
     args = parser.parse_args()
 
-    locations = (config.locations_for_reel()
+    locations = (config.locations_for_reel(turno=args.turno)
                  if args.rodizio else config.locations_by_tier(args.tier))
     if not locations:
         raise SystemExit(f"nenhum local no tier {args.tier}")

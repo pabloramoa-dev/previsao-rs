@@ -203,7 +203,7 @@ jobs:
         run: python -m scripts.aguardar_horario preparar --alvo "$ALVO" --antes "$PREPARO_MIN"
 
       - name: Coletar a previsão atual
-        run: python -m scripts.collect_live output/snapshot.json --rodizio
+        run: python -m scripts.collect_live output/snapshot.json --rodizio --turno noite
 
       - name: Avaliar pautas e atualizar a fila
         run: python -m scripts.editorial_scan output/snapshot.json --out data/editorial_queue.json

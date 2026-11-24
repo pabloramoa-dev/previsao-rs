@@ -1,0 +1,42 @@
+{
+  "revisado_em": "2026-11-24",
+  "prioridade_temporaria_ate": "2026-12-24",
+  "prioridade_ibge": [
+    "4322202",
+    "4311304",
+    "4311205",
+    "4307500",
+    "4313300",
+    "4318051",
+    "4305371",
+    "4320503",
+    "4311627",
+    "4306304",
+    "4302501",
+    "4308854",
+    "4310553",
+    "4309704",
+    "4323101",
+    "4314068",
+    "4305108",
+    "4308656",
+    "4312609",
+    "4315800",
+    "4301008",
+    "4306205",
+    "4311403",
+    "4307807",
+    "4306809",
+    "4306767"
+  ],
+  "bacias": [
+    "Taquari",
+    "Caí",
+    "Sinos",
+    "Jacuí",
+    "Uruguai",
+    "Guaíba"
+  ],
+  "portal_hidrologia": "https://sace.sgb.gov.br/index_bacias_monitoradas.php",
+  "politica": "Priorizar somente municípios efetivamente abrangidos pelo aviso oficial; não publicar alerta com base apenas no histórico de danos."
+}

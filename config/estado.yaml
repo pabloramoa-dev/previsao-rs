@@ -52,90 +52,203 @@
   ],
   "regioes": [
     {
-      "rotulo": "Metropolitana e Vales",
+      "rotulo": "Grande Porto Alegre",
       "ids": [
         "porto_alegre",
         "canoas",
+        "guaiba",
+        "gravatai",
+        "viamao",
+        "eldorado_do_sul",
+        "cachoeirinha",
+        "alvorada",
+        "triunfo"
+      ],
+      "zonas": [
+        "z_metropolitana"
+      ]
+    },
+    {
+      "rotulo": "Vale dos Sinos e Caí",
+      "ids": [
         "novo_hamburgo",
         "sao_leopoldo",
-        "guaiba",
+        "montenegro",
+        "sao_sebastiao_do_cai",
+        "feliz",
+        "lindolfo_collor",
+        "sapiranga",
+        "campo_bom",
+        "esteio"
+      ],
+      "zonas": [
+        "z_sinos_cai"
+      ]
+    },
+    {
+      "rotulo": "Vale do Taquari",
+      "ids": [
         "lajeado",
         "estrela",
         "encantado",
-        "montenegro"
+        "mucum",
+        "roca_sales",
+        "arroio_do_meio",
+        "cruzeiro_do_sul",
+        "taquari",
+        "santa_tereza"
       ],
       "zonas": [
-        "z_metropolitana_e_vales"
+        "z_taquari"
       ]
     },
     {
-      "rotulo": "Serra e Campos de Cima",
+      "rotulo": "Vale do Rio Pardo",
+      "ids": [
+        "santa_cruz_do_sul",
+        "venancio_aires",
+        "rio_pardo",
+        "candelaria",
+        "passa_sete",
+        "sobradinho"
+      ],
+      "zonas": [
+        "z_rio_pardo"
+      ]
+    },
+    {
+      "rotulo": "Serra Gaúcha",
       "ids": [
         "caxias_do_sul",
-        "gramado",
         "bento_goncalves",
-        "vacaria",
-        "sao_jose_dos_ausentes",
-        "farroupilha"
+        "farroupilha",
+        "gramado",
+        "canela",
+        "nova_petropolis",
+        "veranopolis",
+        "nova_prata",
+        "sao_domingos_do_sul",
+        "david_canabarro"
       ],
       "zonas": [
-        "z_serra_e_campos_de_cima"
+        "z_serra"
       ]
     },
     {
-      "rotulo": "Litoral Norte",
+      "rotulo": "Campos de Cima da Serra",
+      "ids": [
+        "vacaria",
+        "sao_jose_dos_ausentes",
+        "lagoa_vermelha",
+        "bom_jesus",
+        "sao_francisco_de_paula",
+        "cambara_do_sul"
+      ],
+      "zonas": [
+        "z_campos"
+      ]
+    },
+    {
+      "rotulo": "Litoral Norte e Médio",
       "ids": [
         "tramandai",
         "torres",
         "capao_da_canoa",
         "osorio",
-        "imbe"
+        "imbe",
+        "cidreira",
+        "balneario_pinhal",
+        "mostardas",
+        "tavares"
       ],
       "zonas": [
-        "z_litoral_norte"
+        "z_litoral"
       ]
     },
     {
-      "rotulo": "Sul e Campanha",
+      "rotulo": "Região Central",
+      "ids": [
+        "santa_maria",
+        "cachoeira_do_sul",
+        "tupancireta",
+        "julio_de_castilhos",
+        "espumoso",
+        "soledade",
+        "sao_sepe",
+        "restinga_seca"
+      ],
+      "zonas": [
+        "z_central"
+      ]
+    },
+    {
+      "rotulo": "Fronteira Oeste",
+      "ids": [
+        "uruguaiana",
+        "alegrete",
+        "sao_borja",
+        "itaqui",
+        "santiago",
+        "quarai",
+        "itacurubi"
+      ],
+      "zonas": [
+        "z_fronteira"
+      ]
+    },
+    {
+      "rotulo": "Campanha e Região Sul",
       "ids": [
         "pelotas",
         "rio_grande",
         "bage",
         "sant_ana_do_livramento",
         "santa_vitoria_do_palmar",
-        "cangucu"
+        "cangucu",
+        "dom_pedrito",
+        "sao_gabriel",
+        "sao_lourenco_do_sul",
+        "jaguarao",
+        "chui"
       ],
       "zonas": [
-        "z_sul_e_campanha"
+        "z_sul"
       ]
     },
     {
-      "rotulo": "Centro e Fronteira",
+      "rotulo": "Missões e Noroeste",
       "ids": [
-        "santa_maria",
-        "santa_cruz_do_sul",
-        "cachoeira_do_sul",
-        "venancio_aires",
-        "uruguaiana",
-        "alegrete",
-        "sao_borja"
-      ],
-      "zonas": [
-        "z_centro_e_fronteira"
-      ]
-    },
-    {
-      "rotulo": "Norte e Noroeste",
-      "ids": [
-        "passo_fundo",
-        "erechim",
         "ijui",
         "santo_angelo",
         "santa_rosa",
-        "cruz_alta"
+        "cruz_alta",
+        "sao_luiz_gonzaga",
+        "sao_miguel_das_missoes",
+        "bossoroca",
+        "humaita",
+        "garruchos",
+        "tres_passos"
       ],
       "zonas": [
-        "z_norte_e_noroeste"
+        "z_missoes"
+      ]
+    },
+    {
+      "rotulo": "Norte e Alto Uruguai",
+      "ids": [
+        "passo_fundo",
+        "erechim",
+        "frederico_westphalen",
+        "sarandi",
+        "nonoai",
+        "charrua",
+        "sertao",
+        "gentil",
+        "vicente_dutra",
+        "carazinho"
+      ],
+      "zonas": [
+        "z_norte"
       ]
     }
   ],
@@ -211,5 +324,6 @@
       "onde": "em Passo Fundo",
       "selo": "NORTE"
     }
-  ]
+  ],
+  "regioes_por_reel": 6
 }

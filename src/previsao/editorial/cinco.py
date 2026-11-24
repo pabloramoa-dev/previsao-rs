@@ -51,6 +51,8 @@ def cinco_regioes(locations: list[dict[str, Any]], minimo: int = MINIMO) -> list
     usados: set[str] = set()
     linhas: list[dict[str, Any]] = []
     for rotulo, ids, zonas in _regioes():
+        if len(linhas) >= minimo:
+            break
         escolhido = next((por_id[i] for i in ids if i in por_id and i not in usados), None)
         if escolhido is None and zonas:
             escolhido = next((l for l in validos if l.get('zone') in zonas
@@ -71,6 +73,8 @@ def cinco_regioes(locations: list[dict[str, Any]], minimo: int = MINIMO) -> list
 def faltando(linhas: list[dict[str, Any]]) -> list[str]:
     """Regiões obrigatórias que não entraram (para o log do render)."""
     presentes = {l['regiao'] for l in linhas}
+    if len(_regioes()) > MINIMO and len(presentes - {None}) >= MINIMO:
+        return []
     return [r for r, _, _ in _regioes() if r not in presentes]
 
 

@@ -137,19 +137,23 @@ def locations_by_tier(max_tier: int = 1) -> list[dict[str, Any]]:
 
 
 
-def locations_for_reel(day: date | None = None) -> list[dict[str, Any]]:
+def locations_for_reel(day: date | None = None, turno: str = 'manha') -> list[dict[str, Any]]:
     """Rodízio diário: uma cidade REAL por região, sem aumentar o número de coletas.
 
     A escolha usa os municípios catalogados para cada região (tier 1 ou 2),
     muda a cada dia local do RS e preserva a cobertura das seis regiões.
-    Mesmo dia = mesmas cidades para Bira e Bia, sem depender da ordem da API.
+    Com 12 regiões, manhã e noite são complementares; o grupo alterna diariamente.
     """
     if day is None:
         day = datetime.now(estado.fuso()).date()
     pool = {p["id"]: p for p in load_places()["locations"]}
     selected: list[dict[str, Any]] = []
     used: set[str] = set()
-    for i, (region, ids, zones) in enumerate(estado.regioes()):
+    regioes = estado.regioes()
+    if len(regioes) == 12:
+        grupo = (day.toordinal() + int(turno == 'noite')) % 2
+        regioes = regioes[grupo::2]
+    for i, (region, ids, zones) in enumerate(regioes):
         options = [pool[k] for k in ids
                    if k in pool and k not in used
                    and int(pool[k]["sample_tier"]) <= 2]
