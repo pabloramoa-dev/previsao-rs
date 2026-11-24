@@ -549,7 +549,7 @@
     "created_at": "2026-11-23T17:40:03.439669-03:00",
     "expires_at": "2026-11-23T19:40:03-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 78.4,
     "language": "forecast"
   },
@@ -613,7 +613,7 @@
     "created_at": "2026-11-23T17:40:03.439669-03:00",
     "expires_at": "2026-11-23T19:40:03-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 78.4,
     "language": "forecast"
   },
@@ -671,8 +671,404 @@
     "created_at": "2026-11-23T17:40:03.439669-03:00",
     "expires_at": "2026-11-23T19:40:03-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 78.4,
+    "language": "forecast"
+  },
+  {
+    "format": "fim_de_semana",
+    "topic": "fim_de_semana",
+    "location_ids": [
+      "porto_alegre",
+      "gramado",
+      "torres",
+      "sant_ana_do_livramento",
+      "sao_borja",
+      "cruz_alta"
+    ],
+    "facts": {
+      "porto_alegre": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "gramado": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "torres": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sant_ana_do_livramento": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sao_borja": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "cruz_alta": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 5,
+      "novelty": 5
+    },
+    "extra": {
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "forecast": {
+        "2026-11-28": [
+          {
+            "id": "porto_alegre",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "gramado",
+            "max_c": 23,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "torres",
+            "max_c": 23,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "sant_ana_do_livramento",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "sao_borja",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "cruz_alta",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ],
+        "2026-11-29": [
+          {
+            "id": "porto_alegre",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "gramado",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "torres",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "sant_ana_do_livramento",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "sao_borja",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "cruz_alta",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ]
+      }
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "ab91e53d0958d8fde1d7",
+    "dedupe_key": "54317a293d57b76262691d9f9684c39279ce0e0d29215f668443580e8e0434a0",
+    "created_at": "2026-11-24T05:40:03.438261-03:00",
+    "expires_at": "2026-11-24T07:40:03-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "temperatura",
+    "location_ids": [
+      "gramado",
+      "sant_ana_do_livramento"
+    ],
+    "facts": {
+      "gramado": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sant_ana_do_livramento": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 2,
+      "contrast": 5,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {
+      "contrast": {
+        "spread": 9.0,
+        "threshold": 4,
+        "relevant": true,
+        "crosses_gust_threshold": false,
+        "low": {
+          "id": "gramado",
+          "name": "Gramado",
+          "value": 20.0
+        },
+        "high": {
+          "id": "sant_ana_do_livramento",
+          "name": "Sant'Ana do Livramento",
+          "value": 29.0
+        },
+        "available_locations": 6
+      }
+    },
+    "total": 18,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "070261e9a9e57d48ebe4",
+    "dedupe_key": "2b8dfb485677b7de7cf2a149504c8e67bae6d98da2804c54baceff7ba02a7525",
+    "created_at": "2026-11-24T05:40:03.438261-03:00",
+    "expires_at": "2026-11-24T07:40:03-03:00",
+    "vetoes": [],
+    "status": "published",
+    "confidence": 76.6,
+    "language": "forecast",
+    "claimed_at": "2026-11-24T06:00:08-03:00",
+    "published_at": "2026-11-24T06:00:54-03:00",
+    "media_id": "18118471298149556"
+  },
+  {
+    "format": "amanha_no_estado",
+    "topic": "amanha",
+    "location_ids": [
+      "porto_alegre",
+      "gramado",
+      "torres",
+      "sant_ana_do_livramento",
+      "sao_borja",
+      "cruz_alta"
+    ],
+    "facts": {
+      "porto_alegre": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "gramado": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "torres": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sant_ana_do_livramento": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sao_borja": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "cruz_alta": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 4,
+      "novelty": 3
+    },
+    "extra": {
+      "date": "2026-11-25"
+    },
+    "total": 18,
+    "classification": "reel",
+    "turno": "noite",
+    "character": "bia",
+    "hook_key": "60701552939b101c401c",
+    "dedupe_key": "c6340ff4fac7420e99e938e4234288db4f9ff1cd6db56a5a1807c5fa99ffc39c",
+    "created_at": "2026-11-24T05:40:03.438261-03:00",
+    "expires_at": "2026-11-24T07:40:03-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "antes_de_sair",
+    "topic": "resumo",
+    "location_ids": [
+      "porto_alegre",
+      "gramado",
+      "torres",
+      "sant_ana_do_livramento",
+      "sao_borja",
+      "cruz_alta"
+    ],
+    "facts": {
+      "porto_alegre": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "gramado": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "torres": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sant_ana_do_livramento": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sao_borja": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "cruz_alta": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 3,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 5
+    },
+    "extra": {},
+    "total": 17,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "3337d54001e0cdd682bc",
+    "dedupe_key": "4a90afef9d0b61cd969bd506459f1fe433d3742d3e020c252b7bcd9457e0814a",
+    "created_at": "2026-11-24T05:40:03.438261-03:00",
+    "expires_at": "2026-11-24T07:40:03-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "janela_chuva",
+    "location_ids": [
+      "porto_alegre",
+      "gramado",
+      "torres",
+      "sao_borja",
+      "cruz_alta"
+    ],
+    "facts": {
+      "porto_alegre": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "gramado": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "torres": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sao_borja": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "cruz_alta": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 4,
+      "contrast": 0,
+      "shareability": 4,
+      "novelty": 5
+    },
+    "extra": {},
+    "total": 17,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "17b5ea5450843f9ac36c",
+    "dedupe_key": "a63a9e0ac8a335f1c222e5a7089eed0b2f3a1267fb91ede14ddefcb110e4dc05",
+    "created_at": "2026-11-24T05:40:03.438261-03:00",
+    "expires_at": "2026-11-24T07:40:03-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 76.6,
     "language": "forecast"
   }
 ]
