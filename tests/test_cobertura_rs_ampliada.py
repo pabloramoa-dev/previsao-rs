@@ -24,3 +24,11 @@ for day in (date(2026,11,24), date(2026,11,25)):
 """
     result = subprocess.run([sys.executable,'-c',code], cwd=ROOT, env=env, capture_output=True, text=True)
     assert result.returncode == 0, result.stdout + result.stderr
+
+def test_municipios_e_prioridades():
+    from scripts.alerta_auto_rs import municipios, nomes_ibge
+    cadastro = nomes_ibge()
+    assert len(cadastro) == 497
+    codigo = next(c for c,n in cadastro.items() if n == 'Tupanciretã')
+    assert municipios({'geocodes_rs':[codigo]}) == ['Tupanciretã']
+    assert municipios({'geocodes_rs':['4314902'], 'municipios_texto':'Canoas - RS (4304606)'}) == ['Porto Alegre']

@@ -58,7 +58,8 @@ def nomes_ibge() -> dict[str, str]:
     """IBGE -> nome, a partir das cidades cadastradas do canal."""
     txt = (ROOT / "config" / "locais.yaml").read_text(encoding="utf-8")
     dados = yaml.safe_load(txt)
-    out: dict[str, str] = {}
+    cadastro = ROOT / 'data' / 'municipios_rs.json'
+    out: dict[str, str] = json.loads(cadastro.read_text(encoding='utf-8'))['municipios'] if cadastro.exists() else {}
 
     def varrer(x):
         if isinstance(x, dict):
@@ -73,13 +74,27 @@ def nomes_ibge() -> dict[str, str]:
     return out
 
 
+def prioridades_rs(agora=None) -> set[str]:
+    path = ROOT / 'config' / 'riscos_rs.json'
+    if not path.exists():
+        return set()
+    cfg = json.loads(path.read_text(encoding='utf-8'))
+    agora = agora or datetime.now(TZ)
+    return set(cfg['prioridade_ibge']) if agora.date().isoformat() <= cfg['prioridade_temporaria_ate'] else set()
+
+
 def municipios(aviso: dict) -> list[str]:
     """Nomes dos municípios do RS no aviso (texto do INMET; senão, cidades cadastradas)."""
     txt = aviso.get("municipios_texto") or ""
     nomes = [n.strip() for n in re.findall(r"([^,()]+?)\s*-\s*RS\s*\(\s*43\d{5}\s*\)", txt)]
-    if not nomes:
-        mapa = nomes_ibge()
-        nomes = [mapa[c] for c in aviso.get("geocodes_rs", []) if c in mapa]
+    mapa = nomes_ibge()
+    codigos = {str(c) for c in aviso.get('geocodes_rs', [])}
+    if codigos:
+        # Não mencionar município fora dos geocodes oficiais.
+        nomes = [mapa[c] for c in sorted(codigos) if c in mapa]
+    prioridades = prioridades_rs()
+    nomes_prioritarios = {mapa[c].casefold() for c in codigos & prioridades if c in mapa}
+    nomes.sort(key=lambda n: (n.casefold() not in nomes_prioritarios, n.casefold()))
     vistos, out = set(), []
     for n in nomes:
         if n.casefold() not in vistos:
@@ -121,7 +136,8 @@ def escolher(avisos: list[dict], historico: dict) -> dict | None:
         pendentes = {(str(r["id_aviso"]), int(r.get("nivel",1))) for r in historico.get("registros",[]) if r.get("story_status")=="pending"}
         novos = [a for a in avisos if (str(a["id_aviso"]),nivel(a.get("severidade"))) in pendentes]
         if not novos: return None
-    return max(novos, key=lambda a: (nivel(a.get("severidade")), a.get("municipios_rs", 0)))
+    prioridades = prioridades_rs()
+    return max(novos, key=lambda a: (nivel(a.get('severidade')), len({str(c) for c in a.get('geocodes_rs', [])} & prioridades), a.get('municipios_rs', 0)))
 
 
 def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
@@ -204,7 +220,9 @@ def decidir(a) -> None:
     agora = datetime.now(TZ)
     dados = _ler(Path(a.alertas), {"avisos": []})
     historico = _ler(Path(a.historico), {"versao": 1, "registros": []})
-    avisos = dados.get("avisos", [])
+    avisos = [v for v in dados.get("avisos", []) if datetime.fromisoformat(v["fim"]) > agora]
+    if os.getenv("RS_ALERTA_SEVERO_APENAS") == "true":
+        avisos = [v for v in avisos if nivel(v.get("severidade")) >= 2]
     aviso = escolher(avisos, historico)
     decisao = {"consultado_em": dados.get("consultado_em"), "avisos_vigentes": len(avisos), "seguir": "nao"}
     if aviso:

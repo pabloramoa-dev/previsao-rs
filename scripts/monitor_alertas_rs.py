@@ -37,7 +37,7 @@ def normalizar(payload,agora=None):
     out=[]
     for id_,a in por_id.items():
         if a.get("encerrado"):continue
-        ibges=[c for c in lista(a.get("geocodes")) if c.startswith("43")]
+        ibges=sorted({c for c in lista(a.get("geocodes")) if re.fullmatch(r"43\d{5}",c)})
         if not ibges:continue
         ini,fim=instante(a.get("data_inicio"),a.get("hora_inicio")),instante(a.get("data_fim"),a.get("hora_fim"))
         if not ini or not fim or not agora<fim or ini>agora+timedelta(hours=24) or ini>=fim:continue
@@ -122,11 +122,23 @@ def main():
     avisos=normalizar(payload,now)
     defesa=consultar_defesa_civil(now)
     avisos+=defesa["avisos"]
+    # SACE: registrar disponibilidade do portal e bacias a revisar.
+    # Não afirmar que cotas foram medidas/validadas.
+    riscos_path=Path(__file__).resolve().parents[1]/"config/riscos_rs.json"
+    riscos=json.loads(riscos_path.read_text(encoding="utf-8"))
+    hidro={"fonte":riscos["portal_hidrologia"],"bacias":riscos["bacias"],"status":"revisao_humana_necessaria","cotas_verificadas":False}
+    try:
+        with urlopen(Request(hidro["fonte"],headers={"User-Agent":"previsaors/2.0"}),timeout=20) as response:
+            hidro["portal_http"]=response.status
+    except Exception as e:
+        hidro["status"]="indisponivel"
+        hidro["erro"]=type(e).__name__
     out=Path("output/alertas_rs.json");out.parent.mkdir(parents=True,exist_ok=True)
-    out.write_text(json.dumps({"consultado_em":now.isoformat(),"avisos":avisos,"autopublicacao":"ver alerta_auto_rs","defesa_civil":defesa,"verificacao_hidrologica":False},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    out.write_text(json.dumps({"consultado_em":now.isoformat(),"avisos":avisos,"autopublicacao":"ver alerta_auto_rs","defesa_civil":defesa,"verificacao_hidrologica":False,"hidrologia":hidro},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     lines=[f"## Monitoramento de alertas RS — {now:%d/%m/%Y %H:%M}","",f"- Fonte: [INMET]({URL})",f"- Avisos oficiais vigentes ou iniciando em até 24h no RS: **{len(avisos)}**",f"- Defesa Civil (IDAP): {defesa['status']}; portal: {defesa.get('portal_status')}; avisos CAP com IBGE RS: {len(defesa['avisos'])}",f"- Boletins estaduais para revisão: {PORTAL}","- Publicação: decidida por scripts/alerta_auto_rs.py (só aviso oficial inédito)",""]
     lines += [f"- {a['tipo']} — {a['severidade']} — {a['municipios_rs']} municípios — até {a['fim']}" for a in avisos]
     if defesa["status"]!="ok": lines.append("ATENÇÃO: fonte IDAP indisponível; ausência de alertas não confirmada.")
+    lines.append(f"- Hidrologia: {hidro['status']} — {hidro['fonte']} — cotas não validadas automaticamente.")
     if not avisos:lines.append("Nenhum aviso elegível nas fontes consultadas; não é garantia de ausência de perigo. Boletins estaduais não estruturados exigem revisão.")
     txt="\n".join(lines)+"\n"
     print(txt)
