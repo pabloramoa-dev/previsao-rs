@@ -1,5 +1,6 @@
 thresholds:
   rain_relevant_mm: 1.0
+  rain_highlight_heavy_mm: 50.0  # destaque editorial diário, não alerta oficial
   rain_probability_relevant_pct: 45
   hot_c: 34
   very_hot_c: 38

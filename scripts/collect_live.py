@@ -47,6 +47,19 @@ def main() -> None:
     document = snap.build(collected, locations,
                           previous_snapshot=previous, observed=observed, marine=marine.collect(locations))
 
+    if args.rodizio:
+        from src.previsao.editorial.chuva_rs import anexar_varredura
+        # Mantém as seis cidades do quadro; consulta as demais em separado.
+        cadastro = config.locations_by_tier(3)
+        ids = {loc['id'] for loc in locations}
+        extras = [loc for loc in cadastro if loc['id'] not in ids]
+        complemento = met_no.fetch(extras, max_seconds=240)
+        pontos = (complemento.payload or {}).get('points', {}) if complemento.ok else {}
+        anexar_varredura(document, cadastro, pontos)
+        for chave in ('today', 'tomorrow'):
+            v = document['forecast'][chave]['rain_scan_rs']
+            print(f"[chuva RS {chave}] {v['validos']}/{v['total']} pontos com volume válido")
+
     import yaml
     event_path = config.config_dir() / "eventos_manuais.yaml"
     if event_path.exists():

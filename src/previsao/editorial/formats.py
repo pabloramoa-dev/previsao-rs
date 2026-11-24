@@ -8,6 +8,7 @@ from .script import (build_script, decimal_br, em_local, em_locais,
                      number, para_voz, pico_escrito, pico_falado)
 
 from .. import estado
+from .chuva_rs import destaque_chuva
 
 
 class _Titulos(dict):
@@ -196,7 +197,8 @@ def antes_de_sair(snapshot, incerto):
     resumo = batida_resumo(locs, 'HOJE NA REGIÃO')
     if resumo:
         batidas.append(resumo)
-    batidas.append(batida_chuva(locs))
+    if 'rain_scan_rs' not in snapshot['forecast']['today']:
+        batidas.append(batida_chuva(locs))
     if contraste['gust']['relevant']:
         alta = contraste['gust']['high']
         batidas.append(batida(
@@ -204,6 +206,9 @@ def antes_de_sair(snapshot, incerto):
             f"{em_local(alta['name'])}.",
             'alerta', titulo='VENTO', detalhe=f"até {alta['value']:g} km/h {em_local(alta['name'])}"))
     batidas.append(batida(f'Quer ver sua cidade? Siga o {estado.marca_falada()}!', 'cta'))
+    final = batida_final_chuva(snapshot, 'antes_de_sair')
+    if final:
+        batidas.append(final)
     return batidas
 
 
@@ -243,7 +248,8 @@ def amanha_no_estado(snapshot, incerto):
     resumo = batida_resumo(locs, 'AMANHÃ NA REGIÃO')
     if resumo:
         batidas.append(resumo)
-    batidas.append(batida_chuva(locs, amanha=True))
+    if 'rain_scan_rs' not in bloco:
+        batidas.append(batida_chuva(locs, amanha=True))
     if contraste['gust']['relevant']:
         alta = contraste['gust']['high']
         batidas.append(batida(
@@ -252,7 +258,33 @@ def amanha_no_estado(snapshot, incerto):
             'alerta', titulo='VENTO AMANHÃ',
             detalhe=f"até {alta['value']:g} km/h {em_local(alta['name'])}"))
     batidas.append(batida(f'Quer ver sua cidade? Siga o {estado.marca_falada()}!', 'cta'))
+    final = batida_final_chuva(snapshot, 'amanha_no_estado')
+    if final:
+        batidas.append(final)
     return batidas
+
+
+def batida_final_chuva(snapshot, formato, candidate=None):
+    """Cena final prioritária: acumulado, não probabilidade nem aviso oficial."""
+    final = destaque_chuva(snapshot, formato, candidate)
+    if final is None:
+        return None
+    quando = final['quando']
+    if not final['ponto']:
+        return batida(f"Volume de chuva {quando} indisponível na coleta.", destaque_chuva=True)
+    ponto = final['ponto']
+    mm = ponto['rain_mm']
+    if mm < 1:
+        texto = (f"Sem chuva significativa {quando} nos pontos com dados.")
+        return batida(texto, destaque_chuva=True)
+    volume = f"{mm:g}"
+    fala = f"Maior volume {quando} entre os pontos consultados: {ponto['name']}, {volume} milímetros previstos."
+    if final['forte']:
+        return batida(f"Atenção! {fala} Evite áreas alagadas.", 'alerta',
+                      titulo='CHUVA FORTE', detalhe=f"{decimal_br(volume)} mm · {ponto['name']} · {quando}",
+                      destaque_chuva=True)
+    return batida(fala, 'gancho', numero=f"{decimal_br(volume)} mm",
+                  sub=f"{ponto['name'].upper()} · {quando.upper()}", destaque_chuva=True)
 
 
 def batida_resumo(locations, titulo, quando=''):
@@ -388,4 +420,8 @@ def prepare(snapshot, format='antes_de_sair', reference=None, history=None, topi
     if format == 'fim_de_semana' and beats[0]['tipo'] == 'resumo':
         # Abre sem cartão (o apresentador precisa aparecer na primeira batida).
         beats.insert(0, batida(f'Veja como fica o fim de semana {estado.em()}.'))
+    final = batida_final_chuva(snapshot, format, candidate)
+    if final:
+        beats[-1]['tipo'] = 'cta'
+        beats.append(final)
     return {'title':TITLES[format], 'candidate':candidate,'beats':beats,'publication':False}

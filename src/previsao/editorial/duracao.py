@@ -59,7 +59,8 @@ def _ordem_de_corte(batidas: list[dict[str, Any]]) -> list[int]:
     """
     miolo = [i for i in range(1, max(len(batidas) - 1, 1))
              if batidas[i].get('tipo') not in PROTEGIDAS
-             and not batidas[i].get('dados', {}).get('destaque_local')]
+             and not batidas[i].get('dados', {}).get('destaque_local')
+             and not batidas[i].get('dados', {}).get('destaque_chuva')]
     return sorted(miolo,
                   key=lambda i: (-PESO.get(batidas[i].get('tipo'), 2), -i))
 

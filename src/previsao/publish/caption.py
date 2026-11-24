@@ -324,6 +324,24 @@ def build_caption(snapshot: dict, item: dict | None = None) -> str:
     if not linhas:
         return _legenda_antiga(snapshot)
 
+    from ..editorial.chuva_rs import destaque_chuva
+    final = destaque_chuva(snapshot, formato, item)
+    if final is not None:
+        if formato in ('antes_de_sair', 'amanha_no_estado'):
+            linhas = [l for l in linhas if not any(s in l for s in
+                      ('Mais chuva:', 'Sem chuva significativa prevista', 'Maior chance de chuva:'))]
+        ponto = final['ponto']
+        if ponto is None:
+            linhas.append(f"Volume de chuva {final['quando']} indisponível na coleta.")
+        else:
+            mm = f"{ponto['rain_mm']:g}".replace('.', ',')
+            linhas.append(f"🌧️ Maior acumulado {final['quando']} entre os pontos consultados: "
+                          f"{ponto['name']}, {mm} mm previstos.")
+            if final['forte']:
+                linhas.append("⚠️ Atenção à chuva volumosa. Evite áreas alagadas e acompanhe os avisos da Defesa Civil.")
+        linhas.append(f"Cobertura do destaque: {final['validos']}/{final['total']} pontos cadastrados com dados. "
+                      "Previsão, não aviso oficial.")
+
     partes = [abertura(formato),
               '',
               '\n'.join(linhas),

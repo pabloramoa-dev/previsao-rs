@@ -29,6 +29,7 @@ projeto, senao a resposta e 403. Ele e declarado em `fontes.yaml`.
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
+from time import monotonic
 from typing import Any
 
 import requests
@@ -173,6 +174,7 @@ def fetch(
     locations: list[dict[str, Any]],
     *,
     session: requests.Session | None = None,
+    max_seconds: float | None = None,
 ) -> SourceResult:
     """Uma requisicao por ponto (a met.no nao aceita multiponto).
 
@@ -190,7 +192,11 @@ def fetch(
     idades: list[float] = []
     algum_cache = False
 
+    deadline = monotonic() + max_seconds if max_seconds is not None else None
     for loc in locations:
+        if deadline is not None and monotonic() >= deadline:
+            faltaram.append(loc['id'])
+            continue
         params = {"lat": f"{loc['latitude']:.4f}", "lon": f"{loc['longitude']:.4f}"}
         result = get_json(SOURCE, spec["endpoint"], params,
                           cache_key=f"{loc['id']}:{params['lat']},{params['lon']}",
