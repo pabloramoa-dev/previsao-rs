@@ -38,7 +38,8 @@ jobs:
       DO_NOT_TRACK: '1'
       OMP_NUM_THREADS: '2'
       PREVISAO_MOTOR: hyperframes
-      PREVISAO_ESTILO: vox
+      PREVISAO_ESTILO: ${{ vars.PREVISAO_ESTILO || 'vox' }}
+      PREVISAO_HORA_ALVO: ${{ matrix.turno == 'manha' && '6' || '18' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -69,7 +70,7 @@ jobs:
           python -m pytest -q tests/test_paridade_rj_rs.py
 
       - name: Coletar previsão atual para as seis regiões do RS
-        run: python -m scripts.collect_live output/snapshot.json --rodizio
+        run: python -m scripts.collect_live output/snapshot.json --rodizio --turno ${{ matrix.turno }}
 
       - name: Renderizar Reel pelo MESMO motor diário do Previsão RJ
         run: |
@@ -81,6 +82,17 @@ jobs:
 
       - name: Validar o MP4 no mesmo gate de qualidade do RJ
         run: python scripts/qa_video.py output/REEL.mp4
+
+      - name: Confirmar destaque final de chuva
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          pacote = json.loads(Path('hyperframes/build/pacote.json').read_text())
+          final = pacote['batidas'][-1]
+          assert final['dados'].get('destaque_chuva'), final
+          print(final['fala'])
+          PY
 
       - name: Evidências de roteiro e fontes
         run: |
