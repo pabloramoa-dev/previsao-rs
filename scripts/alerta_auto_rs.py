@@ -114,7 +114,7 @@ def escolher(avisos: list[dict], historico: dict) -> dict | None:
     """Aviso mais severo (e mais amplo) ainda não publicado nesse nível."""
     feitos = {}
     for r in historico.get("registros", []):
-        if r.get("media_id"):
+        if r.get("media_id") or "reel_status" not in r:
             k=str(r["id_aviso"]); feitos[k]=max(feitos.get(k,0),int(r.get("nivel",1)))
     novos = [a for a in avisos if nivel(a.get("severidade")) > feitos.get(str(a["id_aviso"]), 0)]
     if not novos:

@@ -136,7 +136,9 @@ def test_workflow_da_noite_tem_travas_e_horario_da_tarde():
     # esperam nada (ou encerram na trava, ou publicam na hora).
     fuso = int(noite['env']['FUSO_UTC'])
     horas = [(int(c['cron'].split()[1]) + fuso) % 24 for c in noite[True]['schedule']]
-    assert len(horas) >= 2 and all(18 <= h < 21 for h in horas), horas
+    assert horas.count(17) == 1  # principal às 17h35
+    assert sum(18 <= h < 21 for h in horas) >= 2
+    assert all(17 <= h < 21 for h in horas), horas
     # 18h local; o minuto é o do grupo de horário do canal (:00, :30 ou :45).
     assert noite['env']['ALVO'][:3] == '18:' and int(noite['env']['ALVO'][3:]) in (0, 30, 45)
     assert noite[True]['repository_dispatch']['types'] == ['reel_noite']

@@ -45,7 +45,9 @@ def test_reel_diario_tem_mais_de_uma_tentativa_de_cron():
     horas = _horas_locais_da_reserva(wf)
     alvo, prazo = (int(wf['env'][k].split(':')[0]) for k in ('ALVO', 'PRAZO'))
     assert len(horas) >= 2
-    assert all(alvo <= h < prazo for h in horas), horas
+    assert horas.count(alvo - 1) == 1  # principal 25 min antes
+    assert sum(alvo <= h < prazo for h in horas) >= 2
+    assert all(alvo - 1 <= h < prazo for h in horas), horas
 
 
 def test_reel_diario_trava_segunda_publicacao_no_mesmo_dia():

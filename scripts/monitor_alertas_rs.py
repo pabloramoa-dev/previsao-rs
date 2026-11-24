@@ -126,6 +126,7 @@ def main():
     out.write_text(json.dumps({"consultado_em":now.isoformat(),"avisos":avisos,"autopublicacao":"ver alerta_auto_rs","defesa_civil":defesa,"verificacao_hidrologica":False},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     lines=[f"## Monitoramento de alertas RS — {now:%d/%m/%Y %H:%M}","",f"- Fonte: [INMET]({URL})",f"- Avisos oficiais vigentes ou iniciando em até 24h no RS: **{len(avisos)}**",f"- Defesa Civil (IDAP): {defesa['status']}; portal: {defesa.get('portal_status')}; avisos CAP com IBGE RS: {len(defesa['avisos'])}",f"- Boletins estaduais para revisão: {PORTAL}","- Publicação: decidida por scripts/alerta_auto_rs.py (só aviso oficial inédito)",""]
     lines += [f"- {a['tipo']} — {a['severidade']} — {a['municipios_rs']} municípios — até {a['fim']}" for a in avisos]
+    if defesa["status"]!="ok": lines.append("ATENÇÃO: fonte IDAP indisponível; ausência de alertas não confirmada.")
     if not avisos:lines.append("Nenhum aviso elegível nas fontes consultadas; não é garantia de ausência de perigo. Boletins estaduais não estruturados exigem revisão.")
     txt="\n".join(lines)+"\n"
     print(txt)
