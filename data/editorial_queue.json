@@ -818,7 +818,7 @@
     "created_at": "2026-11-24T05:40:03.438261-03:00",
     "expires_at": "2026-11-24T07:40:03-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 76.6,
     "language": "forecast"
   },
@@ -945,7 +945,7 @@
     "created_at": "2026-11-24T05:40:03.438261-03:00",
     "expires_at": "2026-11-24T07:40:03-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 76.6,
     "language": "forecast"
   },
@@ -1009,7 +1009,7 @@
     "created_at": "2026-11-24T05:40:03.438261-03:00",
     "expires_at": "2026-11-24T07:40:03-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 76.6,
     "language": "forecast"
   },
@@ -1066,6 +1066,344 @@
     "dedupe_key": "a63a9e0ac8a335f1c222e5a7089eed0b2f3a1267fb91ede14ddefcb110e4dc05",
     "created_at": "2026-11-24T05:40:03.438261-03:00",
     "expires_at": "2026-11-24T07:40:03-03:00",
+    "vetoes": [],
+    "status": "expired",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "fim_de_semana",
+    "topic": "fim_de_semana",
+    "location_ids": [
+      "novo_hamburgo",
+      "venancio_aires",
+      "lagoa_vermelha",
+      "julio_de_castilhos",
+      "pelotas",
+      "carazinho"
+    ],
+    "facts": {
+      "novo_hamburgo": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "venancio_aires": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "lagoa_vermelha": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "julio_de_castilhos": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "pelotas": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "carazinho": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 5,
+      "novelty": 5
+    },
+    "extra": {
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "forecast": {
+        "2026-11-28": [
+          {
+            "id": "novo_hamburgo",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "venancio_aires",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "lagoa_vermelha",
+            "max_c": 23,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "julio_de_castilhos",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "pelotas",
+            "max_c": 26,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "carazinho",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ],
+        "2026-11-29": [
+          {
+            "id": "novo_hamburgo",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "venancio_aires",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "lagoa_vermelha",
+            "max_c": 25,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "julio_de_castilhos",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "pelotas",
+            "max_c": 26,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "carazinho",
+            "max_c": 25,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ]
+      }
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "035abd113ff738f35d0d",
+    "dedupe_key": "4172380b6d0da9b3e82dfd17f461c77b2ee8aa2a363fa40b8e2f2c223ea56357",
+    "created_at": "2026-11-24T17:40:34.488847-03:00",
+    "expires_at": "2026-11-24T19:40:01-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "amanha_no_estado",
+    "topic": "amanha",
+    "location_ids": [
+      "novo_hamburgo",
+      "venancio_aires",
+      "lagoa_vermelha",
+      "julio_de_castilhos",
+      "pelotas",
+      "carazinho"
+    ],
+    "facts": {
+      "novo_hamburgo": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "venancio_aires": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "lagoa_vermelha": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "julio_de_castilhos": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "pelotas": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "carazinho": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 4,
+      "novelty": 3
+    },
+    "extra": {
+      "date": "2026-11-25"
+    },
+    "total": 18,
+    "classification": "reel",
+    "turno": "noite",
+    "character": "bia",
+    "hook_key": "b45c3c6a97f30d73416c",
+    "dedupe_key": "1275f757c31f9f6c461a53b5b9f9d35456bf22dffcfd59ee77ba3d21849ae57a",
+    "created_at": "2026-11-24T17:40:34.488847-03:00",
+    "expires_at": "2026-11-24T19:40:01-03:00",
+    "vetoes": [],
+    "status": "published",
+    "confidence": 76.6,
+    "language": "forecast",
+    "claimed_at": "2026-11-24T18:00:06-03:00",
+    "published_at": "2026-11-24T18:00:49-03:00",
+    "media_id": "17972883096187557"
+  },
+  {
+    "format": "antes_de_sair",
+    "topic": "resumo",
+    "location_ids": [
+      "novo_hamburgo",
+      "venancio_aires",
+      "lagoa_vermelha",
+      "julio_de_castilhos",
+      "pelotas",
+      "carazinho"
+    ],
+    "facts": {
+      "novo_hamburgo": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "venancio_aires": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "lagoa_vermelha": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "julio_de_castilhos": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "pelotas": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "carazinho": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 3,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 5
+    },
+    "extra": {},
+    "total": 17,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "75430922dc4a701f21e4",
+    "dedupe_key": "99971d9bf05413fa923f7ec5c35b2d1baeb647ccbdc07121735fdd33bd4a33f6",
+    "created_at": "2026-11-24T17:40:34.488847-03:00",
+    "expires_at": "2026-11-24T19:40:01-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "temperatura",
+    "location_ids": [
+      "lagoa_vermelha",
+      "pelotas"
+    ],
+    "facts": {
+      "lagoa_vermelha": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "pelotas": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 2,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {
+      "contrast": {
+        "spread": 6.0,
+        "threshold": 4,
+        "relevant": true,
+        "crosses_gust_threshold": false,
+        "low": {
+          "id": "lagoa_vermelha",
+          "name": "Lagoa Vermelha",
+          "value": 20.0
+        },
+        "high": {
+          "id": "pelotas",
+          "name": "Pelotas",
+          "value": 26.0
+        },
+        "available_locations": 6
+      }
+    },
+    "total": 16,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "6caa38932a815e26e78e",
+    "dedupe_key": "55d04e73fe49bac58fb77641ac3f29477f0b49a5c793f37368e56253e24b45a7",
+    "created_at": "2026-11-24T17:40:34.488847-03:00",
+    "expires_at": "2026-11-24T19:40:01-03:00",
     "vetoes": [],
     "status": "ready",
     "confidence": 76.6,
