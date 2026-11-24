@@ -1,7 +1,5 @@
-name: Monitorar alertas RS às 14h (sem publicação)
+name: Diagnóstico manual de alertas RS (sem publicação)
 on:
-  schedule:
-    - cron: "0 17 * * *" # 14h no RS (UTC-3)
   workflow_dispatch:
 permissions:
   contents: read

@@ -112,14 +112,20 @@ def ceu(tipo: str) -> str:
 
 def escolher(avisos: list[dict], historico: dict) -> dict | None:
     """Aviso mais severo (e mais amplo) ainda não publicado nesse nível."""
-    feitos = {r["id_aviso"]: int(r.get("nivel", 1)) for r in historico.get("registros", [])}
+    feitos = {}
+    for r in historico.get("registros", []):
+        if r.get("media_id"):
+            k=str(r["id_aviso"]); feitos[k]=max(feitos.get(k,0),int(r.get("nivel",1)))
     novos = [a for a in avisos if nivel(a.get("severidade")) > feitos.get(str(a["id_aviso"]), 0)]
     if not novos:
-        return None
+        pendentes = {(str(r["id_aviso"]), int(r.get("nivel",1))) for r in historico.get("registros",[]) if r.get("story_status")=="pending"}
+        novos = [a for a in avisos if (str(a["id_aviso"]),nivel(a.get("severidade"))) in pendentes]
+        if not novos: return None
     return max(novos, key=lambda a: (nivel(a.get("severidade")), a.get("municipios_rs", 0)))
 
 
 def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
+    orgao = aviso.get("orgao") or "INMET"
     tipo = str(aviso["tipo"]).strip()
     tipo_up = tipo.upper()
     n = nivel(aviso.get("severidade"))
@@ -128,6 +134,9 @@ def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
     qtd = int(aviso.get("municipios_rs") or len(nomes))
     fim_h, fim_d = _hora(aviso["fim"]), _dia(aviso["fim"], agora)
     ate = f"até as {fim_h} de {fim_d}"
+    inicio = datetime.fromisoformat(aviso["inicio"])
+    if inicio > agora:
+        ate = f"das {_hora(aviso['inicio'])} de {_dia(aviso['inicio'],agora)} {ate}"
     exemplos = nomes[:3]
     detalhe = " · ".join(exemplos) if exemplos else f"{qtd} MUNICÍPIOS"
     if exemplos:
@@ -141,28 +150,28 @@ def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
 
     falas = [
         {"cena": "abertura",
-         "fala": f"Atenção, Rio Grande do Sul! O Inmet emitiu {COR[n].lower()} de {tipo.lower()}."},
+         "fala": f"Atenção, Rio Grande do Sul! Há {COR[n].lower()} de {tipo.lower()}, segundo {orgao}."},
         {"cena": "alerta", "titulo": tipo_up[:28], "detalhe": detalhe,
          "fala": f"O aviso vale {ate} para {onde}."},
     ]
     if riscos:
         falas.append({"cena": "frase",
-                      "fala": "Riscos apontados pelo Inmet: " + "; ".join(
+                      "fala": f"Riscos apontados por {orgao}: " + "; ".join(
                           r.rstrip(".").lower() if i else r.rstrip(".")[0].lower() + r.rstrip(".")[1:]
                           for i, r in enumerate(riscos)) + "."})
     if outros:
         falas.append({"cena": "frase",
-                      "fala": "Também há aviso do Inmet de " + ", ".join(o.lower() for o in outros[:3]) + " no estado."})
+                      "fala": "Também há aviso oficial de " + ", ".join(o.lower() for o in outros[:3]) + " no estado."})
     if instr:
         falas.append({"cena": "frase", "fala": instr[0].rstrip(".") + "."})
     falas.append({"cena": "frase", "continua": True,
                   "fala": "Em emergência, ligue 199 para a Defesa Civil ou 193 para os Bombeiros."})
-    falas.append({"cena": "cta", "chamada": "MANDE ESTE ALERTA", "sub": "{arroba} · aviso do Inmet",
+    falas.append({"cena": "cta", "chamada": "MANDE ESTE ALERTA", "sub": "{arroba} · aviso oficial",
                   "fala": "Manda esse alerta pra quem mora no Rio Grande do Sul."})
 
     mostrados = nomes[:15]
     lista_legenda = ", ".join(mostrados) + (f" e mais {qtd - len(mostrados)}" if qtd > len(mostrados) and mostrados else "")
-    leg = [f"⚠️ {COR[n]} DO INMET — {tipo_up} no RS",
+    leg = [f"⚠️ {COR[n]} · {orgao.upper()} — {tipo_up} no RS",
            f"🕒 Válido {ate}",
            f"📍 {qtd} municípios" + (f": {lista_legenda}" if nomes else "")]
     leg += [f"• {r}" for r in riscos]
@@ -177,10 +186,10 @@ def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
         "apresenta": "bia",
         "validade": datetime.fromisoformat(aviso["fim"]).strftime("%Y-%m-%dT%H:%M"),
         "titulo": ("ALERTA DE " + tipo_up)[:32],
-        "etiquetas": [f"{COR[n]} · INMET", f"{fim_d.upper()} · ATÉ {fim_h.upper()}"],
+        "etiquetas": [f"{COR[n]} · {orgao.upper()}", f"{fim_d.upper()} · ATÉ {fim_h.upper()}"],
         "ceu": ceu(tipo),
         "trilha": False,
-        "fonte": f"INMET — {sev.lower()} de {tipo.lower()} (aviso {aviso['id_aviso']})",
+        "fonte": f"{orgao} — {sev.lower()} de {tipo.lower()} (aviso {aviso['id_aviso']})",
         "ticker": [tipo_up[:24], f"{qtd} MUNICÍPIOS", f"ATÉ {fim_h.upper()}", "DEFESA CIVIL 199"],
         "falas": falas,
         "legenda": "\n".join(leg) + "\n",

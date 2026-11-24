@@ -1,16 +1,16 @@
-name: Alerta RS às 12h30 (Bira e Bia)
+name: Alerta RS às 12h20 (Bira e Bia)
 
-# Todo dia, 12h30 de Brasília: consulta os avisos OFICIAIS do INMET vigentes no
+# Todo dia, 12h20 de Brasília: consulta os avisos OFICIAIS do INMET e da Defesa Civil vigentes no
 # Rio Grande do Sul (tempestade, granizo, chuvas intensas, acumulado de chuva,
 # vendaval, ciclone, geada, onda de frio/calor, ressaca, baixa umidade...).
 #
-#   - Há aviso INÉDITO -> comunicado em dupla (Bira + Bia) e Reel no @previsaors.
+#   - Há aviso INÉDITO -> comunicado em dupla (Bira + Bia) e Reel e Story no @previsaors.
 #   - Não há aviso, ou já foi publicado -> nada vai ao ar (sem alarme inventado).
 #
 # A mesma ameaça só volta se o INMET subir a severidade (amarelo -> laranja ->
 # vermelho). Histórico em data/alertas_publicados.json.
 #
-# Horário: o cron das 12h05 espera até 12h25, renderiza e publica ~12h30. O
+# Horário: a checagem principal começa às 12h20. O
 # cron do GitHub atrasa; as reservas de 12h40 e 13h20 publicam na hora se o
 # primeiro falhou (o histórico impede repetição). Depois das 15h não publica.
 #
@@ -18,9 +18,16 @@ name: Alerta RS às 12h30 (Bira e Bia)
 
 on:
   schedule:
-    - cron: "5 15 * * *"    # 12h05 BRT: espera e publica 12h30
+    - cron: "20 15 * * *"   # 12h20 BRT: consulta e publica após render
     - cron: "40 15 * * *"   # reserva 12h40 BRT
     - cron: "20 16 * * *"   # reserva 13h20 BRT
+  push:
+    paths:
+      - '.github/workflows/alerta_rs.yml'
+      - 'scripts/monitor_alertas_rs.py'
+      - 'scripts/alerta_auto_rs.py'
+      - 'scripts/publicar_alerta_rs.py'
+      - 'tests/test_alerta_rs_rede.py'
   workflow_dispatch:
     inputs:
       publicar:
@@ -36,13 +43,13 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  ALVO: "12:30"
+  ALVO: "12:20"
   PRAZO: "15:00"
   FUSO_UTC: "-3"
 
 jobs:
   alerta:
-    if: vars.AUTOMATION_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
+    if: vars.AUTOMATION_ENABLED == 'true' || github.event_name != 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -60,6 +67,8 @@ jobs:
         run: |
           if [ "$EVENTO" = "workflow_dispatch" ]; then
             P="$IN_PUBLICAR"
+          elif [ "$EVENTO" = "push" ]; then
+            P=false
           else
             P=true
             if ! python -m scripts.aguardar_horario prazo --prazo "$PRAZO"; then
@@ -69,11 +78,11 @@ jobs:
           fi
           echo "publicar=$P" >> "$GITHUB_OUTPUT"
 
-      - name: Aguardar 12h25
+      - name: Aguardar 12h15
         if: ${{ steps.modo.outputs.publicar == 'true' && github.event_name != 'workflow_dispatch' }}
         run: python -m scripts.aguardar_horario preparar --alvo "$ALVO" --antes 5
 
-      - name: Consultar avisos oficiais do INMET
+      - name: Consultar avisos oficiais do INMET e Defesa Civil
         if: ${{ steps.modo.outputs.publicar != 'atrasado' }}
         run: |
           pip install -q PyYAML
@@ -121,7 +130,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/upload-artifact@v4
-        if: ${{ steps.decisao.outputs.seguir == 'sim' }}
+        if: always()
         with:
           name: alerta-rs-${{ github.run_id }}
           path: |
@@ -129,12 +138,14 @@ jobs:
             output/CAPA.jpg
             output/LEGENDA.txt
             output/alerta_decisao.json
+            output/alertas_rs.json
             comunicados/auto/alerta_rs.yaml
-          retention-days: 14
+          if-no-files-found: warn
+          retention-days: 3
 
       # ---------------------------------------------------------- publicação
 
-      - name: Aguardar 12h30
+      - name: Aguardar 12h20
         if: ${{ steps.decisao.outputs.seguir == 'sim' && steps.modo.outputs.publicar == 'true' && github.event_name != 'workflow_dispatch' }}
         run: python -m scripts.aguardar_horario publicar --alvo "$ALVO"
 
@@ -147,6 +158,12 @@ jobs:
           EXPECTED_IG_USERNAME: ${{ vars.EXPECTED_IG_USERNAME }}
         run: python -c "from src.previsao.publish.instagram import verify_destination; print('destino:',verify_destination().get('username'))"
 
+      - name: Exigir hospedagem pública
+        if: ${{ steps.decisao.outputs.seguir == 'sim' && steps.modo.outputs.publicar == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: test "$(gh repo view "$GITHUB_REPOSITORY" --json visibility -q .visibility)" = PUBLIC
+
       - name: Hospedar MP4 em Release temporário
         if: ${{ steps.decisao.outputs.seguir == 'sim' && steps.modo.outputs.publicar == 'true' }}
         id: media
@@ -156,7 +173,11 @@ jobs:
           TAG="alerta-${{ github.run_id }}"
           ARQS="output/REEL.mp4"
           [ -f output/CAPA.jpg ] && ARQS="$ARQS output/CAPA.jpg"
-          gh release create "$TAG" $ARQS --title "$TAG" --notes "Alerta RS"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" $ARQS --clobber
+          else
+            gh release create "$TAG" $ARQS --title "$TAG" --notes "Alerta RS"
+          fi
           echo "url=https://github.com/${{ github.repository }}/releases/download/$TAG/REEL.mp4" >> "$GITHUB_OUTPUT"
           if [ -f output/CAPA.jpg ]; then
             echo "capa=https://github.com/${{ github.repository }}/releases/download/$TAG/CAPA.jpg" >> "$GITHUB_OUTPUT"
@@ -171,18 +192,12 @@ jobs:
           EXPECTED_IG_USERNAME: ${{ vars.EXPECTED_IG_USERNAME }}
           PREVISAO_CAPA_URL: ${{ steps.media.outputs.capa }}
         run: |
-          set -o pipefail
           export PREVISAO_CAPA_MS=$(cat output/capa_ms.txt 2>/dev/null || echo 0)
-          python -m src.previsao.publish.cli \
+          python -m scripts.publicar_alerta_rs \
             --video-url "${{ steps.media.outputs.url }}" \
             --caption-file output/LEGENDA.txt \
-            --publish | tee output/publicacao.log
-          MID=$(grep -oE 'media_id= *[0-9]+' output/publicacao.log | grep -oE '[0-9]+' | tail -1)
-          test -n "$MID" || { echo "Meta não confirmou media_id"; exit 1; }
-          python -m scripts.alerta_auto_rs registrar \
             --historico data/alertas_publicados.json \
-            --decisao output/alerta_decisao.json --media-id "$MID"
-          echo "- media_id confirmado: \`$MID\`" >> "$GITHUB_STEP_SUMMARY"
+            --decisao output/alerta_decisao.json
 
       - name: Persistir o histórico de alertas
         if: ${{ always() && steps.decisao.outputs.seguir == 'sim' && steps.modo.outputs.publicar == 'true' }}
@@ -197,8 +212,8 @@ jobs:
           git pull --rebase --autostash origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
 
-      - name: Apagar o Release temporário
-        if: ${{ always() && steps.decisao.outputs.seguir == 'sim' && steps.modo.outputs.publicar == 'true' }}
+      - name: Apagar o Release temporário após confirmação
+        if: ${{ success() && steps.decisao.outputs.seguir == 'sim' && steps.modo.outputs.publicar == 'true' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release delete "alerta-${{ github.run_id }}" --repo "${{ github.repository }}" --cleanup-tag --yes || true

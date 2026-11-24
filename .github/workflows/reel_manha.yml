@@ -36,6 +36,7 @@ name: Reel da manhã
 
 on:
   schedule:
+    - cron: "35 8 * * *"   # principal independente, 05h35 BRT
     - cron: "25 9 * * *"   # gerado: reserva 1 (ALVO+25 em UTC)
     - cron: "25 10 * * *"   # gerado: reserva 2 (ALVO+85 em UTC)
   # GATILHO PRINCIPAL: cron-job.org, 25 minutos antes do ALVO no fuso do canal,
@@ -126,7 +127,10 @@ jobs:
           atrasado = not manual and agora > agora.replace(
               hour=hh, minute=mm, second=0, microsecond=0)
 
-          pular = 'sim' if ((ja and not ignorar) or atrasado) else 'nao'
+          alvo_h, alvo_m = map(int, os.environ['ALVO'].split(':'))
+          alvo = agora.replace(hour=alvo_h, minute=alvo_m, second=0, microsecond=0)
+          cedo = agora < alvo - datetime.timedelta(minutes=60)
+          pular = 'sim' if ((ja and not ignorar) or atrasado or (cedo and not manual)) else 'nao'
           print(f'hoje={hoje} agora={agora:%H:%M} pular={pular} '
                 f'publicar={publicar} publicacoes_hoje={len(ja)} '
                 f'fora_do_prazo={atrasado}')
@@ -140,6 +144,8 @@ jobs:
                   f'### Disparo às {agora:%H:%M}, depois do prazo ({os.environ["PRAZO"]})\n\n'
                   'Nada foi preparado nem publicado. Para publicar mesmo assim, '
                   'use o botão "Run workflow".\n', encoding='utf-8')
+          elif cedo and not manual:
+              resumo.write_text('### Disparo prematuro: aguardando o próximo agendamento.\n', encoding='utf-8')
           elif pular == 'sim':
               resumo.write_text(
                   f'### Reel de {hoje} já publicado\n\n'
@@ -275,6 +281,17 @@ jobs:
       - name: Aguardar o horário de publicar (ALVO)
         if: ${{ steps.pauta.outputs.seguir == 'sim' && needs.trava.outputs.publicar == 'true' && github.event_name != 'workflow_dispatch' }}
         run: python -m scripts.aguardar_horario publicar --alvo "$ALVO"
+
+      - name: Bloquear publicação manual antecipada
+        if: ${{ steps.pauta.outputs.seguir == 'sim' && needs.trava.outputs.publicar == 'true' && github.event_name == 'workflow_dispatch' }}
+        run: |
+          python - <<'PY'
+          from scripts.aguardar_horario import agora, momento
+          import os
+          n = agora()
+          if n < momento(os.environ['ALVO'], n):
+              raise SystemExit('Publicação antecipada bloqueada; use publicar=false para testar.')
+          PY
 
       - name: Verificar Meta e conta de destino
         if: ${{ steps.pauta.outputs.seguir == 'sim' && needs.trava.outputs.publicar == 'true' }}

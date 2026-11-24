@@ -102,6 +102,20 @@ jobs:
 
       # ---------------------------------------------------------------- live
 
+      - name: Bloquear publicação manual antecipada
+        if: ${{ env.PUBLICAR == 'true' }}
+        env:
+          TURNO: ${{ inputs.turno }}
+        run: |
+          python - <<'PY'
+          from scripts.aguardar_horario import agora, momento
+          import os
+          n = agora()
+          alvo = '06:00' if os.environ['TURNO'] == 'manha' else '18:00'
+          if n < momento(alvo, n):
+              raise SystemExit('Publicação antecipada bloqueada; use publicar=false para testar.')
+          PY
+
       - name: Coletar dados ao vivo
         if: ${{ env.FONTE == 'live' }}
         run: python -m scripts.collect_live output/snapshot.json
