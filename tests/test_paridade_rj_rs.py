@@ -44,7 +44,7 @@ def test_boletins_iguais_estrutura_rj_sem_apresentacao_longa():
     for roteiro in (antes_de_sair(snapshot, False), amanha_no_estado(snapshot, False)):
         assert roteiro[0]["tipo"] == "nenhum"
         primeira = roteiro[0]["fala"].lower()
-        assert "tempo" in primeira and len(primeira.split()) <= 12
+        assert ("graus" in primeira or "rajadas" in primeira or "vento forte" in primeira) and len(primeira.split()) <= 12
         assert "chuva" not in primeira and "milímetro" not in primeira
         assert "graus" in roteiro[1]["fala"]
         assert "eu sou" not in primeira and "olá" not in primeira
