@@ -19,7 +19,7 @@ def test_rodizio_seis_regioes_e_seis_cidades_reais():
         cidades = config.locations_for_reel(data)
         assert len(cidades) == 6
         assert len({p["id"] for p in cidades}) == 6
-        for (regiao, ids, zonas), cidade in zip(estado.regioes()[::2], cidades):
+        for (regiao, ids, zonas), cidade in zip(estado.regioes(), cidades):
             assert cidade["id"] in ids or cidade["zone"] in zonas
             assert cidade["name"]
 
@@ -37,7 +37,7 @@ def test_tela_cidade_regiao_e_valores_do_mesmo_ponto():
     linhas = cinco_regioes(pontos)
     assert len(linhas) == 6
     assert [l["nome"] for l in linhas] == [l["name"] for l in pontos]
-    assert [l["regiao"] for l in linhas] == [r for r, _, _ in estado.regioes()[::2]]
+    assert [l["regiao"] for l in linhas] == [r for r, _, _ in estado.regioes()]
     for original, linha in zip(pontos, linhas):
         assert linha["min"] == original["min_c"]
         assert linha["max"] == original["max_c"]

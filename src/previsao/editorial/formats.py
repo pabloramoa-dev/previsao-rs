@@ -7,7 +7,7 @@ from .script import (build_script, decimal_br, em_local, em_locais,
                      faixa_escrita, faixa_falada, hora_agora, janela_legivel,
                      number, para_voz, pico_escrito, pico_falado)
 
-from .. import estado
+from .. import estado, config
 from .chuva_rs import destaque_chuva
 
 
