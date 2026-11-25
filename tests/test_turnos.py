@@ -234,3 +234,12 @@ def test_workflow_prepara_antes_e_publica_na_hora(caminho, alvo):
     for passo in wf['jobs']['trava']['steps'] + wf['jobs']['reel']['steps']:
         if passo.get('uses', '').startswith('actions/checkout'):
             assert passo['with']['ref'] == '${{ github.ref_name }}'
+
+
+def test_boletim_manha_nao_troca_previsao_geral_por_pauta_de_chuva(tmp_path):
+    fila = _fila(tmp_path, _item('chuva', 'chove_onde', 99),
+                 _item('hoje', 'antes_de_sair', 12))
+    assert state.next_ready(fila, turno='manha')['dedupe_key'] == 'hoje'
+    assert state.next_ready(fila)['dedupe_key'] == 'chuva'
+    so_chuva = _fila(tmp_path, _item('chuva', 'chove_onde', 99))
+    assert state.next_ready(so_chuva, turno='manha') is None

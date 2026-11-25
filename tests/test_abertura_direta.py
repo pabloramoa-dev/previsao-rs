@@ -1,39 +1,31 @@
-"""Reels diários (Bira 06h / Bia 18h) abrem com previsão, sem apresentação."""
-from src.previsao import estado
-from src.previsao.editorial.formats import abertura_com_dado, antes_de_sair, amanha_no_estado
-
-PROIBIDO = ('olá', 'eu sou', 'veja a previsão', 'vamos conhecer', 'fica assim')
+"""Boletins diários abrem com a previsão geral, sem antecipar o volume de chuva."""
+from src.previsao.editorial.formats import abertura_previsao, antes_de_sair, amanha_no_estado
 
 
-def _locs():
-    locs = []
-    for i, (_rot, ids, _z) in enumerate(estado.regioes()):
-        locs.append({'id': ids[0], 'name': f'Cidade {i}', 'min_c': 14.4 + i, 'max_c': 27.6 + i,
-                     'rain_mm': 4.2 if i == 0 else 0.0, 'rain_probability_pct': 60 if i == 0 else 5})
-    return locs
+def test_abertura_curta_sem_chuva():
+    for quando in ('hoje', 'amanhã'):
+        beat = abertura_previsao(quando)
+        fala = beat['fala'].lower()
+        assert quando in fala and len(fala.split()) <= 12
+        assert beat['tipo'] == 'nenhum' and not beat['dados']
+        assert not any(p in fala for p in ('milímetro', 'chuva', 'olá', 'eu sou'))
 
 
-def test_abertura_tem_numeros_reais_e_roda_entre_ancoras():
-    falas = {abertura_com_dado(_locs(), f'2026-11-{d:02d}', 'hoje')['fala'] for d in range(1, 7)}
-    assert len(falas) == 6                      # rodízio: cada dia uma âncora
-    f0 = abertura_com_dado(_locs(), '2026-11-01', 'hoje')['fala']
-    assert 'mínima de' in f0 and 'máxima de' in f0 and 'graus' in f0
-    assert not any(p in f0.lower() for p in PROIBIDO)
-
-
-def test_sem_dado_nao_inventa():
-    assert abertura_com_dado([{'id': 'x', 'name': 'X', 'min_c': None, 'max_c': None}], '2026-11-01', 'hoje') is None
-
-
-def test_formatos_diarios_comecam_pela_previsao():
-    locs = _locs()
-    snap = {'forecast': {'today': {'date': '2026-11-23', 'locations': locs},
-                         'tomorrow': {'date': '2026-11-24', 'locations': locs}}}
-    try:
-        manha = antes_de_sair(snap, False)
-    except Exception:
-        manha = None  # build_script exige campos extras; a abertura já foi coberta acima
-    noite = amanha_no_estado(snap, False)
-    for batidas in filter(None, (manha, noite)):
-        primeira = batidas[0]['fala'].lower()
-        assert 'graus' in primeira and not any(p in primeira for p in PROIBIDO)
+def test_formatos_diarios_abrem_sem_chuva_e_encerram_com_acumulado(snapshot):
+    for chave, montar, quando in (
+        ('today', antes_de_sair, 'hoje'),
+        ('tomorrow', amanha_no_estado, 'amanhã'),
+    ):
+        bloco = snapshot['forecast'][chave]
+        for loc in bloco['locations']:
+            loc['rain_mm'] = 80
+        bloco['rain_scan_rs'] = {
+            'ponto': {'name': 'Muçum', 'rain_mm': 92.5}, 'validos': 99, 'total': 100}
+        beats = montar(snapshot, False)
+        assert beats[0] == abertura_previsao(quando)
+        assert beats[1]['tipo'] == 'gancho' and 'graus' in beats[1]['fala']
+        assert any(b['tipo'] == 'resumo' for b in beats[1:-1])
+        assert all('milímetro' not in b['fala'].lower() for b in beats[:-1])
+        assert beats[-1]['tipo'] == 'alerta'
+        assert beats[-1]['dados']['destaque_chuva']
+        assert 'Muçum' in beats[-1]['fala'] and '92,5 milímetros' in beats[-1]['fala']

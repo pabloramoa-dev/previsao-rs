@@ -15,12 +15,10 @@ TURNOS = ('manha', 'noite')
 # Formatos que falam do dia SEGUINTE e, por isso, saem no turno da noite.
 FORMATOS_NOITE = frozenset({'amanha_no_estado'})
 
-# O que o Reel da MANHÃ pode publicar: só pauta sobre o DIA DE HOJE. Em
-# 17/09/2026 (quinta) a manhã escolheu `fim_de_semana` porque era a pauta de
-# maior nota — e o combinado é Bira com a previsão do dia. `fim_de_semana`
-# continua sendo avaliado pelo motor, mas nenhum dos dois turnos o publica.
-FORMATOS_MANHA = frozenset({'antes_de_sair', 'chove_onde', 'vai_dar_praia',
-                            'vai_ao_jogo'})
+# O boletim diário da manhã tem a estrutura geral de previsão, mesmo quando
+# uma pauta temática de chuva tem nota maior. Formatos especiais continuam
+# disponíveis para escolha sem turno; alertas têm seus próprios workflows.
+FORMATOS_MANHA = frozenset({'antes_de_sair'})
 
 PUBLICAVEIS = {'manha': FORMATOS_MANHA, 'noite': FORMATOS_NOITE}
 

@@ -127,40 +127,11 @@ def batida_chuva(locs, amanha=False):
                   if amanha else 'A probabilidade de chuva não está disponível nesta coleta.')
 
 
-def abertura_com_dado(locations, dia, quando):
-    """Abertura direta inspirada no Previsão RJ: primeira frase traz dados úteis.
-
-    Sem "olá", nomes dos apresentadores ou "veja a previsão". A cidade roda
-    entre as âncoras das regiões (rodízio diário), para não abrir sempre igual.
-    Só usa números presentes na coleta; sem dado válido, não há abertura com número.
-    """
-    validos = {l.get('id'): l for l in locations
-               if number(l.get('min_c')) and number(l.get('max_c'))}
-    ancoras = []
-    for _rotulo, ids, _zonas in estado.regioes():
-        loc = next((validos[i] for i in ids if i in validos), None)
-        if loc is not None and loc not in ancoras:
-            ancoras.append(loc)
-    if not ancoras:
-        ancoras = list(validos.values())
-    if not ancoras:
-        return None
-    try:
-        ordem = date.fromisoformat(str(dia)).toordinal()
-    except (TypeError, ValueError):
-        ordem = date.today().toordinal()
-    loc = ancoras[ordem % len(ancoras)]
-    mi, ma = round(loc['min_c']), round(loc['max_c'])
-    mm, prob = loc.get('rain_mm'), loc.get('rain_probability_pct')
-    if number(mm) and mm >= 0.5:
-        chuva = f', com previsão de {round(mm, 1):g} milímetros de chuva'
-    elif number(prob) and prob >= 40:
-        chuva = f', com {round(prob)} por cento de chance de chuva'
-    elif number(mm) or number(prob):
-        chuva = ', sem chuva significativa'
-    else:
-        chuva = ''
-    return batida(f"{quando.capitalize()}, {loc['name']}: mínima de {mi} e máxima de {ma} graus{chuva}.")
+def abertura_previsao(quando):
+    """Abertura curta, no estilo RJ, sem antecipar o acumulado de chuva."""
+    if quando == 'amanhã':
+        return batida(f'Amanhã, o tempo {estado.em()} fica assim.')
+    return batida(f'Confira como fica o tempo hoje {estado.em()}.')
 
 
 def antes_de_sair(snapshot, incerto):
@@ -177,10 +148,8 @@ def antes_de_sair(snapshot, incerto):
     contraste = regional_contrast(locs)
     # Abre SEM cartao de proposito. Gancho, resumo e CTA sao altos e tiram o
     # apresentador de cena; se todas as batidas fossem dessas, a locucao inteira
-    # sairia sobre um cenario vazio. A abertura e o aviso de incerteza sao as
-    # batidas em que ele aparece.
-    abertura = abertura_com_dado(locs, snapshot['forecast']['today'].get('date'), 'hoje')
-    batidas = [abertura or batida(f'Previsão {estado.de()} para hoje.')]
+    # sairia sobre um cenario vazio. A abertura mostra o apresentador.
+    batidas = [abertura_previsao('hoje')]
     destaque = gancho_destaque(snapshot, locs, 'hoje')
     if destaque is not None:
         batidas.append(destaque)
@@ -227,8 +196,7 @@ def amanha_no_estado(snapshot, incerto):
     quente = max(temps, key=lambda e: e['max_c'])
     chuvas = [e for e in locs if number(e.get('rain_probability_pct'))]
     contraste = regional_contrast(locs)
-    abertura = abertura_com_dado(locs, bloco.get('date'), 'amanhã')
-    batidas = [abertura or batida(f'Previsão {estado.de()} para amanhã.')]
+    batidas = [abertura_previsao('amanhã')]
     destaque = gancho_destaque(snapshot, locs, 'amanha')
     if destaque is not None:
         batidas.append(destaque)
