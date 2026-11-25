@@ -260,6 +260,10 @@ def antes_de_sair(snapshot, incerto):
             f"Atenção ao vento: rajadas de até {alta['value']:g} quilômetros por hora "
             f"{em_local(alta['name'])}.",
             'alerta', titulo='VENTO', detalhe=f"até {alta['value']:g} km/h {em_local(alta['name'])}"))
+    from .cobertura_rs import pauta_local
+    local = pauta_local(locs, {p['id'] for p in config.locations_by_tier(2) if p['zone'] == 'z_litoral' or p['id'] in {'rio_grande', 'sao_jose_do_norte', 'santa_vitoria_do_palmar', 'chui'}})
+    if local:
+        batidas.append(batida(local))
     batidas.append(batida(engajamento_rotativo(snapshot['forecast']['today'].get('date'), 'hoje', canal="previsao-rs"), 'cta'))
     final = batida_final_chuva(snapshot, 'antes_de_sair')
     if final:
@@ -311,6 +315,10 @@ def amanha_no_estado(snapshot, incerto):
             f"{em_local(alta['name'])}.",
             'alerta', titulo='VENTO AMANHÃ',
             detalhe=f"até {alta['value']:g} km/h {em_local(alta['name'])}"))
+    from .cobertura_rs import pauta_local
+    local = pauta_local(locs, {p['id'] for p in config.locations_by_tier(2) if p['zone'] == 'z_litoral' or p['id'] in {'rio_grande', 'sao_jose_do_norte', 'santa_vitoria_do_palmar', 'chui'}})
+    if local:
+        batidas.append(batida(local))
     batidas.append(batida(engajamento_rotativo(bloco.get('date'), 'amanhã', canal="previsao-rs"), 'cta'))
     final = batida_final_chuva(snapshot, 'amanha_no_estado')
     if final:

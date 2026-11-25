@@ -1,11 +1,11 @@
 # Municípios e zonas editoriais RS
 {
   "meta": {
-    "version": 2,
+    "version": 3,
     "region": "estado_rs",
     "timezone": "America/Sao_Paulo",
-    "updated_at": "2026-11-24",
-    "source_note": "Sedes municipais; novos pontos: kelvins/municipios-brasileiros (códigos IBGE e coordenadas). Previsão por ponto não equivale a alerta hidrológico."
+    "updated_at": "2026-11-25",
+    "source_note": "Sedes municipais: kelvins/municipios-brasileiros (códigos IBGE e coordenadas); demais sedes em data/locais_rs_varredura.json. Zonas são agrupamentos editoriais, não limites hidrográficos."
   },
   "municipalities": {
     "porto_alegre": {
@@ -423,11 +423,371 @@
     "carazinho": {
       "name": "Carazinho",
       "uf": "RS"
+    },
+    "sapucaia_do_sul": {
+      "name": "Sapucaia do Sul",
+      "uf": "RS"
+    },
+    "nova_santa_rita": {
+      "name": "Nova Santa Rita",
+      "uf": "RS"
+    },
+    "charqueadas": {
+      "name": "Charqueadas",
+      "uf": "RS"
+    },
+    "sao_jeronimo": {
+      "name": "São Jerônimo",
+      "uf": "RS"
+    },
+    "butia": {
+      "name": "Butiá",
+      "uf": "RS"
+    },
+    "barra_do_ribeiro": {
+      "name": "Barra do Ribeiro",
+      "uf": "RS"
+    },
+    "tapes": {
+      "name": "Tapes",
+      "uf": "RS"
+    },
+    "camaqua": {
+      "name": "Camaquã",
+      "uf": "RS"
+    },
+    "cristal": {
+      "name": "Cristal",
+      "uf": "RS"
+    },
+    "taquara": {
+      "name": "Taquara",
+      "uf": "RS"
+    },
+    "parobe": {
+      "name": "Parobé",
+      "uf": "RS"
+    },
+    "igrejinha": {
+      "name": "Igrejinha",
+      "uf": "RS"
+    },
+    "tres_coroas": {
+      "name": "Três Coroas",
+      "uf": "RS"
+    },
+    "rolante": {
+      "name": "Rolante",
+      "uf": "RS"
+    },
+    "dois_irmaos": {
+      "name": "Dois Irmãos",
+      "uf": "RS"
+    },
+    "ivoti": {
+      "name": "Ivoti",
+      "uf": "RS"
+    },
+    "portao": {
+      "name": "Portão",
+      "uf": "RS"
+    },
+    "estancia_velha": {
+      "name": "Estância Velha",
+      "uf": "RS"
+    },
+    "ararica": {
+      "name": "Araricá",
+      "uf": "RS"
+    },
+    "teutonia": {
+      "name": "Teutônia",
+      "uf": "RS"
+    },
+    "bom_retiro_do_sul": {
+      "name": "Bom Retiro do Sul",
+      "uf": "RS"
+    },
+    "marques_de_souza": {
+      "name": "Marques de Souza",
+      "uf": "RS"
+    },
+    "colinas": {
+      "name": "Colinas",
+      "uf": "RS"
+    },
+    "arvorezinha": {
+      "name": "Arvorezinha",
+      "uf": "RS"
+    },
+    "putinga": {
+      "name": "Putinga",
+      "uf": "RS"
+    },
+    "anta_gorda": {
+      "name": "Anta Gorda",
+      "uf": "RS"
+    },
+    "ilopolis": {
+      "name": "Ilópolis",
+      "uf": "RS"
+    },
+    "vera_cruz": {
+      "name": "Vera Cruz",
+      "uf": "RS"
+    },
+    "sinimbu": {
+      "name": "Sinimbu",
+      "uf": "RS"
+    },
+    "encruzilhada_do_sul": {
+      "name": "Encruzilhada do Sul",
+      "uf": "RS"
+    },
+    "arroio_do_tigre": {
+      "name": "Arroio do Tigre",
+      "uf": "RS"
+    },
+    "pantano_grande": {
+      "name": "Pantano Grande",
+      "uf": "RS"
+    },
+    "herveiras": {
+      "name": "Herveiras",
+      "uf": "RS"
+    },
+    "garibaldi": {
+      "name": "Garibaldi",
+      "uf": "RS"
+    },
+    "carlos_barbosa": {
+      "name": "Carlos Barbosa",
+      "uf": "RS"
+    },
+    "flores_da_cunha": {
+      "name": "Flores da Cunha",
+      "uf": "RS"
+    },
+    "antonio_prado": {
+      "name": "Antônio Prado",
+      "uf": "RS"
+    },
+    "guapore": {
+      "name": "Guaporé",
+      "uf": "RS"
+    },
+    "sao_marcos": {
+      "name": "São Marcos",
+      "uf": "RS"
+    },
+    "nova_bassano": {
+      "name": "Nova Bassano",
+      "uf": "RS"
+    },
+    "ipe": {
+      "name": "Ipê",
+      "uf": "RS"
+    },
+    "muitos_capoes": {
+      "name": "Muitos Capões",
+      "uf": "RS"
+    },
+    "esmeralda": {
+      "name": "Esmeralda",
+      "uf": "RS"
+    },
+    "xangri_la": {
+      "name": "Xangri-lá",
+      "uf": "RS"
+    },
+    "arroio_do_sal": {
+      "name": "Arroio do Sal",
+      "uf": "RS"
+    },
+    "maquine": {
+      "name": "Maquiné",
+      "uf": "RS"
+    },
+    "santo_antonio_da_patrulha": {
+      "name": "Santo Antônio da Patrulha",
+      "uf": "RS"
+    },
+    "palmares_do_sul": {
+      "name": "Palmares do Sul",
+      "uf": "RS"
+    },
+    "terra_de_areia": {
+      "name": "Terra de Areia",
+      "uf": "RS"
+    },
+    "agudo": {
+      "name": "Agudo",
+      "uf": "RS"
+    },
+    "faxinal_do_soturno": {
+      "name": "Faxinal do Soturno",
+      "uf": "RS"
+    },
+    "nova_palma": {
+      "name": "Nova Palma",
+      "uf": "RS"
+    },
+    "dona_francisca": {
+      "name": "Dona Francisca",
+      "uf": "RS"
+    },
+    "sao_joao_do_polesine": {
+      "name": "São João do Polêsine",
+      "uf": "RS"
+    },
+    "formigueiro": {
+      "name": "Formigueiro",
+      "uf": "RS"
+    },
+    "ivora": {
+      "name": "Ivorá",
+      "uf": "RS"
+    },
+    "barra_do_quarai": {
+      "name": "Barra do Quaraí",
+      "uf": "RS"
+    },
+    "manoel_viana": {
+      "name": "Manoel Viana",
+      "uf": "RS"
+    },
+    "jaguari": {
+      "name": "Jaguari",
+      "uf": "RS"
+    },
+    "sao_vicente_do_sul": {
+      "name": "São Vicente do Sul",
+      "uf": "RS"
+    },
+    "sao_francisco_de_assis": {
+      "name": "São Francisco de Assis",
+      "uf": "RS"
+    },
+    "nova_esperanca_do_sul": {
+      "name": "Nova Esperança do Sul",
+      "uf": "RS"
+    },
+    "sao_jose_do_norte": {
+      "name": "São José do Norte",
+      "uf": "RS"
+    },
+    "arroio_grande": {
+      "name": "Arroio Grande",
+      "uf": "RS"
+    },
+    "capao_do_leao": {
+      "name": "Capão do Leão",
+      "uf": "RS"
+    },
+    "rosario_do_sul": {
+      "name": "Rosário do Sul",
+      "uf": "RS"
+    },
+    "cacapava_do_sul": {
+      "name": "Caçapava do Sul",
+      "uf": "RS"
+    },
+    "candiota": {
+      "name": "Candiota",
+      "uf": "RS"
+    },
+    "pinheiro_machado": {
+      "name": "Pinheiro Machado",
+      "uf": "RS"
+    },
+    "piratini": {
+      "name": "Piratini",
+      "uf": "RS"
+    },
+    "herval": {
+      "name": "Herval",
+      "uf": "RS"
+    },
+    "pedro_osorio": {
+      "name": "Pedro Osório",
+      "uf": "RS"
+    },
+    "turucu": {
+      "name": "Turuçu",
+      "uf": "RS"
+    },
+    "amaral_ferrador": {
+      "name": "Amaral Ferrador",
+      "uf": "RS"
+    },
+    "panambi": {
+      "name": "Panambi",
+      "uf": "RS"
+    },
+    "horizontina": {
+      "name": "Horizontina",
+      "uf": "RS"
+    },
+    "tres_de_maio": {
+      "name": "Três de Maio",
+      "uf": "RS"
+    },
+    "tenente_portela": {
+      "name": "Tenente Portela",
+      "uf": "RS"
+    },
+    "crissiumal": {
+      "name": "Crissiumal",
+      "uf": "RS"
+    },
+    "santo_augusto": {
+      "name": "Santo Augusto",
+      "uf": "RS"
+    },
+    "tucunduva": {
+      "name": "Tucunduva",
+      "uf": "RS"
+    },
+    "sao_paulo_das_missoes": {
+      "name": "São Paulo das Missões",
+      "uf": "RS"
+    },
+    "marau": {
+      "name": "Marau",
+      "uf": "RS"
+    },
+    "palmeira_das_missoes": {
+      "name": "Palmeira das Missões",
+      "uf": "RS"
+    },
+    "getulio_vargas": {
+      "name": "Getúlio Vargas",
+      "uf": "RS"
+    },
+    "tapejara": {
+      "name": "Tapejara",
+      "uf": "RS"
+    },
+    "sananduva": {
+      "name": "Sananduva",
+      "uf": "RS"
+    },
+    "machadinho": {
+      "name": "Machadinho",
+      "uf": "RS"
+    },
+    "planalto": {
+      "name": "Planalto",
+      "uf": "RS"
+    },
+    "ametista_do_sul": {
+      "name": "Ametista do Sul",
+      "uf": "RS"
     }
   },
   "zones": {
     "z_metropolitana": {
-      "name": "Grande Porto Alegre",
+      "name": "Grande POA e Centro-Sul",
       "municipality": null,
       "coastal": false,
       "decisions": [
@@ -438,7 +798,7 @@
       ]
     },
     "z_sinos_cai": {
-      "name": "Vale dos Sinos e Caí",
+      "name": "Sinos, Caí e Paranhana",
       "municipality": null,
       "coastal": false,
       "decisions": [
@@ -505,7 +865,7 @@
       ]
     },
     "z_central": {
-      "name": "Região Central",
+      "name": "Centro e Quarta Colônia",
       "municipality": null,
       "coastal": false,
       "decisions": [
@@ -517,7 +877,7 @@
       ]
     },
     "z_fronteira": {
-      "name": "Fronteira Oeste",
+      "name": "Fronteira Oeste e Jaguari",
       "municipality": null,
       "coastal": false,
       "decisions": [
@@ -529,7 +889,7 @@
       ]
     },
     "z_sul": {
-      "name": "Campanha e Região Sul",
+      "name": "Campanha e Litoral Sul",
       "municipality": null,
       "coastal": false,
       "decisions": [
@@ -541,7 +901,7 @@
       ]
     },
     "z_missoes": {
-      "name": "Missões e Noroeste",
+      "name": "Missões, Noroeste e Celeiro",
       "municipality": null,
       "coastal": false,
       "decisions": [
@@ -553,7 +913,7 @@
       ]
     },
     "z_norte": {
-      "name": "Norte e Alto Uruguai",
+      "name": "Norte, Produção e Alto Uruguai",
       "municipality": null,
       "coastal": false,
       "decisions": [
@@ -2164,6 +2524,1391 @@
       ],
       "spatial_fit": "medio",
       "ibge": 4304705,
+      "zone": "z_norte",
+      "sample_tier": 2
+    },
+    {
+      "id": "sapucaia_do_sul",
+      "name": "Sapucaia do Sul",
+      "municipality": "sapucaia_do_sul",
+      "type": "city",
+      "latitude": -29.8276,
+      "longitude": -51.145,
+      "aliases": [
+        "sapucaia do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4320008,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "nova_santa_rita",
+      "name": "Nova Santa Rita",
+      "municipality": "nova_santa_rita",
+      "type": "city",
+      "latitude": -29.8525,
+      "longitude": -51.2837,
+      "aliases": [
+        "nova santa rita"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4313375,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "charqueadas",
+      "name": "Charqueadas",
+      "municipality": "charqueadas",
+      "type": "city",
+      "latitude": -29.9625,
+      "longitude": -51.6289,
+      "aliases": [
+        "charqueadas"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4305355,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "sao_jeronimo",
+      "name": "São Jerônimo",
+      "municipality": "sao_jeronimo",
+      "type": "city",
+      "latitude": -29.9716,
+      "longitude": -51.7251,
+      "aliases": [
+        "são jerônimo",
+        "sao jeronimo"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4318408,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "butia",
+      "name": "Butiá",
+      "municipality": "butia",
+      "type": "city",
+      "latitude": -30.1179,
+      "longitude": -51.9601,
+      "aliases": [
+        "butiá",
+        "butia"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4302709,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "barra_do_ribeiro",
+      "name": "Barra do Ribeiro",
+      "municipality": "barra_do_ribeiro",
+      "type": "city",
+      "latitude": -30.2939,
+      "longitude": -51.3014,
+      "aliases": [
+        "barra do ribeiro"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4301909,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "tapes",
+      "name": "Tapes",
+      "municipality": "tapes",
+      "type": "city",
+      "latitude": -30.6683,
+      "longitude": -51.3991,
+      "aliases": [
+        "tapes"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4321105,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "camaqua",
+      "name": "Camaquã",
+      "municipality": "camaqua",
+      "type": "city",
+      "latitude": -30.8489,
+      "longitude": -51.8043,
+      "aliases": [
+        "camaquã",
+        "camaqua"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4303509,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "cristal",
+      "name": "Cristal",
+      "municipality": "cristal",
+      "type": "city",
+      "latitude": -31.0046,
+      "longitude": -52.0436,
+      "aliases": [
+        "cristal"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4306056,
+      "zone": "z_metropolitana",
+      "sample_tier": 2
+    },
+    {
+      "id": "taquara",
+      "name": "Taquara",
+      "municipality": "taquara",
+      "type": "city",
+      "latitude": -29.6505,
+      "longitude": -50.7753,
+      "aliases": [
+        "taquara"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4321204,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "parobe",
+      "name": "Parobé",
+      "municipality": "parobe",
+      "type": "city",
+      "latitude": -29.6243,
+      "longitude": -50.8312,
+      "aliases": [
+        "parobé",
+        "parobe"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4314050,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "igrejinha",
+      "name": "Igrejinha",
+      "municipality": "igrejinha",
+      "type": "city",
+      "latitude": -29.5693,
+      "longitude": -50.7919,
+      "aliases": [
+        "igrejinha"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4310108,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "tres_coroas",
+      "name": "Três Coroas",
+      "municipality": "tres_coroas",
+      "type": "city",
+      "latitude": -29.5137,
+      "longitude": -50.7739,
+      "aliases": [
+        "três coroas",
+        "tres coroas"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4321709,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "rolante",
+      "name": "Rolante",
+      "municipality": "rolante",
+      "type": "city",
+      "latitude": -29.6462,
+      "longitude": -50.5819,
+      "aliases": [
+        "rolante"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4316006,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "dois_irmaos",
+      "name": "Dois Irmãos",
+      "municipality": "dois_irmaos",
+      "type": "city",
+      "latitude": -29.5836,
+      "longitude": -51.0898,
+      "aliases": [
+        "dois irmãos",
+        "dois irmaos"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4306403,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "ivoti",
+      "name": "Ivoti",
+      "municipality": "ivoti",
+      "type": "city",
+      "latitude": -29.5995,
+      "longitude": -51.1533,
+      "aliases": [
+        "ivoti"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4310801,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "portao",
+      "name": "Portão",
+      "municipality": "portao",
+      "type": "city",
+      "latitude": -29.7015,
+      "longitude": -51.2429,
+      "aliases": [
+        "portão",
+        "portao"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4314803,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "estancia_velha",
+      "name": "Estância Velha",
+      "municipality": "estancia_velha",
+      "type": "city",
+      "latitude": -29.6535,
+      "longitude": -51.1843,
+      "aliases": [
+        "estância velha",
+        "estancia velha"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4307609,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "ararica",
+      "name": "Araricá",
+      "municipality": "ararica",
+      "type": "city",
+      "latitude": -29.6168,
+      "longitude": -50.9291,
+      "aliases": [
+        "araricá",
+        "ararica"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4300877,
+      "zone": "z_sinos_cai",
+      "sample_tier": 2
+    },
+    {
+      "id": "teutonia",
+      "name": "Teutônia",
+      "municipality": "teutonia",
+      "type": "city",
+      "latitude": -29.4482,
+      "longitude": -51.8044,
+      "aliases": [
+        "teutônia",
+        "teutonia"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4321451,
+      "zone": "z_taquari",
+      "sample_tier": 2
+    },
+    {
+      "id": "bom_retiro_do_sul",
+      "name": "Bom Retiro do Sul",
+      "municipality": "bom_retiro_do_sul",
+      "type": "city",
+      "latitude": -29.6071,
+      "longitude": -51.9456,
+      "aliases": [
+        "bom retiro do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4302402,
+      "zone": "z_taquari",
+      "sample_tier": 2
+    },
+    {
+      "id": "marques_de_souza",
+      "name": "Marques de Souza",
+      "municipality": "marques_de_souza",
+      "type": "city",
+      "latitude": -29.3311,
+      "longitude": -52.0973,
+      "aliases": [
+        "marques de souza"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4312054,
+      "zone": "z_taquari",
+      "sample_tier": 2
+    },
+    {
+      "id": "colinas",
+      "name": "Colinas",
+      "municipality": "colinas",
+      "type": "city",
+      "latitude": -29.3948,
+      "longitude": -51.8556,
+      "aliases": [
+        "colinas"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4305587,
+      "zone": "z_taquari",
+      "sample_tier": 2
+    },
+    {
+      "id": "arvorezinha",
+      "name": "Arvorezinha",
+      "municipality": "arvorezinha",
+      "type": "city",
+      "latitude": -28.8737,
+      "longitude": -52.1781,
+      "aliases": [
+        "arvorezinha"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4301404,
+      "zone": "z_taquari",
+      "sample_tier": 2
+    },
+    {
+      "id": "putinga",
+      "name": "Putinga",
+      "municipality": "putinga",
+      "type": "city",
+      "latitude": -29.0045,
+      "longitude": -52.1569,
+      "aliases": [
+        "putinga"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4315206,
+      "zone": "z_taquari",
+      "sample_tier": 2
+    },
+    {
+      "id": "anta_gorda",
+      "name": "Anta Gorda",
+      "municipality": "anta_gorda",
+      "type": "city",
+      "latitude": -28.9698,
+      "longitude": -52.0102,
+      "aliases": [
+        "anta gorda"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4300703,
+      "zone": "z_taquari",
+      "sample_tier": 2
+    },
+    {
+      "id": "ilopolis",
+      "name": "Ilópolis",
+      "municipality": "ilopolis",
+      "type": "city",
+      "latitude": -28.9282,
+      "longitude": -52.1258,
+      "aliases": [
+        "ilópolis",
+        "ilopolis"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4310306,
+      "zone": "z_taquari",
+      "sample_tier": 2
+    },
+    {
+      "id": "vera_cruz",
+      "name": "Vera Cruz",
+      "municipality": "vera_cruz",
+      "type": "city",
+      "latitude": -29.7184,
+      "longitude": -52.5152,
+      "aliases": [
+        "vera cruz"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4322707,
+      "zone": "z_rio_pardo",
+      "sample_tier": 2
+    },
+    {
+      "id": "sinimbu",
+      "name": "Sinimbu",
+      "municipality": "sinimbu",
+      "type": "city",
+      "latitude": -29.5357,
+      "longitude": -52.5304,
+      "aliases": [
+        "sinimbu"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4320677,
+      "zone": "z_rio_pardo",
+      "sample_tier": 2
+    },
+    {
+      "id": "encruzilhada_do_sul",
+      "name": "Encruzilhada do Sul",
+      "municipality": "encruzilhada_do_sul",
+      "type": "city",
+      "latitude": -30.543,
+      "longitude": -52.5204,
+      "aliases": [
+        "encruzilhada do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4306908,
+      "zone": "z_rio_pardo",
+      "sample_tier": 2
+    },
+    {
+      "id": "arroio_do_tigre",
+      "name": "Arroio do Tigre",
+      "municipality": "arroio_do_tigre",
+      "type": "city",
+      "latitude": -29.3348,
+      "longitude": -53.0966,
+      "aliases": [
+        "arroio do tigre"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4301206,
+      "zone": "z_rio_pardo",
+      "sample_tier": 2
+    },
+    {
+      "id": "pantano_grande",
+      "name": "Pantano Grande",
+      "municipality": "pantano_grande",
+      "type": "city",
+      "latitude": -30.1902,
+      "longitude": -52.3729,
+      "aliases": [
+        "pantano grande"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4313953,
+      "zone": "z_rio_pardo",
+      "sample_tier": 2
+    },
+    {
+      "id": "herveiras",
+      "name": "Herveiras",
+      "municipality": "herveiras",
+      "type": "city",
+      "latitude": -29.4552,
+      "longitude": -52.6553,
+      "aliases": [
+        "herveiras"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4309571,
+      "zone": "z_rio_pardo",
+      "sample_tier": 2
+    },
+    {
+      "id": "garibaldi",
+      "name": "Garibaldi",
+      "municipality": "garibaldi",
+      "type": "city",
+      "latitude": -29.259,
+      "longitude": -51.5352,
+      "aliases": [
+        "garibaldi"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4308607,
+      "zone": "z_serra",
+      "sample_tier": 2
+    },
+    {
+      "id": "carlos_barbosa",
+      "name": "Carlos Barbosa",
+      "municipality": "carlos_barbosa",
+      "type": "city",
+      "latitude": -29.2969,
+      "longitude": -51.5028,
+      "aliases": [
+        "carlos barbosa"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4304804,
+      "zone": "z_serra",
+      "sample_tier": 2
+    },
+    {
+      "id": "flores_da_cunha",
+      "name": "Flores da Cunha",
+      "municipality": "flores_da_cunha",
+      "type": "city",
+      "latitude": -29.0261,
+      "longitude": -51.1875,
+      "aliases": [
+        "flores da cunha"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4308201,
+      "zone": "z_serra",
+      "sample_tier": 2
+    },
+    {
+      "id": "antonio_prado",
+      "name": "Antônio Prado",
+      "municipality": "antonio_prado",
+      "type": "city",
+      "latitude": -28.8565,
+      "longitude": -51.2883,
+      "aliases": [
+        "antônio prado",
+        "antonio prado"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4300802,
+      "zone": "z_serra",
+      "sample_tier": 2
+    },
+    {
+      "id": "guapore",
+      "name": "Guaporé",
+      "municipality": "guapore",
+      "type": "city",
+      "latitude": -28.8399,
+      "longitude": -51.8895,
+      "aliases": [
+        "guaporé",
+        "guapore"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4309407,
+      "zone": "z_serra",
+      "sample_tier": 2
+    },
+    {
+      "id": "sao_marcos",
+      "name": "São Marcos",
+      "municipality": "sao_marcos",
+      "type": "city",
+      "latitude": -28.9677,
+      "longitude": -51.0696,
+      "aliases": [
+        "são marcos",
+        "sao marcos"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4319000,
+      "zone": "z_serra",
+      "sample_tier": 2
+    },
+    {
+      "id": "nova_bassano",
+      "name": "Nova Bassano",
+      "municipality": "nova_bassano",
+      "type": "city",
+      "latitude": -28.7291,
+      "longitude": -51.7072,
+      "aliases": [
+        "nova bassano"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4312906,
+      "zone": "z_serra",
+      "sample_tier": 2
+    },
+    {
+      "id": "ipe",
+      "name": "Ipê",
+      "municipality": "ipe",
+      "type": "city",
+      "latitude": -28.8171,
+      "longitude": -51.2859,
+      "aliases": [
+        "ipê",
+        "ipe"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4310439,
+      "zone": "z_campos",
+      "sample_tier": 2
+    },
+    {
+      "id": "muitos_capoes",
+      "name": "Muitos Capões",
+      "municipality": "muitos_capoes",
+      "type": "city",
+      "latitude": -28.3132,
+      "longitude": -51.1836,
+      "aliases": [
+        "muitos capões",
+        "muitos capoes"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4312617,
+      "zone": "z_campos",
+      "sample_tier": 2
+    },
+    {
+      "id": "esmeralda",
+      "name": "Esmeralda",
+      "municipality": "esmeralda",
+      "type": "city",
+      "latitude": -28.0518,
+      "longitude": -51.1933,
+      "aliases": [
+        "esmeralda"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4307401,
+      "zone": "z_campos",
+      "sample_tier": 2
+    },
+    {
+      "id": "xangri_la",
+      "name": "Xangri-lá",
+      "municipality": "xangri_la",
+      "type": "city",
+      "latitude": -29.8065,
+      "longitude": -50.0519,
+      "aliases": [
+        "xangri-lá",
+        "xangri la"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4323804,
+      "zone": "z_litoral",
+      "sample_tier": 2
+    },
+    {
+      "id": "arroio_do_sal",
+      "name": "Arroio do Sal",
+      "municipality": "arroio_do_sal",
+      "type": "city",
+      "latitude": -29.5439,
+      "longitude": -49.8895,
+      "aliases": [
+        "arroio do sal"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4301057,
+      "zone": "z_litoral",
+      "sample_tier": 2
+    },
+    {
+      "id": "maquine",
+      "name": "Maquiné",
+      "municipality": "maquine",
+      "type": "city",
+      "latitude": -29.6798,
+      "longitude": -50.2079,
+      "aliases": [
+        "maquiné",
+        "maquine"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4311775,
+      "zone": "z_litoral",
+      "sample_tier": 2
+    },
+    {
+      "id": "santo_antonio_da_patrulha",
+      "name": "Santo Antônio da Patrulha",
+      "municipality": "santo_antonio_da_patrulha",
+      "type": "city",
+      "latitude": -29.8268,
+      "longitude": -50.5175,
+      "aliases": [
+        "santo antônio da patrulha",
+        "santo antonio da patrulha"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4317608,
+      "zone": "z_litoral",
+      "sample_tier": 2
+    },
+    {
+      "id": "palmares_do_sul",
+      "name": "Palmares do Sul",
+      "municipality": "palmares_do_sul",
+      "type": "city",
+      "latitude": -30.2535,
+      "longitude": -50.5103,
+      "aliases": [
+        "palmares do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4313656,
+      "zone": "z_litoral",
+      "sample_tier": 2
+    },
+    {
+      "id": "terra_de_areia",
+      "name": "Terra de Areia",
+      "municipality": "terra_de_areia",
+      "type": "city",
+      "latitude": -29.5782,
+      "longitude": -50.0644,
+      "aliases": [
+        "terra de areia"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4321436,
+      "zone": "z_litoral",
+      "sample_tier": 2
+    },
+    {
+      "id": "agudo",
+      "name": "Agudo",
+      "municipality": "agudo",
+      "type": "city",
+      "latitude": -29.6447,
+      "longitude": -53.2515,
+      "aliases": [
+        "agudo"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4300109,
+      "zone": "z_central",
+      "sample_tier": 2
+    },
+    {
+      "id": "faxinal_do_soturno",
+      "name": "Faxinal do Soturno",
+      "municipality": "faxinal_do_soturno",
+      "type": "city",
+      "latitude": -29.5788,
+      "longitude": -53.4484,
+      "aliases": [
+        "faxinal do soturno"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4308003,
+      "zone": "z_central",
+      "sample_tier": 2
+    },
+    {
+      "id": "nova_palma",
+      "name": "Nova Palma",
+      "municipality": "nova_palma",
+      "type": "city",
+      "latitude": -29.471,
+      "longitude": -53.4689,
+      "aliases": [
+        "nova palma"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4313102,
+      "zone": "z_central",
+      "sample_tier": 2
+    },
+    {
+      "id": "dona_francisca",
+      "name": "Dona Francisca",
+      "municipality": "dona_francisca",
+      "type": "city",
+      "latitude": -29.6195,
+      "longitude": -53.3617,
+      "aliases": [
+        "dona francisca"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4306700,
+      "zone": "z_central",
+      "sample_tier": 2
+    },
+    {
+      "id": "sao_joao_do_polesine",
+      "name": "São João do Polêsine",
+      "municipality": "sao_joao_do_polesine",
+      "type": "city",
+      "latitude": -29.6194,
+      "longitude": -53.4439,
+      "aliases": [
+        "são joão do polêsine",
+        "sao joao do polesine"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4318432,
+      "zone": "z_central",
+      "sample_tier": 2
+    },
+    {
+      "id": "formigueiro",
+      "name": "Formigueiro",
+      "municipality": "formigueiro",
+      "type": "city",
+      "latitude": -30.0035,
+      "longitude": -53.4959,
+      "aliases": [
+        "formigueiro"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4308409,
+      "zone": "z_central",
+      "sample_tier": 2
+    },
+    {
+      "id": "ivora",
+      "name": "Ivorá",
+      "municipality": "ivora",
+      "type": "city",
+      "latitude": -29.5232,
+      "longitude": -53.5842,
+      "aliases": [
+        "ivorá",
+        "ivora"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4310751,
+      "zone": "z_central",
+      "sample_tier": 2
+    },
+    {
+      "id": "barra_do_quarai",
+      "name": "Barra do Quaraí",
+      "municipality": "barra_do_quarai",
+      "type": "city",
+      "latitude": -30.2029,
+      "longitude": -57.5497,
+      "aliases": [
+        "barra do quaraí",
+        "barra do quarai"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4301875,
+      "zone": "z_fronteira",
+      "sample_tier": 2
+    },
+    {
+      "id": "manoel_viana",
+      "name": "Manoel Viana",
+      "municipality": "manoel_viana",
+      "type": "city",
+      "latitude": -29.5859,
+      "longitude": -55.4841,
+      "aliases": [
+        "manoel viana"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4311759,
+      "zone": "z_fronteira",
+      "sample_tier": 2
+    },
+    {
+      "id": "jaguari",
+      "name": "Jaguari",
+      "municipality": "jaguari",
+      "type": "city",
+      "latitude": -29.4936,
+      "longitude": -54.703,
+      "aliases": [
+        "jaguari"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4311106,
+      "zone": "z_fronteira",
+      "sample_tier": 2
+    },
+    {
+      "id": "sao_vicente_do_sul",
+      "name": "São Vicente do Sul",
+      "municipality": "sao_vicente_do_sul",
+      "type": "city",
+      "latitude": -29.6882,
+      "longitude": -54.6826,
+      "aliases": [
+        "são vicente do sul",
+        "sao vicente do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4319802,
+      "zone": "z_fronteira",
+      "sample_tier": 2
+    },
+    {
+      "id": "sao_francisco_de_assis",
+      "name": "São Francisco de Assis",
+      "municipality": "sao_francisco_de_assis",
+      "type": "city",
+      "latitude": -29.5547,
+      "longitude": -55.1253,
+      "aliases": [
+        "são francisco de assis",
+        "sao francisco de assis"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4318101,
+      "zone": "z_fronteira",
+      "sample_tier": 2
+    },
+    {
+      "id": "nova_esperanca_do_sul",
+      "name": "Nova Esperança do Sul",
+      "municipality": "nova_esperanca_do_sul",
+      "type": "city",
+      "latitude": -29.4066,
+      "longitude": -54.8293,
+      "aliases": [
+        "nova esperança do sul",
+        "nova esperanca do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4313037,
+      "zone": "z_fronteira",
+      "sample_tier": 2
+    },
+    {
+      "id": "sao_jose_do_norte",
+      "name": "São José do Norte",
+      "municipality": "sao_jose_do_norte",
+      "type": "city",
+      "latitude": -32.0151,
+      "longitude": -52.0331,
+      "aliases": [
+        "são josé do norte",
+        "sao jose do norte"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4318507,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "arroio_grande",
+      "name": "Arroio Grande",
+      "municipality": "arroio_grande",
+      "type": "city",
+      "latitude": -32.2327,
+      "longitude": -53.0862,
+      "aliases": [
+        "arroio grande"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4301305,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "capao_do_leao",
+      "name": "Capão do Leão",
+      "municipality": "capao_do_leao",
+      "type": "city",
+      "latitude": -31.7565,
+      "longitude": -52.4889,
+      "aliases": [
+        "capão do leão",
+        "capao do leao"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4304663,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "rosario_do_sul",
+      "name": "Rosário do Sul",
+      "municipality": "rosario_do_sul",
+      "type": "city",
+      "latitude": -30.2515,
+      "longitude": -54.9221,
+      "aliases": [
+        "rosário do sul",
+        "rosario do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4316402,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "cacapava_do_sul",
+      "name": "Caçapava do Sul",
+      "municipality": "cacapava_do_sul",
+      "type": "city",
+      "latitude": -30.5144,
+      "longitude": -53.4827,
+      "aliases": [
+        "caçapava do sul",
+        "cacapava do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4302808,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "candiota",
+      "name": "Candiota",
+      "municipality": "candiota",
+      "type": "city",
+      "latitude": -31.5516,
+      "longitude": -53.6773,
+      "aliases": [
+        "candiota"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4304358,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "pinheiro_machado",
+      "name": "Pinheiro Machado",
+      "municipality": "pinheiro_machado",
+      "type": "city",
+      "latitude": -31.5794,
+      "longitude": -53.3798,
+      "aliases": [
+        "pinheiro machado"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4314506,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "piratini",
+      "name": "Piratini",
+      "municipality": "piratini",
+      "type": "city",
+      "latitude": -31.4473,
+      "longitude": -53.0973,
+      "aliases": [
+        "piratini"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4314605,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "herval",
+      "name": "Herval",
+      "municipality": "herval",
+      "type": "city",
+      "latitude": -32.024,
+      "longitude": -53.3944,
+      "aliases": [
+        "herval"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4307104,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "pedro_osorio",
+      "name": "Pedro Osório",
+      "municipality": "pedro_osorio",
+      "type": "city",
+      "latitude": -31.8642,
+      "longitude": -52.8184,
+      "aliases": [
+        "pedro osório",
+        "pedro osorio"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4314209,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "turucu",
+      "name": "Turuçu",
+      "municipality": "turucu",
+      "type": "city",
+      "latitude": -31.4173,
+      "longitude": -52.1706,
+      "aliases": [
+        "turuçu",
+        "turucu"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4322327,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "amaral_ferrador",
+      "name": "Amaral Ferrador",
+      "municipality": "amaral_ferrador",
+      "type": "city",
+      "latitude": -30.8756,
+      "longitude": -52.2509,
+      "aliases": [
+        "amaral ferrador"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4300638,
+      "zone": "z_sul",
+      "sample_tier": 2
+    },
+    {
+      "id": "panambi",
+      "name": "Panambi",
+      "municipality": "panambi",
+      "type": "city",
+      "latitude": -28.2833,
+      "longitude": -53.5023,
+      "aliases": [
+        "panambi"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4313904,
+      "zone": "z_missoes",
+      "sample_tier": 2
+    },
+    {
+      "id": "horizontina",
+      "name": "Horizontina",
+      "municipality": "horizontina",
+      "type": "city",
+      "latitude": -27.6282,
+      "longitude": -54.3053,
+      "aliases": [
+        "horizontina"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4309605,
+      "zone": "z_missoes",
+      "sample_tier": 2
+    },
+    {
+      "id": "tres_de_maio",
+      "name": "Três de Maio",
+      "municipality": "tres_de_maio",
+      "type": "city",
+      "latitude": -27.78,
+      "longitude": -54.2357,
+      "aliases": [
+        "três de maio",
+        "tres de maio"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4321808,
+      "zone": "z_missoes",
+      "sample_tier": 2
+    },
+    {
+      "id": "tenente_portela",
+      "name": "Tenente Portela",
+      "municipality": "tenente_portela",
+      "type": "city",
+      "latitude": -27.3711,
+      "longitude": -53.7585,
+      "aliases": [
+        "tenente portela"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4321402,
+      "zone": "z_missoes",
+      "sample_tier": 2
+    },
+    {
+      "id": "crissiumal",
+      "name": "Crissiumal",
+      "municipality": "crissiumal",
+      "type": "city",
+      "latitude": -27.4999,
+      "longitude": -54.0994,
+      "aliases": [
+        "crissiumal"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4306007,
+      "zone": "z_missoes",
+      "sample_tier": 2
+    },
+    {
+      "id": "santo_augusto",
+      "name": "Santo Augusto",
+      "municipality": "santo_augusto",
+      "type": "city",
+      "latitude": -27.8526,
+      "longitude": -53.7776,
+      "aliases": [
+        "santo augusto"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4317806,
+      "zone": "z_missoes",
+      "sample_tier": 2
+    },
+    {
+      "id": "tucunduva",
+      "name": "Tucunduva",
+      "municipality": "tucunduva",
+      "type": "city",
+      "latitude": -27.6573,
+      "longitude": -54.4439,
+      "aliases": [
+        "tucunduva"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4322103,
+      "zone": "z_missoes",
+      "sample_tier": 2
+    },
+    {
+      "id": "sao_paulo_das_missoes",
+      "name": "São Paulo das Missões",
+      "municipality": "sao_paulo_das_missoes",
+      "type": "city",
+      "latitude": -28.0195,
+      "longitude": -54.9404,
+      "aliases": [
+        "são paulo das missões",
+        "sao paulo das missoes"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4319307,
+      "zone": "z_missoes",
+      "sample_tier": 2
+    },
+    {
+      "id": "marau",
+      "name": "Marau",
+      "municipality": "marau",
+      "type": "city",
+      "latitude": -28.4498,
+      "longitude": -52.1986,
+      "aliases": [
+        "marau"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4311809,
+      "zone": "z_norte",
+      "sample_tier": 2
+    },
+    {
+      "id": "palmeira_das_missoes",
+      "name": "Palmeira das Missões",
+      "municipality": "palmeira_das_missoes",
+      "type": "city",
+      "latitude": -27.9007,
+      "longitude": -53.3134,
+      "aliases": [
+        "palmeira das missões",
+        "palmeira das missoes"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4313706,
+      "zone": "z_norte",
+      "sample_tier": 2
+    },
+    {
+      "id": "getulio_vargas",
+      "name": "Getúlio Vargas",
+      "municipality": "getulio_vargas",
+      "type": "city",
+      "latitude": -27.8911,
+      "longitude": -52.2294,
+      "aliases": [
+        "getúlio vargas",
+        "getulio vargas"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4308904,
+      "zone": "z_norte",
+      "sample_tier": 2
+    },
+    {
+      "id": "tapejara",
+      "name": "Tapejara",
+      "municipality": "tapejara",
+      "type": "city",
+      "latitude": -28.0652,
+      "longitude": -52.0097,
+      "aliases": [
+        "tapejara"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4320909,
+      "zone": "z_norte",
+      "sample_tier": 2
+    },
+    {
+      "id": "sananduva",
+      "name": "Sananduva",
+      "municipality": "sananduva",
+      "type": "city",
+      "latitude": -27.947,
+      "longitude": -51.8079,
+      "aliases": [
+        "sananduva"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4316600,
+      "zone": "z_norte",
+      "sample_tier": 2
+    },
+    {
+      "id": "machadinho",
+      "name": "Machadinho",
+      "municipality": "machadinho",
+      "type": "city",
+      "latitude": -27.5667,
+      "longitude": -51.6668,
+      "aliases": [
+        "machadinho"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4311700,
+      "zone": "z_norte",
+      "sample_tier": 2
+    },
+    {
+      "id": "planalto",
+      "name": "Planalto",
+      "municipality": "planalto",
+      "type": "city",
+      "latitude": -27.3297,
+      "longitude": -53.0575,
+      "aliases": [
+        "planalto"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4314704,
+      "zone": "z_norte",
+      "sample_tier": 2
+    },
+    {
+      "id": "ametista_do_sul",
+      "name": "Ametista do Sul",
+      "municipality": "ametista_do_sul",
+      "type": "city",
+      "latitude": -27.3607,
+      "longitude": -53.183,
+      "aliases": [
+        "ametista do sul"
+      ],
+      "spatial_fit": "medio",
+      "ibge": 4300646,
       "zone": "z_norte",
       "sample_tier": 2
     }

@@ -1,5 +1,5 @@
 {
-  "revisado_em": "2026-11-24",
+  "revisado_em": "2026-11-25",
   "prioridade_temporaria_ate": "2026-12-24",
   "prioridade_ibge": [
     "4322202",
@@ -30,13 +30,34 @@
     "4306767"
   ],
   "bacias": [
-    "Taquari",
-    "Caí",
-    "Sinos",
-    "Jacuí",
-    "Uruguai",
-    "Guaíba"
+    "Rio Gravataí",
+    "Rio dos Sinos",
+    "Rio Caí",
+    "Rio Taquari-Antas",
+    "Alto Jacuí",
+    "Vacacaí–Vacacaí Mirim",
+    "Baixo Jacuí",
+    "Lago Guaíba",
+    "Rio Pardo",
+    "Rio Tramandaí",
+    "Litoral Médio",
+    "Rio Camaquã",
+    "Mirim–São Gonçalo",
+    "Rio Mampituba",
+    "Rios Apuaê–Inhandava",
+    "Rio Passo Fundo",
+    "Turvo–Santa Rosa–Santo Cristo",
+    "Rio Piratinim",
+    "Rio Ibicuí",
+    "Rio Quaraí",
+    "Rio Santa Maria",
+    "Rio Negro",
+    "Rio Ijuí",
+    "Rio da Várzea",
+    "Butuí–Icamaquã"
   ],
   "portal_hidrologia": "https://sace.sgb.gov.br/index_bacias_monitoradas.php",
-  "politica": "Priorizar somente municípios efetivamente abrangidos pelo aviso oficial; não publicar alerta com base apenas no histórico de danos."
+  "politica": "Priorizar somente municípios efetivamente abrangidos pelo aviso oficial; não publicar alerta com base apenas no histórico de danos.",
+  "fonte_bacias": "https://www.sema.rs.gov.br/bacias-hidrograficas",
+  "nota_bacias": "Cadastro de referência; não implica telemetria ou aviso hidrológico ativo em todas as bacias. Avisos oficiais confirmados continuam necessários."
 }

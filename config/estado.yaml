@@ -52,7 +52,7 @@
   ],
   "regioes": [
     {
-      "rotulo": "Grande Porto Alegre",
+      "rotulo": "Grande POA e Centro-Sul",
       "ids": [
         "porto_alegre",
         "canoas",
@@ -62,14 +62,23 @@
         "eldorado_do_sul",
         "cachoeirinha",
         "alvorada",
-        "triunfo"
+        "triunfo",
+        "sapucaia_do_sul",
+        "nova_santa_rita",
+        "charqueadas",
+        "sao_jeronimo",
+        "butia",
+        "barra_do_ribeiro",
+        "tapes",
+        "camaqua",
+        "cristal"
       ],
       "zonas": [
         "z_metropolitana"
       ]
     },
     {
-      "rotulo": "Vale dos Sinos e Caí",
+      "rotulo": "Sinos, Caí e Paranhana",
       "ids": [
         "novo_hamburgo",
         "sao_leopoldo",
@@ -79,7 +88,17 @@
         "lindolfo_collor",
         "sapiranga",
         "campo_bom",
-        "esteio"
+        "esteio",
+        "taquara",
+        "parobe",
+        "igrejinha",
+        "tres_coroas",
+        "rolante",
+        "dois_irmaos",
+        "ivoti",
+        "portao",
+        "estancia_velha",
+        "ararica"
       ],
       "zonas": [
         "z_sinos_cai"
@@ -96,7 +115,15 @@
         "arroio_do_meio",
         "cruzeiro_do_sul",
         "taquari",
-        "santa_tereza"
+        "santa_tereza",
+        "teutonia",
+        "bom_retiro_do_sul",
+        "marques_de_souza",
+        "colinas",
+        "arvorezinha",
+        "putinga",
+        "anta_gorda",
+        "ilopolis"
       ],
       "zonas": [
         "z_taquari"
@@ -110,7 +137,13 @@
         "rio_pardo",
         "candelaria",
         "passa_sete",
-        "sobradinho"
+        "sobradinho",
+        "vera_cruz",
+        "sinimbu",
+        "encruzilhada_do_sul",
+        "arroio_do_tigre",
+        "pantano_grande",
+        "herveiras"
       ],
       "zonas": [
         "z_rio_pardo"
@@ -128,7 +161,14 @@
         "veranopolis",
         "nova_prata",
         "sao_domingos_do_sul",
-        "david_canabarro"
+        "david_canabarro",
+        "garibaldi",
+        "carlos_barbosa",
+        "flores_da_cunha",
+        "antonio_prado",
+        "guapore",
+        "sao_marcos",
+        "nova_bassano"
       ],
       "zonas": [
         "z_serra"
@@ -142,7 +182,10 @@
         "lagoa_vermelha",
         "bom_jesus",
         "sao_francisco_de_paula",
-        "cambara_do_sul"
+        "cambara_do_sul",
+        "ipe",
+        "muitos_capoes",
+        "esmeralda"
       ],
       "zonas": [
         "z_campos"
@@ -159,14 +202,20 @@
         "cidreira",
         "balneario_pinhal",
         "mostardas",
-        "tavares"
+        "tavares",
+        "xangri_la",
+        "arroio_do_sal",
+        "maquine",
+        "santo_antonio_da_patrulha",
+        "palmares_do_sul",
+        "terra_de_areia"
       ],
       "zonas": [
         "z_litoral"
       ]
     },
     {
-      "rotulo": "Região Central",
+      "rotulo": "Centro e Quarta Colônia",
       "ids": [
         "santa_maria",
         "cachoeira_do_sul",
@@ -175,14 +224,21 @@
         "espumoso",
         "soledade",
         "sao_sepe",
-        "restinga_seca"
+        "restinga_seca",
+        "agudo",
+        "faxinal_do_soturno",
+        "nova_palma",
+        "dona_francisca",
+        "sao_joao_do_polesine",
+        "formigueiro",
+        "ivora"
       ],
       "zonas": [
         "z_central"
       ]
     },
     {
-      "rotulo": "Fronteira Oeste",
+      "rotulo": "Fronteira Oeste e Jaguari",
       "ids": [
         "uruguaiana",
         "alegrete",
@@ -190,14 +246,20 @@
         "itaqui",
         "santiago",
         "quarai",
-        "itacurubi"
+        "itacurubi",
+        "barra_do_quarai",
+        "manoel_viana",
+        "jaguari",
+        "sao_vicente_do_sul",
+        "sao_francisco_de_assis",
+        "nova_esperanca_do_sul"
       ],
       "zonas": [
         "z_fronteira"
       ]
     },
     {
-      "rotulo": "Campanha e Região Sul",
+      "rotulo": "Campanha e Litoral Sul",
       "ids": [
         "pelotas",
         "rio_grande",
@@ -209,14 +271,26 @@
         "sao_gabriel",
         "sao_lourenco_do_sul",
         "jaguarao",
-        "chui"
+        "chui",
+        "sao_jose_do_norte",
+        "arroio_grande",
+        "capao_do_leao",
+        "rosario_do_sul",
+        "cacapava_do_sul",
+        "candiota",
+        "pinheiro_machado",
+        "piratini",
+        "herval",
+        "pedro_osorio",
+        "turucu",
+        "amaral_ferrador"
       ],
       "zonas": [
         "z_sul"
       ]
     },
     {
-      "rotulo": "Missões e Noroeste",
+      "rotulo": "Missões, Noroeste e Celeiro",
       "ids": [
         "ijui",
         "santo_angelo",
@@ -227,14 +301,22 @@
         "bossoroca",
         "humaita",
         "garruchos",
-        "tres_passos"
+        "tres_passos",
+        "panambi",
+        "horizontina",
+        "tres_de_maio",
+        "tenente_portela",
+        "crissiumal",
+        "santo_augusto",
+        "tucunduva",
+        "sao_paulo_das_missoes"
       ],
       "zonas": [
         "z_missoes"
       ]
     },
     {
-      "rotulo": "Norte e Alto Uruguai",
+      "rotulo": "Norte, Produção e Alto Uruguai",
       "ids": [
         "passo_fundo",
         "erechim",
@@ -245,7 +327,15 @@
         "sertao",
         "gentil",
         "vicente_dutra",
-        "carazinho"
+        "carazinho",
+        "marau",
+        "palmeira_das_missoes",
+        "getulio_vargas",
+        "tapejara",
+        "sananduva",
+        "machadinho",
+        "planalto",
+        "ametista_do_sul"
       ],
       "zonas": [
         "z_norte"

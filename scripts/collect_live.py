@@ -10,9 +10,11 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import date, datetime, timedelta
+from dataclasses import replace
 from pathlib import Path
 
-from src.previsao import config
+from src.previsao import config, estado
 from src.previsao.collectors import met_no, observations, open_meteo, marine
 from src.previsao.normalizers import snapshot as snap
 
@@ -44,17 +46,35 @@ def main() -> None:
     if args.previous and Path(args.previous).exists():
         previous = json.loads(Path(args.previous).read_text(encoding="utf-8"))
 
+    cadastro, pontos = [], {}
+    if args.rodizio:
+        from src.previsao.editorial.cobertura_rs import cadastro_estadual, lote_varredura, priorizar
+        cadastro = cadastro_estadual()
+        hoje = datetime.now(estado.fuso()).date()
+        extras = lote_varredura(cadastro, locations, hoje, args.turno)
+        complemento = met_no.fetch(extras, max_seconds=240)
+        pontos = (complemento.payload or {}).get('points', {}) if complemento.usable else {}
+        principal = collected.get(met_no.MODEL)
+        if principal and principal.usable:
+            todos = dict((principal.payload or {}).get('points', {}))
+            todos.update(pontos)
+            # O canal usa MET Norway; não misturar dados de uma seleção antiga
+            # se no futuro outros modelos forem ativados.
+            if not config.source(open_meteo.SOURCE).get('enabled', False):
+                alvo = (hoje + timedelta(days=int(args.turno == 'noite'))).isoformat()
+                novas = priorizar(locations, cadastro, todos, alvo)
+                if [p['id'] for p in novas] != [p['id'] for p in locations]:
+                    locations = novas
+                    collected[met_no.MODEL] = replace(principal, payload={'model': met_no.MODEL, 'points': todos},
+                        age_minutes=max(principal.age_minutes, complemento.age_minutes))
+                    observed = observations.collect(locations)
+            pontos = todos
+
     document = snap.build(collected, locations,
                           previous_snapshot=previous, observed=observed, marine=marine.collect(locations))
 
     if args.rodizio:
         from src.previsao.editorial.chuva_rs import anexar_varredura
-        # Mantém as seis cidades do quadro; consulta as demais em separado.
-        cadastro = config.locations_by_tier(3)
-        ids = {loc['id'] for loc in locations}
-        extras = [loc for loc in cadastro if loc['id'] not in ids]
-        complemento = met_no.fetch(extras, max_seconds=240)
-        pontos = (complemento.payload or {}).get('points', {}) if complemento.ok else {}
         anexar_varredura(document, cadastro, pontos)
         for chave in ('today', 'tomorrow'):
             v = document['forecast'][chave]['rain_scan_rs']

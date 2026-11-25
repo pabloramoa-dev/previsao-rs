@@ -5,7 +5,7 @@ e marca vivem em YAML validado e sao lidos por aqui.
 """
 from __future__ import annotations
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -142,7 +142,8 @@ def locations_for_reel(day: date | None = None, turno: str = 'manha') -> list[di
 
     A escolha usa os municípios catalogados para cada região (tier 1 ou 2),
     muda a cada dia local do RS e preserva a cobertura das seis regiões.
-    Com 12 regiões, manhã e noite são complementares; o grupo alterna diariamente.
+    Com 12 regiões, a noite anterior e a manhã cobrem grupos complementares
+    para a mesma data de previsão. O índice de cidade usa a data prevista.
     """
     if day is None:
         day = datetime.now(estado.fuso()).date()
@@ -151,8 +152,9 @@ def locations_for_reel(day: date | None = None, turno: str = 'manha') -> list[di
     used: set[str] = set()
     regioes = estado.regioes()
     if len(regioes) == 12:
-        grupo = (day.toordinal() + int(turno == 'noite')) % 2
+        grupo = int(turno == 'noite')
         regioes = regioes[grupo::2]
+    data_prevista = day + timedelta(days=int(turno == 'noite'))
     for i, (region, ids, zones) in enumerate(regioes):
         options = [pool[k] for k in ids
                    if k in pool and k not in used
@@ -163,7 +165,7 @@ def locations_for_reel(day: date | None = None, turno: str = 'manha') -> list[di
                        and int(p["sample_tier"]) <= 2]
         if not options:
             raise ValueError(f"Sem cidade cadastrada para a região {region}")
-        city = options[(day.toordinal() + i) % len(options)]
+        city = options[(data_prevista.toordinal() + i) % len(options)]
         selected.append(city)
         used.add(city["id"])
     if len(selected) != 6:
