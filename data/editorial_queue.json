@@ -1214,7 +1214,7 @@
     "created_at": "2026-11-24T17:40:34.488847-03:00",
     "expires_at": "2026-11-24T19:40:01-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 76.6,
     "language": "forecast"
   },
@@ -1347,7 +1347,7 @@
     "created_at": "2026-11-24T17:40:34.488847-03:00",
     "expires_at": "2026-11-24T19:40:01-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 76.6,
     "language": "forecast"
   },
@@ -1404,6 +1404,344 @@
     "dedupe_key": "55d04e73fe49bac58fb77641ac3f29477f0b49a5c793f37368e56253e24b45a7",
     "created_at": "2026-11-24T17:40:34.488847-03:00",
     "expires_at": "2026-11-24T19:40:01-03:00",
+    "vetoes": [],
+    "status": "expired",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "fim_de_semana",
+    "topic": "fim_de_semana",
+    "location_ids": [
+      "sao_leopoldo",
+      "rio_pardo",
+      "bom_jesus",
+      "espumoso",
+      "rio_grande",
+      "passo_fundo"
+    ],
+    "facts": {
+      "sao_leopoldo": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "rio_pardo": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "bom_jesus": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "espumoso": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "rio_grande": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "passo_fundo": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 5,
+      "novelty": 5
+    },
+    "extra": {
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "forecast": {
+        "2026-11-28": [
+          {
+            "id": "sao_leopoldo",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "rio_pardo",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "bom_jesus",
+            "max_c": 21,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "espumoso",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "rio_grande",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "passo_fundo",
+            "max_c": 26,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ],
+        "2026-11-29": [
+          {
+            "id": "sao_leopoldo",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "rio_pardo",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "bom_jesus",
+            "max_c": 20,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "espumoso",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "rio_grande",
+            "max_c": 25,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "passo_fundo",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ]
+      }
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "8e3951222be5d057dc00",
+    "dedupe_key": "18edbb32de9b331994ea4d446b0d264f5b4c7e89ef031d05614ce0a3b770ca9f",
+    "created_at": "2026-11-25T05:40:38.312103-03:00",
+    "expires_at": "2026-11-25T07:40:02-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "amanha_no_estado",
+    "topic": "amanha",
+    "location_ids": [
+      "sao_leopoldo",
+      "rio_pardo",
+      "bom_jesus",
+      "espumoso",
+      "rio_grande",
+      "passo_fundo"
+    ],
+    "facts": {
+      "sao_leopoldo": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "rio_pardo": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "bom_jesus": {
+        "max_c": 20,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "espumoso": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "rio_grande": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "passo_fundo": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 4,
+      "novelty": 3
+    },
+    "extra": {
+      "date": "2026-11-26"
+    },
+    "total": 18,
+    "classification": "reel",
+    "turno": "noite",
+    "character": "bia",
+    "hook_key": "927ab5b9ba44fc56f357",
+    "dedupe_key": "a30f05e84db516113fd42714d9820819b7a4a03c3f6ad66fb96f79f6371e5065",
+    "created_at": "2026-11-25T05:40:38.312103-03:00",
+    "expires_at": "2026-11-25T07:40:02-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 76.6,
+    "language": "forecast"
+  },
+  {
+    "format": "antes_de_sair",
+    "topic": "resumo",
+    "location_ids": [
+      "sao_leopoldo",
+      "rio_pardo",
+      "bom_jesus",
+      "espumoso",
+      "rio_grande",
+      "passo_fundo"
+    ],
+    "facts": {
+      "sao_leopoldo": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "rio_pardo": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "bom_jesus": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "espumoso": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "rio_grande": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "passo_fundo": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 3,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 5
+    },
+    "extra": {},
+    "total": 17,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "19b0de5cee7772b43326",
+    "dedupe_key": "b0c7e2737419cc30fc29d23f21555ddfdaf5977c00a5742e80c181d5f5fb2c46",
+    "created_at": "2026-11-25T05:40:38.312103-03:00",
+    "expires_at": "2026-11-25T07:40:02-03:00",
+    "vetoes": [],
+    "status": "published",
+    "confidence": 76.6,
+    "language": "forecast",
+    "claimed_at": "2026-11-25T06:00:09-03:00",
+    "published_at": "2026-11-25T06:00:49-03:00",
+    "media_id": "17878646043588251"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "temperatura",
+    "location_ids": [
+      "rio_pardo",
+      "rio_grande"
+    ],
+    "facts": {
+      "rio_pardo": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "rio_grande": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 2,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {
+      "contrast": {
+        "spread": 4.0,
+        "threshold": 4,
+        "relevant": true,
+        "crosses_gust_threshold": false,
+        "low": {
+          "id": "rio_grande",
+          "name": "Rio Grande",
+          "value": 23.0
+        },
+        "high": {
+          "id": "rio_pardo",
+          "name": "Rio Pardo",
+          "value": 27.0
+        },
+        "available_locations": 6
+      }
+    },
+    "total": 16,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "c23b05bfb310db6fc732",
+    "dedupe_key": "8ae40ddacffb40187a4127970ff8334978330874e3db437cccb212656c93d7c1",
+    "created_at": "2026-11-25T05:40:38.312103-03:00",
+    "expires_at": "2026-11-25T07:40:02-03:00",
     "vetoes": [],
     "status": "ready",
     "confidence": 76.6,
