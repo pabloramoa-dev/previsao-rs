@@ -1,12 +1,13 @@
 name: Alerta RS 24h (Bira e Bia)
 
 # Consulta avisos oficiais a cada 15 min (GitHub pode atrasar).
-# Alerta laranja/vermelho a qualquer hora; amarelo na janela 12h20–15h.
+# Alerta laranja/vermelho a qualquer hora; amarelo na janela 10h00–15h.
 # Mantém gate, idempotência, Reel e Story; push/manual padrão sem publicar.
 
 on:
   schedule:
     - cron: "5,20,35,50 * * * *"
+    - cron: "0 13 * * *"
   push:
     paths:
       - '.github/workflows/alerta_rs.yml'
@@ -25,7 +26,7 @@ permissions:
   contents: write
 
 env:
-  ALVO: "12:20"
+  ALVO: "10:00"
   PRAZO: "15:00"
   FUSO_UTC: "-3"
 
@@ -47,7 +48,7 @@ jobs:
         run: |
           pip install -q PyYAML
           HORA=$(TZ=America/Sao_Paulo date +%H%M)
-          if [[ "$HORA" < "1220" || "$HORA" > "1459" ]]; then
+          if [[ "$HORA" < "1000" || "$HORA" > "1459" ]]; then
             export RS_ALERTA_SEVERO_APENAS=true
           fi
           python -m scripts.monitor_alertas_rs
@@ -80,7 +81,7 @@ jobs:
           else
             P=true
             HORA=$(TZ=America/Sao_Paulo date +%H%M)
-            if [[ "$HORA" < "1220" || "$HORA" > "1459" ]]; then
+            if [[ "$HORA" < "1000" || "$HORA" > "1459" ]]; then
               echo "RS_ALERTA_SEVERO_APENAS=true" >> "$GITHUB_ENV"
             fi
           fi
