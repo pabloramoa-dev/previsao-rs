@@ -1552,7 +1552,7 @@
     "created_at": "2026-11-25T05:40:38.312103-03:00",
     "expires_at": "2026-11-25T07:40:02-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 76.6,
     "language": "forecast"
   },
@@ -1618,7 +1618,7 @@
     "created_at": "2026-11-25T05:40:38.312103-03:00",
     "expires_at": "2026-11-25T07:40:02-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 76.6,
     "language": "forecast"
   },
@@ -1743,8 +1743,346 @@
     "created_at": "2026-11-25T05:40:38.312103-03:00",
     "expires_at": "2026-11-25T07:40:02-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 76.6,
     "language": "forecast"
+  },
+  {
+    "format": "fim_de_semana",
+    "topic": "fim_de_semana",
+    "location_ids": [
+      "guaiba",
+      "arroio_do_meio",
+      "veranopolis",
+      "terra_de_areia",
+      "itaqui",
+      "humaita"
+    ],
+    "facts": {
+      "guaiba": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "arroio_do_meio": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "veranopolis": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "terra_de_areia": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "itaqui": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "humaita": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 5,
+      "novelty": 5
+    },
+    "extra": {
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "forecast": {
+        "2026-11-28": [
+          {
+            "id": "guaiba",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "arroio_do_meio",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "veranopolis",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "terra_de_areia",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "itaqui",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "humaita",
+            "max_c": 25,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ],
+        "2026-11-29": [
+          {
+            "id": "guaiba",
+            "max_c": 26,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "arroio_do_meio",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "veranopolis",
+            "max_c": 22,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "terra_de_areia",
+            "max_c": 23,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "itaqui",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "humaita",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ]
+      }
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "2926dec6d9c29630d35c",
+    "dedupe_key": "8d349c1d4f11de30d8c7b37759d22427fb9bc57dd935b0b68a49cdb1481ced1c",
+    "created_at": "2026-11-26T08:47:46.918449-03:00",
+    "expires_at": "2026-11-26T10:47:46-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "amanha_no_estado",
+    "topic": "amanha",
+    "location_ids": [
+      "guaiba",
+      "arroio_do_meio",
+      "veranopolis",
+      "terra_de_areia",
+      "itaqui",
+      "humaita"
+    ],
+    "facts": {
+      "guaiba": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "arroio_do_meio": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "veranopolis": {
+        "max_c": 22,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "terra_de_areia": {
+        "max_c": 23,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "itaqui": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "humaita": {
+        "max_c": 21,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 4,
+      "novelty": 3
+    },
+    "extra": {
+      "date": "2026-11-27"
+    },
+    "total": 18,
+    "classification": "reel",
+    "turno": "noite",
+    "character": "bia",
+    "hook_key": "4c2be0719a8eda0347ab",
+    "dedupe_key": "62d8c00851659e249120fae47205d1213577b59556d57c564e4fef797a1af6a0",
+    "created_at": "2026-11-26T08:47:46.918449-03:00",
+    "expires_at": "2026-11-26T10:47:46-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "temperatura",
+    "location_ids": [
+      "terra_de_areia",
+      "humaita"
+    ],
+    "facts": {
+      "terra_de_areia": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "humaita": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 2,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {
+      "contrast": {
+        "spread": 5.0,
+        "threshold": 4,
+        "relevant": true,
+        "crosses_gust_threshold": false,
+        "low": {
+          "id": "terra_de_areia",
+          "name": "Terra de Areia",
+          "value": 25.0
+        },
+        "high": {
+          "id": "humaita",
+          "name": "Humaitá",
+          "value": 30.0
+        },
+        "available_locations": 6
+      }
+    },
+    "total": 16,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "31b770bde302060cd7f5",
+    "dedupe_key": "eed4fbba040580657c03c85b2fad371a5fa25867a2433d86d6e16359691b959d",
+    "created_at": "2026-11-26T08:47:46.918449-03:00",
+    "expires_at": "2026-11-26T10:47:46-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "antes_de_sair",
+    "topic": "resumo",
+    "location_ids": [
+      "guaiba",
+      "arroio_do_meio",
+      "veranopolis",
+      "terra_de_areia",
+      "itaqui",
+      "humaita"
+    ],
+    "facts": {
+      "guaiba": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "arroio_do_meio": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "veranopolis": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "terra_de_areia": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "itaqui": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "humaita": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 3,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {},
+    "total": 15,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "5aa2af68bfc0dc696840",
+    "dedupe_key": "d22ebd98556ccc51389594bec9e6822ec9cdf3e6aec5391532fe77df8ad56745",
+    "created_at": "2026-11-26T08:47:46.918449-03:00",
+    "expires_at": "2026-11-26T10:47:46-03:00",
+    "vetoes": [],
+    "status": "published",
+    "confidence": 75.0,
+    "language": "forecast",
+    "claimed_at": "2026-11-26T08:50:26-03:00",
+    "published_at": "2026-11-26T08:51:11-03:00",
+    "media_id": "18172312252474577"
   }
 ]
