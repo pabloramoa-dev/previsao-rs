@@ -31,6 +31,7 @@ def anexar_varredura(snapshot, cadastro, pontos):
                 volumes.append({'id': ident, 'name': local['name'], 'rain_mm': round(mm, 1)})
         bloco['rain_scan_rs'] = {
             'ponto': max(volumes, key=lambda p: p['rain_mm'], default=None),
+            'pontos': [p for p in volumes if p['rain_mm'] >= 50],
             'validos': len(volumes), 'total': len(cadastro),
         }
 
