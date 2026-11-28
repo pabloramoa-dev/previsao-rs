@@ -37,6 +37,10 @@ CEU = (("granizo", "tempestade"), ("tempestade", "tempestade"), ("temporal", "te
        ("calor", "calor"), ("umidade", "calor"))
 
 
+# ~2,5 palavras/s na voz da dupla + vinhetas: 95 palavras cabem em ~55 s.
+MAX_PALAVRAS_ALERTA = 95
+
+
 def nivel(sev) -> int:
     return NIVEL.get(str(sev or "").strip().casefold(), 1)
 
@@ -164,6 +168,12 @@ def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
     instr = _lista(aviso.get("instrucoes"))
     outros = sorted({str(a["tipo"]).strip() for a in todos if a is not aviso and a["tipo"] != aviso["tipo"]})
 
+    # Orçamento de fala: avisos do INMET trazem riscos e instruções longos e o
+    # alerta passava de 50 s. Cortamos primeiro o que é opcional (outros avisos,
+    # instrução, segundo risco); abertura, validade, telefones e CTA ficam.
+    def _palavras(lista):
+        return sum(len(f["fala"].split()) for f in lista)
+
     falas = [
         {"cena": "abertura",
          "fala": f"Atenção, Rio Grande do Sul! Há {COR[n].lower()} de {tipo.lower()}, segundo {orgao}."},
@@ -184,6 +194,20 @@ def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
                   "fala": "Em emergência, ligue 199 para a Defesa Civil ou 193 para os Bombeiros."})
     falas.append({"cena": "cta", "chamada": "MANDE ESTE ALERTA", "sub": "{arroba} · aviso oficial",
                   "fala": "Manda esse alerta pra quem mora no Rio Grande do Sul."})
+    for marca in ("Também há aviso oficial", "__instr__", "Riscos apontados"):
+        if _palavras(falas) <= MAX_PALAVRAS_ALERTA:
+            break
+        for i, f in enumerate(falas):
+            texto = f["fala"]
+            alvo = (instr and marca == "__instr__" and texto == instr[0].rstrip(".") + ".") or texto.startswith(marca)
+            if f["cena"] == "frase" and not f.get("continua") and alvo:
+                if marca == "Riscos apontados" and len(riscos) > 1:
+                    f["fala"] = f"Riscos apontados por {orgao}: " + riscos[0].rstrip(".")[0].lower() + riscos[0].rstrip(".")[1:] + "."
+                    if _palavras(falas) <= MAX_PALAVRAS_ALERTA:
+                        break
+                    continue
+                del falas[i]
+                break
 
     mostrados = nomes[:15]
     lista_legenda = ", ".join(mostrados) + (f" e mais {qtd - len(mostrados)}" if qtd > len(mostrados) and mostrados else "")

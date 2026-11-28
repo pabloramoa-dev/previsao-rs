@@ -32,3 +32,18 @@ def test_nenhum_import_em_runtime_do_projeto_anterior():
         text = path.read_text(encoding="utf-8")
         assert "import previsao_lib" not in text
         assert "from previsao_lib" not in text
+
+
+def test_excecao_do_radar_e_estreita(tmp_path, monkeypatch):
+    """Só o workflow do Radar pode citar o modelo; qualquer outro arquivo ainda falha."""
+    import scripts.isolation_guard as g
+    (tmp_path / "config").mkdir()
+    (tmp_path / "config" / "isolamento.yaml").write_text(
+        '{"proibidos": ["previsao-modelo"], "permitidos_por_arquivo": '
+        '{".github/workflows/publicar_radar.yml": ["previsao-modelo"]}}', encoding="utf-8")
+    wf = tmp_path / ".github" / "workflows"
+    wf.mkdir(parents=True)
+    (wf / "publicar_radar.yml").write_text("clone previsao-modelo", encoding="utf-8")
+    (wf / "reel_noite.yml").write_text("clone previsao-modelo", encoding="utf-8")
+    monkeypatch.setattr(g, "RAIZ", tmp_path)
+    assert g.scan(tmp_path) == [(".github/workflows/reel_noite.yml", "previsao-modelo")]

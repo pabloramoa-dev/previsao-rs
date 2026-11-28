@@ -14,5 +14,8 @@
     "previsao-modelo",
     "27148485038175",
     "reels/previsao_lib"
-  ]
+  ],
+  "permitidos_por_arquivo": {
+    ".github/workflows/publicar_radar.yml": ["previsao-modelo"]
+  }
 }

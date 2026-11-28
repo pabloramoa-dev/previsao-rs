@@ -33,3 +33,33 @@ def test_roteiro_so_com_dados_oficiais():
     assert "{arroba}" in r["legenda"] and "Porto Alegre" in r["legenda"]
     assert r["validade"] == "2026-11-24T10:00"
     assert nivel("Grande Perigo") == 3
+
+
+def test_aviso_longo_cabe_no_orcamento_sem_perder_o_essencial():
+    """Run 46072589094: riscos e instruções longos do INMET geraram alerta de 52 s."""
+    from scripts.alerta_auto_rs import MAX_PALAVRAS_ALERTA
+    a = aviso("7", "Grande Perigo")
+    a["riscos"] = ("Corte de energia elétrica, queda de galhos de árvores, alagamentos e "
+                   "descargas elétricas em diversas áreas urbanas e rurais. "
+                   "Estragos em plantações, danos em edificações e transtornos no transporte rodoviário.")
+    a["instrucoes"] = ("Em caso de rajadas de vento: não se abrigue debaixo de árvores, pois há "
+                       "risco de queda e descargas elétricas, e não estacione veículos próximos a "
+                       "torres de transmissão e placas de propaganda.")
+    outros = [aviso(str(i), tipo=t) for i, t in enumerate(["Vendaval", "Acumulado de Chuva", "Granizo"], 20)]
+    r = roteiro(a, [a, *outros], AGORA)
+    total = sum(len(f["fala"].split()) for f in r["falas"])
+    assert total <= MAX_PALAVRAS_ALERTA
+    falas = " ".join(f["fala"] for f in r["falas"])
+    assert falas.startswith("Atenção, Rio Grande do Sul!")
+    assert "O aviso vale" in falas and "199" in falas and "193" in falas
+    assert r["falas"][-1]["cena"] == "cta"
+    # A legenda continua com tudo (riscos completos e outros avisos).
+    assert "Estragos em plantações" in r["legenda"] and "Vendaval" in r["legenda"]
+
+
+def test_aviso_curto_mantem_todas_as_falas():
+    a = aviso("1")
+    r = roteiro(a, [a, aviso("9", tipo="Vendaval")], AGORA)
+    falas = " ".join(f["fala"] for f in r["falas"])
+    assert "Riscos apontados" in falas and "Também há aviso oficial" in falas
+    assert "não se abrigue" in falas

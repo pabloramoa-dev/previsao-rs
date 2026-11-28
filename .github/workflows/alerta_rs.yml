@@ -127,7 +127,7 @@ jobs:
         run: |
           python hyperframes/comunicado_dupla.py comunicados/auto/alerta_rs.yaml --so-validar
           python hyperframes/comunicado_dupla.py comunicados/auto/alerta_rs.yaml --out output/REEL.mp4
-          python scripts/qa_video.py output/REEL.mp4
+          python scripts/qa_video.py output/REEL.mp4 --max 60
           {
             echo "## Aviso"; echo '```'; cat output/alerta_decisao.json; echo '```'
             echo "## Roteiro falado"; echo '```'; cat output/work_comunicado/roteiro.txt; echo '```'

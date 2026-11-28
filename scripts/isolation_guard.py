@@ -27,10 +27,20 @@ SKIP_SUFFIXES = {".pyc", ".mp4", ".wav", ".png", ".jpg", ".woff2", ".ttf", ".js"
 SKIP_PARTS = {"__pycache__", "node_modules", "rede", "build"}
 
 
-def proibidos() -> list[str]:
+def _dados() -> dict:
     caminho = RAIZ / "config" / "isolamento.yaml"
-    dados = yaml.safe_load(caminho.read_text(encoding="utf-8")) or {}
-    return [str(t).casefold() for t in dados.get("proibidos") or []]
+    return yaml.safe_load(caminho.read_text(encoding="utf-8")) or {}
+
+
+def proibidos() -> list[str]:
+    return [str(t).casefold() for t in _dados().get("proibidos") or []]
+
+
+def permitidos_por_arquivo() -> dict[Path, set[str]]:
+    """Excecoes estreitas (arquivo -> tokens), ex.: o workflow do Radar central
+    que busca o publicador no repositorio-modelo (hub da rede, nao um canal)."""
+    bruto = _dados().get("permitidos_por_arquivo") or {}
+    return {Path(k): {str(t).casefold() for t in v or []} for k, v in bruto.items()}
 
 
 def _padrao(token: str) -> re.Pattern[str]:
@@ -40,6 +50,7 @@ def _padrao(token: str) -> re.Pattern[str]:
 
 def scan(raiz: Path = RAIZ) -> list[tuple[str, str]]:
     padroes = [(t, _padrao(t)) for t in proibidos()]
+    liberacoes = permitidos_por_arquivo()
     violations: list[tuple[str, str]] = []
     for root in ROOTS:
         base = raiz / root
@@ -55,7 +66,10 @@ def scan(raiz: Path = RAIZ) -> list[tuple[str, str]]:
                 text = path.read_text(encoding="utf-8").casefold()
             except (UnicodeDecodeError, OSError):
                 continue
+            liberados = liberacoes.get(rel, set())
             for token, padrao in padroes:
+                if token in liberados:
+                    continue
                 if padrao.search(text):
                     violations.append((str(rel), token))
     return violations
