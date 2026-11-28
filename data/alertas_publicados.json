@@ -1,0 +1,17 @@
+{
+  "versao": 1,
+  "registros": [
+    {
+      "id_aviso": "28770",
+      "nivel": 2,
+      "tipo": "Chuvas Intensas",
+      "fim": "2026-11-27T23:59:00-03:00",
+      "story_status": "published",
+      "reel_status": "published",
+      "media_id": "17977738704184749",
+      "publicado_em": "2026-11-27T22:21:27.670157-03:00",
+      "story_container": "18026033687747073",
+      "story_media_id": "18131959156854647"
+    }
+  ]
+}
