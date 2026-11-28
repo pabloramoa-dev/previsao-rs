@@ -58,6 +58,13 @@ def _lista(v) -> list[str]:
     return out
 
 
+def _unidades_para_fala(texto: str) -> str:
+    texto = re.sub(r"\b(\d+(?:[.,]\d+)?)\s*[-–—]\s*(\d+(?:[.,]\d+)?)(?=\s*(?:mm|km)\s*/\s*h\b)",
+                   r"de \1 a \2", texto, flags=re.IGNORECASE)
+    texto = re.sub(r"(?<=\d)\s*mm\s*/\s*h\b", " milímetros por hora", texto, flags=re.IGNORECASE)
+    return re.sub(r"(?<=\d)\s*km\s*/\s*h\b", " quilômetros por hora", texto, flags=re.IGNORECASE)
+
+
 def nomes_ibge() -> dict[str, str]:
     """IBGE -> nome, a partir das cidades cadastradas do canal."""
     txt = (ROOT / "config" / "locais.yaml").read_text(encoding="utf-8")
@@ -165,7 +172,9 @@ def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
     else:
         onde = f"{qtd} municípios gaúchos"
     riscos = _lista(aviso.get("riscos"))[:2]
+    riscos_falados = [_unidades_para_fala(risco) for risco in riscos]
     instr = _lista(aviso.get("instrucoes"))
+    instr_falada = _unidades_para_fala(instr[0]) + "." if instr else ""
     outros = sorted({str(a["tipo"]).strip() for a in todos if a is not aviso and a["tipo"] != aviso["tipo"]})
 
     # Orçamento de fala: avisos do INMET trazem riscos e instruções longos e o
@@ -184,12 +193,12 @@ def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
         falas.append({"cena": "frase",
                       "fala": f"Riscos apontados por {orgao}: " + "; ".join(
                           r.rstrip(".").lower() if i else r.rstrip(".")[0].lower() + r.rstrip(".")[1:]
-                          for i, r in enumerate(riscos)) + "."})
+                          for i, r in enumerate(riscos_falados)) + "."})
     if outros:
         falas.append({"cena": "frase",
                       "fala": "Também há aviso oficial de " + ", ".join(o.lower() for o in outros[:3]) + " no estado."})
-    if instr:
-        falas.append({"cena": "frase", "fala": instr[0].rstrip(".") + "."})
+    if instr_falada:
+        falas.append({"cena": "frase", "fala": instr_falada})
     falas.append({"cena": "frase", "continua": True,
                   "fala": "Em emergência, ligue 199 para a Defesa Civil ou 193 para os Bombeiros."})
     falas.append({"cena": "cta", "chamada": "MANDE ESTE ALERTA", "sub": "{arroba} · aviso oficial",
@@ -199,10 +208,11 @@ def roteiro(aviso: dict, todos: list[dict], agora: datetime) -> dict:
             break
         for i, f in enumerate(falas):
             texto = f["fala"]
-            alvo = (instr and marca == "__instr__" and texto == instr[0].rstrip(".") + ".") or texto.startswith(marca)
+            alvo = (marca == "__instr__" and texto == instr_falada) or texto.startswith(marca)
             if f["cena"] == "frase" and not f.get("continua") and alvo:
                 if marca == "Riscos apontados" and len(riscos) > 1:
-                    f["fala"] = f"Riscos apontados por {orgao}: " + riscos[0].rstrip(".")[0].lower() + riscos[0].rstrip(".")[1:] + "."
+                    primeiro_risco = riscos_falados[0]
+                    f["fala"] = f"Riscos apontados por {orgao}: {primeiro_risco[0].lower() + primeiro_risco[1:]}."
                     if _palavras(falas) <= MAX_PALAVRAS_ALERTA:
                         break
                     continue
