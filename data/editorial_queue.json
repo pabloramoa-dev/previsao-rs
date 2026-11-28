@@ -2228,7 +2228,7 @@
     "created_at": "2026-11-27T22:03:07.374969-03:00",
     "expires_at": "2026-11-28T00:03:07-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 75.0,
     "language": "forecast"
   },
@@ -2286,7 +2286,7 @@
     "created_at": "2026-11-27T22:03:07.374969-03:00",
     "expires_at": "2026-11-28T00:03:07-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 75.0,
     "language": "forecast"
   },
@@ -2350,7 +2350,7 @@
     "created_at": "2026-11-27T22:03:07.374969-03:00",
     "expires_at": "2026-11-28T00:03:07-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 75.0,
     "language": "forecast"
   },
@@ -2422,5 +2422,383 @@
     "claimed_at": "2026-11-27T22:05:52-03:00",
     "published_at": "2026-11-27T22:07:27-03:00",
     "media_id": "18114492023187019"
+  },
+  {
+    "format": "fim_de_semana",
+    "topic": "fim_de_semana",
+    "location_ids": [
+      "viamao",
+      "taquari",
+      "sao_domingos_do_sul",
+      "torres",
+      "quarai",
+      "tres_passos"
+    ],
+    "facts": {
+      "viamao": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "taquari": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sao_domingos_do_sul": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "torres": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "quarai": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tres_passos": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 5,
+      "novelty": 5
+    },
+    "extra": {
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "forecast": {
+        "2026-11-28": [
+          {
+            "id": "viamao",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "taquari",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "sao_domingos_do_sul",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "torres",
+            "max_c": 25,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "quarai",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "tres_passos",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ],
+        "2026-11-29": [
+          {
+            "id": "viamao",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "taquari",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "sao_domingos_do_sul",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "torres",
+            "max_c": 24,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "quarai",
+            "max_c": 31,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "tres_passos",
+            "max_c": 30,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ]
+      }
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "08ba956e81b0e055a8aa",
+    "dedupe_key": "99693fbf6f23cb16ce764b31de32342aa70f601d465fc514fe78229e2d740720",
+    "created_at": "2026-11-28T05:41:27.137457-03:00",
+    "expires_at": "2026-11-28T07:41:26-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "amanha_no_estado",
+    "topic": "amanha",
+    "location_ids": [
+      "viamao",
+      "taquari",
+      "sao_domingos_do_sul",
+      "torres",
+      "quarai",
+      "tres_passos"
+    ],
+    "facts": {
+      "viamao": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "taquari": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sao_domingos_do_sul": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "torres": {
+        "max_c": 24,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "quarai": {
+        "max_c": 31,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tres_passos": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 4,
+      "novelty": 3
+    },
+    "extra": {
+      "date": "2026-11-29"
+    },
+    "total": 18,
+    "classification": "reel",
+    "turno": "noite",
+    "character": "bia",
+    "hook_key": "40d2f274897dbe2466a1",
+    "dedupe_key": "b002036f7a8709102734e9855e767ea89629fe5b32bb6fa5986f14eab8357253",
+    "created_at": "2026-11-28T05:41:27.137457-03:00",
+    "expires_at": "2026-11-28T07:41:26-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "janela_chuva",
+    "location_ids": [
+      "sao_domingos_do_sul",
+      "tres_passos"
+    ],
+    "facts": {
+      "sao_domingos_do_sul": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tres_passos": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 4,
+      "contrast": 0,
+      "shareability": 4,
+      "novelty": 5
+    },
+    "extra": {},
+    "total": 17,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "fe026181a838ff331ee7",
+    "dedupe_key": "8862f5751e380ca3c70b706e36bd9bb1a798ecdc8e4da90b0365ce69bdd963c8",
+    "created_at": "2026-11-28T05:41:27.137457-03:00",
+    "expires_at": "2026-11-28T07:41:26-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "temperatura",
+    "location_ids": [
+      "torres",
+      "quarai"
+    ],
+    "facts": {
+      "torres": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "quarai": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 2,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {
+      "contrast": {
+        "spread": 5.0,
+        "threshold": 4,
+        "relevant": true,
+        "crosses_gust_threshold": false,
+        "low": {
+          "id": "torres",
+          "name": "Torres",
+          "value": 25.0
+        },
+        "high": {
+          "id": "quarai",
+          "name": "Quaraí",
+          "value": 30.0
+        },
+        "available_locations": 6
+      }
+    },
+    "total": 16,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "9603e5d27bf7a2cc908b",
+    "dedupe_key": "5d1d918d8975fdc31bf0ece624c491deab4eb6f46c8285d46a64ae375dde648d",
+    "created_at": "2026-11-28T05:41:27.137457-03:00",
+    "expires_at": "2026-11-28T07:41:26-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "antes_de_sair",
+    "topic": "resumo",
+    "location_ids": [
+      "viamao",
+      "taquari",
+      "sao_domingos_do_sul",
+      "torres",
+      "quarai",
+      "tres_passos"
+    ],
+    "facts": {
+      "viamao": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "taquari": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sao_domingos_do_sul": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "torres": {
+        "max_c": 25,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "quarai": {
+        "max_c": 30,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "tres_passos": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 3,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {},
+    "total": 15,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "129976b29ac8c82a23a3",
+    "dedupe_key": "4c67f59659fdb3ec494273389eb216c631c18ebfdcd80049c5e540095c21d3ab",
+    "created_at": "2026-11-28T05:41:27.137457-03:00",
+    "expires_at": "2026-11-28T07:41:26-03:00",
+    "vetoes": [],
+    "status": "published",
+    "confidence": 75.0,
+    "language": "forecast",
+    "claimed_at": "2026-11-28T06:00:06-03:00",
+    "published_at": "2026-11-28T06:00:48-03:00",
+    "media_id": "18064969697542640"
   }
 ]
