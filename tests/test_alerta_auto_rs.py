@@ -63,3 +63,17 @@ def test_aviso_curto_mantem_todas_as_falas():
     falas = " ".join(f["fala"] for f in r["falas"])
     assert "Riscos apontados" in falas and "Também há aviso oficial" in falas
     assert "não se abrigue" in falas
+
+
+def test_unidades_dos_riscos_sao_lidas_por_extenso():
+    a = aviso("1", tipo="Chuvas Intensas")
+    a["riscos"] = "Chuva entre 30 e 60 mm/h, ventos intensos (60-100 km/h)."
+    r = roteiro(a, [a], AGORA)
+    fala = " ".join(f["fala"] for f in r["falas"])
+    assert "chuva entre 30 e 60 milímetros por hora" in fala
+    assert "de 60 a 100 quilômetros por hora" in fala
+    assert "60-100 km/h" in r["legenda"]
+
+    a["riscos"] = "Ventos de 50 a 100 km/h."
+    r = roteiro(a, [a], AGORA)
+    assert any("de 50 a 100 quilômetros por hora" in f["fala"] for f in r["falas"])
