@@ -1890,7 +1890,7 @@
     "created_at": "2026-11-26T08:47:46.918449-03:00",
     "expires_at": "2026-11-26T10:47:46-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 75.0,
     "language": "forecast"
   },
@@ -1956,7 +1956,7 @@
     "created_at": "2026-11-26T08:47:46.918449-03:00",
     "expires_at": "2026-11-26T10:47:46-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 75.0,
     "language": "forecast"
   },
@@ -2014,7 +2014,7 @@
     "created_at": "2026-11-26T08:47:46.918449-03:00",
     "expires_at": "2026-11-26T10:47:46-03:00",
     "vetoes": [],
-    "status": "ready",
+    "status": "expired",
     "confidence": 75.0,
     "language": "forecast"
   },
@@ -2084,5 +2084,343 @@
     "claimed_at": "2026-11-26T08:50:26-03:00",
     "published_at": "2026-11-26T08:51:11-03:00",
     "media_id": "18172312252474577"
+  },
+  {
+    "format": "fim_de_semana",
+    "topic": "fim_de_semana",
+    "location_ids": [
+      "tres_coroas",
+      "sobradinho",
+      "ipe",
+      "cachoeira_do_sul",
+      "herval",
+      "carazinho"
+    ],
+    "facts": {
+      "tres_coroas": {
+        "max_c": 19,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sobradinho": {
+        "max_c": 15,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "ipe": {
+        "max_c": 17,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "cachoeira_do_sul": {
+        "max_c": 18,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "herval": {
+        "max_c": 18,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "carazinho": {
+        "max_c": 18,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 4,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 5,
+      "novelty": 5
+    },
+    "extra": {
+      "dates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "forecast": {
+        "2026-11-28": [
+          {
+            "id": "tres_coroas",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "sobradinho",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "ipe",
+            "max_c": 26,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "cachoeira_do_sul",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "herval",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "carazinho",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ],
+        "2026-11-29": [
+          {
+            "id": "tres_coroas",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "sobradinho",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "ipe",
+            "max_c": 27,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "cachoeira_do_sul",
+            "max_c": 31,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "herval",
+            "max_c": 29,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          },
+          {
+            "id": "carazinho",
+            "max_c": 28,
+            "rain_probability_pct": null,
+            "wind_gust_max_kmh": null
+          }
+        ]
+      }
+    },
+    "total": 20,
+    "classification": "reel_priority",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "83744fa3a5a3f30fa21b",
+    "dedupe_key": "153dc27bb30c7ac3ac80ab5474942f588b7eee4801f74c9e0904b6b779482086",
+    "created_at": "2026-11-27T22:03:07.374969-03:00",
+    "expires_at": "2026-11-28T00:03:07-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "chove_onde",
+    "topic": "temperatura",
+    "location_ids": [
+      "tres_coroas",
+      "sobradinho"
+    ],
+    "facts": {
+      "tres_coroas": {
+        "max_c": 19,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sobradinho": {
+        "max_c": 15,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 2,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {
+      "contrast": {
+        "spread": 4.0,
+        "threshold": 4,
+        "relevant": true,
+        "crosses_gust_threshold": false,
+        "low": {
+          "id": "sobradinho",
+          "name": "Sobradinho",
+          "value": 15.0
+        },
+        "high": {
+          "id": "tres_coroas",
+          "name": "Três Coroas",
+          "value": 19.0
+        },
+        "available_locations": 6
+      }
+    },
+    "total": 16,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "0661670e57c70872f749",
+    "dedupe_key": "df8e1ebc5d8ceb6e82560093f948e08ef1ee2632bc85d1fa302e7c5471c1989a",
+    "created_at": "2026-11-27T22:03:07.374969-03:00",
+    "expires_at": "2026-11-28T00:03:07-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "antes_de_sair",
+    "topic": "resumo",
+    "location_ids": [
+      "tres_coroas",
+      "sobradinho",
+      "ipe",
+      "cachoeira_do_sul",
+      "herval",
+      "carazinho"
+    ],
+    "facts": {
+      "tres_coroas": {
+        "max_c": 19,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sobradinho": {
+        "max_c": 15,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "ipe": {
+        "max_c": 17,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "cachoeira_do_sul": {
+        "max_c": 18,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "herval": {
+        "max_c": 18,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "carazinho": {
+        "max_c": 18,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 3,
+      "urgency": 3,
+      "contrast": 3,
+      "shareability": 3,
+      "novelty": 3
+    },
+    "extra": {},
+    "total": 15,
+    "classification": "reel",
+    "turno": "manha",
+    "character": "bira",
+    "hook_key": "a3136ec29809b5c7c441",
+    "dedupe_key": "ab29fe11fc88ce7ffdc6df91d65d31c53d6c4da134cb79e5734f38c29feeab46",
+    "created_at": "2026-11-27T22:03:07.374969-03:00",
+    "expires_at": "2026-11-28T00:03:07-03:00",
+    "vetoes": [],
+    "status": "ready",
+    "confidence": 75.0,
+    "language": "forecast"
+  },
+  {
+    "format": "amanha_no_estado",
+    "topic": "amanha",
+    "location_ids": [
+      "tres_coroas",
+      "sobradinho",
+      "ipe",
+      "cachoeira_do_sul",
+      "herval",
+      "carazinho"
+    ],
+    "facts": {
+      "tres_coroas": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "sobradinho": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "ipe": {
+        "max_c": 26,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "cachoeira_do_sul": {
+        "max_c": 29,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "herval": {
+        "max_c": 28,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      },
+      "carazinho": {
+        "max_c": 27,
+        "rain_probability_pct": null,
+        "wind_gust_max_kmh": null
+      }
+    },
+    "parts": {
+      "utility": 5,
+      "urgency": 3,
+      "contrast": 0,
+      "shareability": 4,
+      "novelty": 3
+    },
+    "extra": {
+      "date": "2026-11-28"
+    },
+    "total": 15,
+    "classification": "reel",
+    "turno": "noite",
+    "character": "bia",
+    "hook_key": "6e33cfbd8174e86a0c11",
+    "dedupe_key": "eb48ad17258d0128fe2ed90d8207ccad595a426df27ccb01cfcee4536c4b7d08",
+    "created_at": "2026-11-27T22:03:07.374969-03:00",
+    "expires_at": "2026-11-28T00:03:07-03:00",
+    "vetoes": [],
+    "status": "published",
+    "confidence": 75.0,
+    "language": "forecast",
+    "claimed_at": "2026-11-27T22:05:52-03:00",
+    "published_at": "2026-11-27T22:07:27-03:00",
+    "media_id": "18114492023187019"
   }
 ]
